@@ -1,0 +1,1645 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="Panel de control" id="d1">
+            <f:facet name="metaContainer">
+                <af:resource source="/script/clientEvents.js" type="javascript"/>
+            </f:facet>
+            <af:messages id="m1"/>
+            <af:form id="f1">
+                <af:pageTemplate viewId="/template/mainTemplate.jspx" id="pt1">
+                    <f:attribute name="Title" value="Panel de control"/>
+                    <f:attribute name="Width" value="2"/>
+                    <f:facet name="main">
+                        <af:panelSpringboard id="psCPANE1" displayMode="strip" inlineStyle="background-color:#dfe4e6">
+                            <af:showDetailItem text="Tablas aplicaci&#243;n" id="sdiTABLES1" disclosed="true"
+                                               icon="/images/tables-icon-transparent.png"
+                                               depressedIcon="/images/tables-icon-selected.png"
+                                               hoverIcon="/images/tables-icon-hover.png">
+                                <af:panelSplitter id="psTABLES1" splitterPosition="230">
+                                    <f:facet name="first">
+                                        <af:decorativeBox id="dbTABLES1" theme="light">
+                                            <f:facet name="center">
+                                                <af:panelGroupLayout id="pglTABLES1" layout="vertical">
+                                                    <af:table id="ttab1" value="#{controlPane.tables}" var="myvar"
+                                                              rowBandingInterval="0" columnBandingInterval="0"
+                                                              autoHeightRows="0" styleClass="AFStretchWidth" width="208"
+                                                              fetchSize="20" rowSelection="single"
+                                                              selectionListener="#{controlPane.selectedTable}">
+                                                        <af:column id="ctab1" sortable="false"
+                                                                   headerText="Tablas base de datos" align="start"
+                                                                   width="200">
+                                                            <af:panelGroupLayout id="pgltab1" valign="middle"
+                                                                                 layout="horizontal">
+                                                                <af:image source="/images/table-icon.png"
+                                                                          shortDesc="image" id="itab1"/>
+                                                                <af:spacer width="2" height="10" id="sta12"/>
+                                                                <af:inputText id="ottab1" value="#{myvar.name}" label=""
+                                                                              readOnly="true"
+                                                                              inlineStyle="font-size:xx-small;"/>
+                                                            </af:panelGroupLayout>
+                                                        </af:column>
+                                                    </af:table>
+                                                    <af:spacer width="5" height="70" id="sTABLES1"/>
+                                                </af:panelGroupLayout>
+                                            </f:facet>
+                                        </af:decorativeBox>
+                                    </f:facet>
+                                    <f:facet name="second">
+                                        <af:panelSplitter id="psTABLES2" orientation="vertical" splitterPosition="260"
+                                                          partialTriggers="ttab1 bTABLES2">
+                                            <f:facet name="first">
+                                                <af:decorativeBox id="dbTABLES2" theme="light">
+                                                    <f:facet name="center">
+                                                        <af:switcher id="s1" defaultFacet="app_aplicaciones"
+                                                                     facetName="#{controlPane.sel_table}">
+                                                            <f:facet name="app_aplicaciones">
+                                                                <af:panelCollection id="pc1">
+                                                                    <f:facet name="menus"/>
+                                                                    <f:facet name="toolbar"/>
+                                                                    <f:facet name="statusbar"/>
+                                                                    <af:table value="#{bindings.appAplicacionesFindAll.collectionModel}"
+                                                                              var="row"
+                                                                              rows="#{bindings.appAplicacionesFindAll.rangeSize}"
+                                                                              emptyText="#{bindings.appAplicacionesFindAll.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                              rowBandingInterval="0"
+                                                                              selectedRowKeys="#{bindings.appAplicacionesFindAll.collectionModel.selectedRow}"
+                                                                              selectionListener="#{bindings.appAplicacionesFindAll.collectionModel.makeCurrent}"
+                                                                              rowSelection="single"
+                                                                              fetchSize="#{bindings.appAplicacionesFindAll.rangeSize}"
+                                                                              filterModel="#{bindings.appAplicacionesFindAllQuery.queryDescriptor}"
+                                                                              queryListener="#{bindings.appAplicacionesFindAllQuery.processQuery}"
+                                                                              filterVisible="true" varStatus="vs"
+                                                                              id="t1">
+                                                                        <af:column sortProperty="#{bindings.appAplicacionesFindAll.hints.abreviatura.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appAplicacionesFindAll.hints.abreviatura.label}"
+                                                                                   id="c1">
+                                                                            <af:outputText value="#{row.abreviatura}"
+                                                                                           shortDesc="#{bindings.appAplicacionesFindAll.hints.abreviatura.tooltip}"
+                                                                                           id="ot1"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appAplicacionesFindAll.hints.descripcion.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appAplicacionesFindAll.hints.descripcion.label}"
+                                                                                   id="c2">
+                                                                            <af:outputText value="#{row.descripcion}"
+                                                                                           shortDesc="#{bindings.appAplicacionesFindAll.hints.descripcion.tooltip}"
+                                                                                           id="ot2"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appAplicacionesFindAll.hints.ftpescritura.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appAplicacionesFindAll.hints.ftpescritura.label}"
+                                                                                   id="c3">
+                                                                            <af:outputText value="#{row.ftpescritura}"
+                                                                                           shortDesc="#{bindings.appAplicacionesFindAll.hints.ftpescritura.tooltip}"
+                                                                                           id="ot3"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appAplicacionesFindAll.hints.ftpslectura.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appAplicacionesFindAll.hints.ftpslectura.label}"
+                                                                                   id="c4">
+                                                                            <af:outputText value="#{row.ftpslectura}"
+                                                                                           shortDesc="#{bindings.appAplicacionesFindAll.hints.ftpslectura.tooltip}"
+                                                                                           id="ot4"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appAplicacionesFindAll.hints.id.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appAplicacionesFindAll.hints.id.label}"
+                                                                                   id="c5">
+                                                                            <af:outputText value="#{row.id}"
+                                                                                           shortDesc="#{bindings.appAplicacionesFindAll.hints.id.tooltip}"
+                                                                                           id="ot5"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appAplicacionesFindAll.hints.nombre.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appAplicacionesFindAll.hints.nombre.label}"
+                                                                                   id="c6">
+                                                                            <af:outputText value="#{row.nombre}"
+                                                                                           shortDesc="#{bindings.appAplicacionesFindAll.hints.nombre.tooltip}"
+                                                                                           id="ot6"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appAplicacionesFindAll.hints.canal.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appAplicacionesFindAll.hints.canal.label}"
+                                                                                   id="c138">
+                                                                            <af:outputText value="#{row.canal}"
+                                                                                           shortDesc="#{bindings.appAplicacionesFindAll.hints.canal.tooltip}"
+                                                                                           id="ot139"/>
+                                                                        </af:column>
+                                                                    </af:table>
+                                                                </af:panelCollection>
+                                                            </f:facet>
+                                                            <f:facet name="app_archivos">
+                                                                <af:panelCollection id="pc2">
+                                                                    <f:facet name="menus"/>
+                                                                    <f:facet name="toolbar"/>
+                                                                    <f:facet name="statusbar"/>
+                                                                    <af:table value="#{bindings.appArchivosFindAll.collectionModel}"
+                                                                              var="row"
+                                                                              rows="#{bindings.appArchivosFindAll.rangeSize}"
+                                                                              emptyText="#{bindings.appArchivosFindAll.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                              rowBandingInterval="0"
+                                                                              selectedRowKeys="#{bindings.appArchivosFindAll.collectionModel.selectedRow}"
+                                                                              selectionListener="#{bindings.appArchivosFindAll.collectionModel.makeCurrent}"
+                                                                              rowSelection="single"
+                                                                              fetchSize="#{bindings.appArchivosFindAll.rangeSize}"
+                                                                              filterModel="#{bindings.appArchivosFindAllQuery.queryDescriptor}"
+                                                                              queryListener="#{bindings.appArchivosFindAllQuery.processQuery}"
+                                                                              filterVisible="true" varStatus="vs"
+                                                                              id="t2">
+                                                                        <af:column sortProperty="#{bindings.appArchivosFindAll.hints.id.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosFindAll.hints.id.label}"
+                                                                                   id="c7">
+                                                                            <af:outputText value="#{row.id}"
+                                                                                           shortDesc="#{bindings.appArchivosFindAll.hints.id.tooltip}"
+                                                                                           id="ot7"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosFindAll.hints.aplicacion.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosFindAll.hints.aplicacion.label}"
+                                                                                   id="c8">
+                                                                            <af:outputText value="#{row.aplicacion}"
+                                                                                           shortDesc="#{bindings.appArchivosFindAll.hints.aplicacion.tooltip}"
+                                                                                           id="ot8"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosFindAll.hints.fecha.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosFindAll.hints.fecha.label}"
+                                                                                   id="c9">
+                                                                            <!-- <f:facet name="filter"> -->
+                                                                                <!-- <af:inputDate value="#{bindings.appArchivosFindAllQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.fecha.value}" -->
+                                                                                              <!-- id="id1"> -->
+                                                                                    <!-- <af:convertDateTime pattern="#{bindings.appArchivosFindAll.hints.fecha.format}"/> -->
+                                                                                <!-- </af:inputDate> -->
+                                                                            <!-- </f:facet> -->
+                                                                            <af:outputText value="#{row.fecha}"
+                                                                                           shortDesc="#{bindings.appArchivosFindAll.hints.fecha.tooltip}"
+                                                                                           id="ot9">
+                                                                                <af:convertDateTime pattern="#{bindings.appArchivosFindAll.hints.fecha.format}"/>
+                                                                            </af:outputText>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosFindAll.hints.nombre.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosFindAll.hints.nombre.label}"
+                                                                                   id="c10">
+                                                                            <af:outputText value="#{row.nombre}"
+                                                                                           shortDesc="#{bindings.appArchivosFindAll.hints.nombre.tooltip}"
+                                                                                           id="ot10"/>
+                                                                        </af:column>
+                                                                    </af:table>
+                                                                </af:panelCollection>
+                                                            </f:facet>
+                                                            <f:facet name="app_archivosaplicaciones">
+                                                                <af:panelCollection id="pc3">
+                                                                    <f:facet name="menus"/>
+                                                                    <f:facet name="toolbar"/>
+                                                                    <f:facet name="statusbar"/>
+                                                                    <af:table value="#{bindings.appArchivosaplicacionesFindAll1.collectionModel}"
+                                                                              var="row"
+                                                                              rows="#{bindings.appArchivosaplicacionesFindAll1.rangeSize}"
+                                                                              emptyText="#{bindings.appArchivosaplicacionesFindAll1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                              rowBandingInterval="0"
+                                                                              selectedRowKeys="#{bindings.appArchivosaplicacionesFindAll1.collectionModel.selectedRow}"
+                                                                              selectionListener="#{bindings.appArchivosaplicacionesFindAll1.collectionModel.makeCurrent}"
+                                                                              rowSelection="single"
+                                                                              fetchSize="#{bindings.appArchivosaplicacionesFindAll1.rangeSize}"
+                                                                              filterModel="#{bindings.appArchivosaplicacionesFindAllQuery.queryDescriptor}"
+                                                                              queryListener="#{bindings.appArchivosaplicacionesFindAllQuery.processQuery}"
+                                                                              filterVisible="true" varStatus="vs"
+                                                                              id="t3">
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.id.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.id.label}"
+                                                                                   id="c11">
+                                                                            <af:outputText value="#{row.id}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.id.tooltip}"
+                                                                                           id="ot11"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.aplicacion.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.aplicacion.label}"
+                                                                                   id="c12">
+                                                                            <af:outputText value="#{row.aplicacion}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.aplicacion.tooltip}"
+                                                                                           id="ot12"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.aplicacionorigen.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.aplicacionorigen.label}"
+                                                                                   id="c13">
+                                                                            <af:outputText value="#{row.aplicacionorigen}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.aplicacionorigen.tooltip}"
+                                                                                           id="ot13"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.cajero.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.cajero.label}"
+                                                                                   id="c14">
+                                                                            <af:outputText value="#{row.cajero}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.cajero.tooltip}"
+                                                                                           id="ot14"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.descripcionampliada.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.descripcionampliada.label}"
+                                                                                   id="c15">
+                                                                            <af:outputText value="#{row.descripcionampliada}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.descripcionampliada.tooltip}"
+                                                                                           id="ot15"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.extension.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.extension.label}"
+                                                                                   id="c16">
+                                                                            <af:outputText value="#{row.extension}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.extension.tooltip}"
+                                                                                           id="ot16"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.extensionauxiliar.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.extensionauxiliar.label}"
+                                                                                   id="c17">
+                                                                            <af:outputText value="#{row.extensionauxiliar}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.extensionauxiliar.tooltip}"
+                                                                                           id="ot17"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.extensionexterna.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.extensionexterna.label}"
+                                                                                   id="c144">
+                                                                            <af:outputText value="#{row.extensionexterna}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.extensionexterna.tooltip}"
+                                                                                           id="ot144"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.flagbackdate.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.flagbackdate.label}"
+                                                                                   id="c18">
+                                                                            <af:outputText value="#{row.flagbackdate}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.flagbackdate.tooltip}"
+                                                                                           id="ot18"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.formatofecha.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.formatofecha.label}"
+                                                                                   id="c19">
+                                                                            <af:outputText value="#{row.formatofecha}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.formatofecha.tooltip}"
+                                                                                           id="ot19"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.fuentetransaccion.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.fuentetransaccion.label}"
+                                                                                   id="c20">
+                                                                            <af:outputText value="#{row.fuentetransaccion}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.fuentetransaccion.tooltip}"
+                                                                                           id="ot20"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.hashfile.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.hashfile.label}"
+                                                                                   id="c145">
+                                                                            <af:outputText value="#{row.hashfile}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.hashfile.tooltip}"
+                                                                                           id="ot145"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.indicadorcalculocomision.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.indicadorcalculocomision.label}"
+                                                                                   id="c21">
+                                                                            <af:outputText value="#{row.indicadorcalculocomision}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.indicadorcalculocomision.tooltip}"
+                                                                                           id="ot21"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.indicadorcobrogmf.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.indicadorcobrogmf.label}"
+                                                                                   id="c22">
+                                                                            <af:outputText value="#{row.indicadorcobrogmf}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.indicadorcobrogmf.tooltip}"
+                                                                                           id="ot22"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.indicadoriva.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.indicadoriva.label}"
+                                                                                   id="c23">
+                                                                            <af:outputText value="#{row.indicadoriva}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.indicadoriva.tooltip}"
+                                                                                           id="ot23"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.nombre.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.nombre.label}"
+                                                                                   id="c24">
+                                                                            <af:outputText value="#{row.nombre}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.nombre.tooltip}"
+                                                                                           id="ot24"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.nombreauxiliar.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.nombreauxiliar.label}"
+                                                                                   id="c25">
+                                                                            <af:outputText value="#{row.nombreauxiliar}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.nombreauxiliar.tooltip}"
+                                                                                           id="ot25"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.nombreentidad.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.nombreentidad.label}"
+                                                                                   id="c26">
+                                                                            <af:outputText value="#{row.nombreentidad}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.nombreentidad.tooltip}"
+                                                                                           id="ot26"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.nombreesquemadestanqueo.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.nombreesquemadestanqueo.label}"
+                                                                                   id="c27">
+                                                                            <af:outputText value="#{row.nombreesquemadestanqueo}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.nombreesquemadestanqueo.tooltip}"
+                                                                                           id="ot27"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.numerocamposmonetarios.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.numerocamposmonetarios.label}"
+                                                                                   id="c28">
+                                                                            <af:outputText value="#{row.numerocamposmonetarios}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.numerocamposmonetarios.tooltip}"
+                                                                                           id="ot28"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.recaudos.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.recaudos.label}"
+                                                                                   id="c29">
+                                                                            <af:outputText value="#{row.recaudos}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.recaudos.tooltip}"
+                                                                                           id="ot29"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.secuenciacorrectora.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.secuenciacorrectora.label}"
+                                                                                   id="c30">
+                                                                            <af:outputText value="#{row.secuenciacorrectora}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.secuenciacorrectora.tooltip}"
+                                                                                           id="ot30"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.secuenciasods.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.secuenciasods.label}"
+                                                                                   id="c31">
+                                                                            <af:outputText value="#{row.secuenciasods}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.secuenciasods.tooltip}"
+                                                                                           id="ot31"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.sep.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.sep.label}"
+                                                                                   id="c32">
+                                                                            <af:outputText value="#{row.sep}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.sep.tooltip}"
+                                                                                           id="ot32"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.separador.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.separador.label}"
+                                                                                   id="c33">
+                                                                            <af:outputText value="#{row.separador}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.separador.tooltip}"
+                                                                                           id="ot33"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.tabla.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.tabla.label}"
+                                                                                   id="c34">
+                                                                            <af:outputText value="#{row.tabla}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.tabla.tooltip}"
+                                                                                           id="ot34"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.tablaentradadatos.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.tablaentradadatos.label}"
+                                                                                   id="c35">
+                                                                            <af:outputText value="#{row.tablaentradadatos}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.tablaentradadatos.tooltip}"
+                                                                                           id="ot35"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.tablakeyvalues.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.tablakeyvalues.label}"
+                                                                                   id="c36">
+                                                                            <af:outputText value="#{row.tablakeyvalues}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.tablakeyvalues.tooltip}"
+                                                                                           id="ot36"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.tablalog.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.tablalog.label}"
+                                                                                   id="c37">
+                                                                            <af:outputText value="#{row.tablalog}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.tablalog.tooltip}"
+                                                                                           id="ot37"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.tablatemporal.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.tablatemporal.label}"
+                                                                                   id="c38">
+                                                                            <af:outputText value="#{row.tablatemporal}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.tablatemporal.tooltip}"
+                                                                                           id="ot38"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.terminal.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.terminal.label}"
+                                                                                   id="c39">
+                                                                            <af:outputText value="#{row.terminal}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.terminal.tooltip}"
+                                                                                           id="ot39"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appArchivosaplicacionesFindAll1.hints.todasextsinput.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appArchivosaplicacionesFindAll1.hints.todasextsinput.label}"
+                                                                                   id="c143">
+                                                                            <af:outputText value="#{row.todasextsinput}"
+                                                                                           shortDesc="#{bindings.appArchivosaplicacionesFindAll1.hints.todasextsinput.tooltip}"
+                                                                                           id="ot143"/>
+                                                                        </af:column>
+                                                                    </af:table>
+                                                                </af:panelCollection>
+                                                            </f:facet>
+                                                            <f:facet name="app_camposprocesoliq">
+                                                                <af:panelCollection id="pc4">
+                                                                    <f:facet name="menus"/>
+                                                                    <f:facet name="toolbar"/>
+                                                                    <f:facet name="statusbar"/>
+                                                                    <af:table value="#{bindings.appCamposprocesoliqFindAll1.collectionModel}"
+                                                                              var="row"
+                                                                              rows="#{bindings.appCamposprocesoliqFindAll1.rangeSize}"
+                                                                              emptyText="#{bindings.appCamposprocesoliqFindAll1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                              rowBandingInterval="0"
+                                                                              selectedRowKeys="#{bindings.appCamposprocesoliqFindAll1.collectionModel.selectedRow}"
+                                                                              selectionListener="#{bindings.appCamposprocesoliqFindAll1.collectionModel.makeCurrent}"
+                                                                              rowSelection="single"
+                                                                              fetchSize="#{bindings.appCamposprocesoliqFindAll1.rangeSize}"
+                                                                              filterModel="#{bindings.appCamposprocesoliqFindAllQuery.queryDescriptor}"
+                                                                              queryListener="#{bindings.appCamposprocesoliqFindAllQuery.processQuery}"
+                                                                              filterVisible="true" varStatus="vs"
+                                                                              id="t4">
+                                                                        <af:column sortProperty="#{bindings.appCamposprocesoliqFindAll1.hints.id.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appCamposprocesoliqFindAll1.hints.id.label}"
+                                                                                   id="c40">
+                                                                            <af:outputText value="#{row.id}"
+                                                                                           shortDesc="#{bindings.appCamposprocesoliqFindAll1.hints.id.tooltip}"
+                                                                                           id="ot40"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appCamposprocesoliqFindAll1.hints.alineacion.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appCamposprocesoliqFindAll1.hints.alineacion.label}"
+                                                                                   id="c41">
+                                                                            <af:outputText value="#{row.alineacion}"
+                                                                                           shortDesc="#{bindings.appCamposprocesoliqFindAll1.hints.alineacion.tooltip}"
+                                                                                           id="ot41">
+                                                                                <af:convertNumber groupingUsed="false"
+                                                                                                  pattern="#{bindings.appCamposprocesoliqFindAll1.hints.alineacion.format}"/>
+                                                                            </af:outputText>
+                                                                        </af:column>
+                                                                        <af:column headerText="Notif Proceso"
+                                                                                   sortable="true" filterable="true"
+                                                                                   id="c126">
+                                                                            <af:column sortProperty="#{bindings.appCamposprocesoliqFindAll1.hints.notifProcesoId.name}"
+                                                                                           filterable="true" sortable="true"
+                                                                                           headerText="#{bindings.appCamposprocesoliqFindAll1.hints.notifProcesoId.label}"
+                                                                                           id="c146">
+                                                                                    <af:outputText value="#{row.notifProcesoId}"
+                                                                                                   shortDesc="#{bindings.appCamposprocesoliqFindAll1.hints.notifProcesoId.tooltip}"
+                                                                                                   id="ot146"/>
+                                                                            </af:column>
+                                                                            <af:column sortProperty="#{bindings.appCamposprocesoliqFindAll1.hints.notifProcesoNombreproceso.name}"
+                                                                                           filterable="true" sortable="true"
+                                                                                           headerText="#{bindings.appCamposprocesoliqFindAll1.hints.notifProcesoNombreproceso.label}"
+                                                                                           id="c147">
+                                                                                    <af:outputText value="#{row.notifProcesoNombreproceso}"
+                                                                                                   shortDesc="#{bindings.appCamposprocesoliqFindAll1.hints.notifProcesoNombreproceso.tooltip}"
+                                                                                                   id="ot147"/>
+                                                                            </af:column>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appCamposprocesoliqFindAll1.hints.automatico.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appCamposprocesoliqFindAll1.hints.automatico.label}"
+                                                                                   id="c43">
+                                                                            <af:outputText value="#{row.automatico}"
+                                                                                           shortDesc="#{bindings.appCamposprocesoliqFindAll1.hints.automatico.tooltip}"
+                                                                                           id="ot43">
+                                                                                <af:convertNumber groupingUsed="false"
+                                                                                                  pattern="#{bindings.appCamposprocesoliqFindAll1.hints.automatico.format}"/>
+                                                                            </af:outputText>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appCamposprocesoliqFindAll1.hints.caracterrelleno.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appCamposprocesoliqFindAll1.hints.caracterrelleno.label}"
+                                                                                   id="c44">
+                                                                            <af:outputText value="#{row.caracterrelleno}"
+                                                                                           shortDesc="#{bindings.appCamposprocesoliqFindAll1.hints.caracterrelleno.tooltip}"
+                                                                                           id="ot44"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appCamposprocesoliqFindAll1.hints.cobrado.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appCamposprocesoliqFindAll1.hints.cobrado.label}"
+                                                                                   id="c45">
+                                                                            <af:outputText value="#{row.cobrado}"
+                                                                                           shortDesc="#{bindings.appCamposprocesoliqFindAll1.hints.cobrado.tooltip}"
+                                                                                           id="ot45">
+                                                                                <af:convertNumber groupingUsed="false"
+                                                                                                  pattern="#{bindings.appCamposprocesoliqFindAll1.hints.cobrado.format}"/>
+                                                                            </af:outputText>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appCamposprocesoliqFindAll1.hints.enviar.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appCamposprocesoliqFindAll1.hints.enviar.label}"
+                                                                                   id="c46">
+                                                                            <af:outputText value="#{row.enviar}"
+                                                                                           shortDesc="#{bindings.appCamposprocesoliqFindAll1.hints.enviar.tooltip}"
+                                                                                           id="ot46"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appCamposprocesoliqFindAll1.hints.exportar.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appCamposprocesoliqFindAll1.hints.exportar.label}"
+                                                                                   id="c47">
+                                                                            <af:outputText value="#{row.exportar}"
+                                                                                           shortDesc="#{bindings.appCamposprocesoliqFindAll1.hints.exportar.tooltip}"
+                                                                                           id="ot47">
+                                                                                <af:convertNumber groupingUsed="false"
+                                                                                                  pattern="#{bindings.appCamposprocesoliqFindAll1.hints.exportar.format}"/>
+                                                                            </af:outputText>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appCamposprocesoliqFindAll1.hints.nombre.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appCamposprocesoliqFindAll1.hints.nombre.label}"
+                                                                                   id="c48">
+                                                                            <af:outputText value="#{row.nombre}"
+                                                                                           shortDesc="#{bindings.appCamposprocesoliqFindAll1.hints.nombre.tooltip}"
+                                                                                           id="ot48"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appCamposprocesoliqFindAll1.hints.orden.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appCamposprocesoliqFindAll1.hints.orden.label}"
+                                                                                   id="c49">
+                                                                            <af:outputText value="#{row.orden}"
+                                                                                           shortDesc="#{bindings.appCamposprocesoliqFindAll1.hints.orden.tooltip}"
+                                                                                           id="ot49">
+                                                                                <af:convertNumber groupingUsed="false"
+                                                                                                  pattern="#{bindings.appCamposprocesoliqFindAll1.hints.orden.format}"/>
+                                                                            </af:outputText>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appCamposprocesoliqFindAll1.hints.partefija.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appCamposprocesoliqFindAll1.hints.partefija.label}"
+                                                                                   id="c50">
+                                                                            <af:outputText value="#{row.partefija}"
+                                                                                           shortDesc="#{bindings.appCamposprocesoliqFindAll1.hints.partefija.tooltip}"
+                                                                                           id="ot50">
+                                                                                <af:convertNumber groupingUsed="false"
+                                                                                                  pattern="#{bindings.appCamposprocesoliqFindAll1.hints.partefija.format}"/>
+                                                                            </af:outputText>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appCamposprocesoliqFindAll1.hints.relleno.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appCamposprocesoliqFindAll1.hints.relleno.label}"
+                                                                                   id="c51">
+                                                                            <af:outputText value="#{row.relleno}"
+                                                                                           shortDesc="#{bindings.appCamposprocesoliqFindAll1.hints.relleno.tooltip}"
+                                                                                           id="ot51"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appCamposprocesoliqFindAll1.hints.tamanio.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appCamposprocesoliqFindAll1.hints.tamanio.label}"
+                                                                                   id="c52">
+                                                                            <af:outputText value="#{row.tamanio}"
+                                                                                           shortDesc="#{bindings.appCamposprocesoliqFindAll1.hints.tamanio.tooltip}"
+                                                                                           id="ot52">
+                                                                                <af:convertNumber groupingUsed="false"
+                                                                                                  pattern="#{bindings.appCamposprocesoliqFindAll1.hints.tamanio.format}"/>
+                                                                            </af:outputText>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appCamposprocesoliqFindAll1.hints.texto.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appCamposprocesoliqFindAll1.hints.texto.label}"
+                                                                                   id="c53">
+                                                                            <af:outputText value="#{row.texto}"
+                                                                                           shortDesc="#{bindings.appCamposprocesoliqFindAll1.hints.texto.tooltip}"
+                                                                                           id="ot53"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appCamposprocesoliqFindAll1.hints.validacion.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appCamposprocesoliqFindAll1.hints.validacion.label}"
+                                                                                   id="c54">
+                                                                            <af:outputText value="#{row.validacion}"
+                                                                                           shortDesc="#{bindings.appCamposprocesoliqFindAll1.hints.validacion.tooltip}"
+                                                                                           id="ot54">
+                                                                                <af:convertNumber groupingUsed="false"
+                                                                                                  pattern="#{bindings.appCamposprocesoliqFindAll1.hints.validacion.format}"/>
+                                                                            </af:outputText>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appCamposprocesoliqFindAll1.hints.decimales.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appCamposprocesoliqFindAll1.hints.decimales.label}"
+                                                                                   id="c140">
+                                                                            <af:outputText value="#{row.decimales}"
+                                                                                           shortDesc="#{bindings.appCamposprocesoliqFindAll1.hints.decimales.tooltip}"
+                                                                                           id="ot140"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appCamposprocesoliqFindAll1.hints.dependiente.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appCamposprocesoliqFindAll1.hints.dependiente.label}"
+                                                                                   id="c141">
+                                                                            <af:outputText value="#{row.dependiente}"
+                                                                                           shortDesc="#{bindings.appCamposprocesoliqFindAll1.hints.dependiente.tooltip}"
+                                                                                           id="ot141"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appCamposprocesoliqFindAll1.hints.dependencia.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appCamposprocesoliqFindAll1.hints.dependencia.label}"
+                                                                                   id="c142">
+                                                                            <af:outputText value="#{row.dependencia}"
+                                                                                           shortDesc="#{bindings.appCamposprocesoliqFindAll1.hints.dependencia.tooltip}"
+                                                                                           id="ot142"/>
+                                                                        </af:column>
+                                                                    </af:table>
+                                                                </af:panelCollection>
+                                                            </f:facet>
+                                                            <f:facet name="app_herramientas">
+                                                                <af:panelCollection id="pc5">
+                                                                    <f:facet name="menus"/>
+                                                                    <f:facet name="toolbar"/>
+                                                                    <f:facet name="statusbar"/>
+                                                                    <af:table value="#{bindings.appHerramientasFindAll.collectionModel}"
+                                                                              var="row"
+                                                                              rows="#{bindings.appHerramientasFindAll.rangeSize}"
+                                                                              emptyText="#{bindings.appHerramientasFindAll.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                              rowBandingInterval="0"
+                                                                              selectedRowKeys="#{bindings.appHerramientasFindAll.collectionModel.selectedRow}"
+                                                                              selectionListener="#{bindings.appHerramientasFindAll.collectionModel.makeCurrent}"
+                                                                              rowSelection="single"
+                                                                              fetchSize="#{bindings.appHerramientasFindAll.rangeSize}"
+                                                                              filterModel="#{bindings.appHerramientasFindAllQuery.queryDescriptor}"
+                                                                              queryListener="#{bindings.appHerramientasFindAllQuery.processQuery}"
+                                                                              filterVisible="true" varStatus="vs"
+                                                                              id="t5">
+                                                                        <af:column sortProperty="#{bindings.appHerramientasFindAll.hints.id.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appHerramientasFindAll.hints.id.label}"
+                                                                                   id="c55">
+                                                                            <af:outputText value="#{row.id}"
+                                                                                           shortDesc="#{bindings.appHerramientasFindAll.hints.id.tooltip}"
+                                                                                           id="ot55"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appHerramientasFindAll.hints.descripcion.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appHerramientasFindAll.hints.descripcion.label}"
+                                                                                   id="c56">
+                                                                            <af:outputText value="#{row.descripcion}"
+                                                                                           shortDesc="#{bindings.appHerramientasFindAll.hints.descripcion.tooltip}"
+                                                                                           id="ot56"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appHerramientasFindAll.hints.metodo.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appHerramientasFindAll.hints.metodo.label}"
+                                                                                   id="c57">
+                                                                            <af:outputText value="#{row.metodo}"
+                                                                                           shortDesc="#{bindings.appHerramientasFindAll.hints.metodo.tooltip}"
+                                                                                           id="ot57"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.appHerramientasFindAll.hints.nombre.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.appHerramientasFindAll.hints.nombre.label}"
+                                                                                   id="c58">
+                                                                            <af:outputText value="#{row.nombre}"
+                                                                                           shortDesc="#{bindings.appHerramientasFindAll.hints.nombre.tooltip}"
+                                                                                           id="ot58"/>
+                                                                        </af:column>
+                                                                    </af:table>
+                                                                </af:panelCollection>
+                                                            </f:facet>
+                                                            <f:facet name="conf_diasfestivos">
+                                                                <af:panelCollection id="pc6">
+                                                                    <f:facet name="menus"/>
+                                                                    <f:facet name="toolbar"/>
+                                                                    <f:facet name="statusbar"/>
+                                                                    <af:table value="#{bindings.confDiasfestivosFindAll.collectionModel}"
+                                                                              var="row"
+                                                                              rows="#{bindings.confDiasfestivosFindAll.rangeSize}"
+                                                                              emptyText="#{bindings.confDiasfestivosFindAll.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                              rowBandingInterval="0"
+                                                                              selectedRowKeys="#{bindings.confDiasfestivosFindAll.collectionModel.selectedRow}"
+                                                                              selectionListener="#{bindings.confDiasfestivosFindAll.collectionModel.makeCurrent}"
+                                                                              rowSelection="single"
+                                                                              fetchSize="#{bindings.confDiasfestivosFindAll.rangeSize}"
+                                                                              filterModel="#{bindings.confDiasfestivosFindAllQuery.queryDescriptor}"
+                                                                              queryListener="#{bindings.confDiasfestivosFindAllQuery.processQuery}"
+                                                                              filterVisible="true" varStatus="vs"
+                                                                              id="t6">
+                                                                        <af:column sortProperty="#{bindings.confDiasfestivosFindAll.hints.ano.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confDiasfestivosFindAll.hints.ano.label}"
+                                                                                   id="c59">
+                                                                            <af:outputText value="#{row.ano}"
+                                                                                           shortDesc="#{bindings.confDiasfestivosFindAll.hints.ano.tooltip}"
+                                                                                           id="ot59"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.confDiasfestivosFindAll.hints.dia.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confDiasfestivosFindAll.hints.dia.label}"
+                                                                                   id="c60">
+                                                                            <af:outputText value="#{row.dia}"
+                                                                                           shortDesc="#{bindings.confDiasfestivosFindAll.hints.dia.tooltip}"
+                                                                                           id="ot60"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.confDiasfestivosFindAll.hints.mes.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confDiasfestivosFindAll.hints.mes.label}"
+                                                                                   id="c61">
+                                                                            <af:outputText value="#{row.mes}"
+                                                                                           shortDesc="#{bindings.confDiasfestivosFindAll.hints.mes.tooltip}"
+                                                                                           id="ot61"/>
+                                                                        </af:column>
+                                                                    </af:table>
+                                                                </af:panelCollection>
+                                                            </f:facet>
+                                                            <f:facet name="conf_gruposcorreo">
+                                                                <af:panelCollection id="pc7">
+                                                                    <f:facet name="menus"/>
+                                                                    <f:facet name="toolbar"/>
+                                                                    <f:facet name="statusbar"/>
+                                                                    <af:table value="#{bindings.confGruposcorreoFindAll.collectionModel}"
+                                                                              var="row"
+                                                                              rows="#{bindings.confGruposcorreoFindAll.rangeSize}"
+                                                                              emptyText="#{bindings.confGruposcorreoFindAll.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                              rowBandingInterval="0"
+                                                                              selectedRowKeys="#{bindings.confGruposcorreoFindAll.collectionModel.selectedRow}"
+                                                                              selectionListener="#{bindings.confGruposcorreoFindAll.collectionModel.makeCurrent}"
+                                                                              rowSelection="single"
+                                                                              fetchSize="#{bindings.confGruposcorreoFindAll.rangeSize}"
+                                                                              filterModel="#{bindings.confGruposcorreoFindAllQuery.queryDescriptor}"
+                                                                              queryListener="#{bindings.confGruposcorreoFindAllQuery.processQuery}"
+                                                                              filterVisible="true" varStatus="vs"
+                                                                              id="t7">
+                                                                        <af:column sortProperty="#{bindings.confGruposcorreoFindAll.hints.id.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confGruposcorreoFindAll.hints.id.label}"
+                                                                                   id="c62">
+                                                                            <af:outputText value="#{row.id}"
+                                                                                           shortDesc="#{bindings.confGruposcorreoFindAll.hints.id.tooltip}"
+                                                                                           id="ot62">
+                                                                                <af:convertNumber groupingUsed="false"
+                                                                                                  pattern="#{bindings.confGruposcorreoFindAll.hints.id.format}"/>
+                                                                            </af:outputText>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.confGruposcorreoFindAll.hints.descripcion.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confGruposcorreoFindAll.hints.descripcion.label}"
+                                                                                   id="c63">
+                                                                            <af:outputText value="#{row.descripcion}"
+                                                                                           shortDesc="#{bindings.confGruposcorreoFindAll.hints.descripcion.tooltip}"
+                                                                                           id="ot63"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.confGruposcorreoFindAll.hints.nombre.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confGruposcorreoFindAll.hints.nombre.label}"
+                                                                                   id="c64">
+                                                                            <af:outputText value="#{row.nombre}"
+                                                                                           shortDesc="#{bindings.confGruposcorreoFindAll.hints.nombre.tooltip}"
+                                                                                           id="ot64"/>
+                                                                        </af:column>
+                                                                    </af:table>
+                                                                </af:panelCollection>
+                                                            </f:facet>
+                                                            <f:facet name="conf_herramientasapps">
+                                                                <af:panelCollection id="pc8">
+                                                                    <f:facet name="menus"/>
+                                                                    <f:facet name="toolbar"/>
+                                                                    <f:facet name="statusbar"/>                                                                    
+                                                                    <af:table value="#{bindings.confHerramientasappsFindAll.collectionModel}"
+                                                                              var="row"
+                                                                              rows="#{bindings.confHerramientasappsFindAll.rangeSize}"
+                                                                              emptyText="#{bindings.confHerramientasappsFindAll.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                              rowBandingInterval="0"
+                                                                              selectedRowKeys="#{bindings.confHerramientasappsFindAll.collectionModel.selectedRow}"
+                                                                              selectionListener="#{bindings.confHerramientasappsFindAll.collectionModel.makeCurrent}"
+                                                                              rowSelection="single"
+                                                                              fetchSize="#{bindings.confHerramientasappsFindAll.rangeSize}"
+                                                                              filterModel="#{bindings.confHerramientasappsFindAllQuery.queryDescriptor}"
+                                                                              queryListener="#{bindings.confHerramientasappsFindAllQuery.processQuery}"
+                                                                              filterVisible="true" varStatus="vs"
+                                                                              id="t10">
+                                                                        <af:column sortProperty="#{bindings.confHerramientasappsFindAll.hints.id.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confHerramientasappsFindAll.hints.id.label}"
+                                                                                   id="c80">
+                                                                            <af:outputText value="#{row.id}"
+                                                                                           shortDesc="#{bindings.confHerramientasappsFindAll.hints.id.tooltip}"
+                                                                                           id="ot80"/>
+                                                                        </af:column>
+                                                                        <af:column headerText="Aplicacion"
+                                                                                   sortable="true" filterable="true"
+                                                                                   id="conC85">   
+                                                                            <af:column sortProperty="#{bindings.confHerramientasappsFindAll.hints.aplicacionesId.name}"
+                                                                                       filterable="true" sortable="true"
+                                                                                       headerText="#{bindings.confHerramientasappsFindAll.hints.aplicacionesId.label}"
+                                                                                       id="c81">
+                                                                                <af:outputText value="#{row.aplicacionesId}"
+                                                                                               shortDesc="#{bindings.confHerramientasappsFindAll.hints.aplicacionesId.tooltip}"
+                                                                                               id="ot81"/>
+                                                                            </af:column>
+                                                                            <af:column sortProperty="#{bindings.confHerramientasappsFindAll.hints.aplicacionesNombre.name}"
+                                                                                       filterable="true" sortable="true"
+                                                                                       headerText="#{bindings.confHerramientasappsFindAll.hints.aplicacionesNombre.label}"
+                                                                                       id="c148">
+                                                                                <af:outputText value="#{row.aplicacionesNombre}"
+                                                                                               shortDesc="#{bindings.confHerramientasappsFindAll.hints.aplicacionesNombre.tooltip}"
+                                                                                               id="ot148"/>
+                                                                            </af:column>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.confHerramientasappsFindAll.hints.orden.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confHerramientasappsFindAll.hints.orden.label}"
+                                                                                   id="c82">
+                                                                            <af:outputText value="#{row.orden}"
+                                                                                           shortDesc="#{bindings.confHerramientasappsFindAll.hints.orden.tooltip}"
+                                                                                           id="ot82">
+                                                                                <af:convertNumber groupingUsed="false"
+                                                                                                  pattern="#{bindings.confHerramientasappsFindAll.hints.orden.format}"/>
+                                                                            </af:outputText>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.confHerramientasappsFindAll.hints.validacionproceso.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confHerramientasappsFindAll.hints.validacionproceso.label}"
+                                                                                   id="c83">
+                                                                            <af:outputText value="#{row.validacionproceso}"
+                                                                                           shortDesc="#{bindings.confHerramientasappsFindAll.hints.validacionproceso.tooltip}"
+                                                                                           id="ot83">
+                                                                                <af:convertNumber groupingUsed="false"
+                                                                                                  pattern="#{bindings.confHerramientasappsFindAll.hints.validacionproceso.format}"/>
+                                                                            </af:outputText>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.confHerramientasappsFindAll.hints.validacionws.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confHerramientasappsFindAll.hints.validacionws.label}"
+                                                                                   id="c84">
+                                                                            <af:outputText value="#{row.validacionws}"
+                                                                                           shortDesc="#{bindings.confHerramientasappsFindAll.hints.validacionws.tooltip}"
+                                                                                           id="ot84">
+                                                                                <af:convertNumber groupingUsed="false"
+                                                                                                  pattern="#{bindings.confHerramientasappsFindAll.hints.validacionws.format}"/>
+                                                                            </af:outputText>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.confHerramientasappsFindAll.hints.valor.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confHerramientasappsFindAll.hints.valor.label}"
+                                                                                   id="c85">
+                                                                            <af:outputText value="#{row.valor}"
+                                                                                           shortDesc="#{bindings.confHerramientasappsFindAll.hints.valor.tooltip}"
+                                                                                           id="ot85"/>
+                                                                        </af:column>
+                                                                        <af:column headerText="Herramienta"
+                                                                                   sortable="true" filterable="true"
+                                                                                   id="conC86">                                                                             
+                                                                            <af:column sortProperty="#{bindings.confHerramientasappsFindAll.hints.herramientasNombre.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confHerramientasappsFindAll.hints.herramientasNombre.label}"
+                                                                                   id="c86">
+                                                                            <af:outputText value="#{row.herramientasNombre}"
+                                                                                           shortDesc="#{bindings.confHerramientasappsFindAll.hints.herramientasNombre.tooltip}"
+                                                                                           id="ot86"/>
+                                                                            </af:column>
+                                                                            <af:column sortProperty="#{bindings.confHerramientasappsFindAll.hints.herramientasMetodo.name}"
+                                                                                       filterable="true" sortable="true"
+                                                                                       headerText="#{bindings.confHerramientasappsFindAll.hints.herramientasMetodo.label}"
+                                                                                       id="c87">
+                                                                                <af:outputText value="#{row.herramientasMetodo}"
+                                                                                               shortDesc="#{bindings.confHerramientasappsFindAll.hints.herramientasMetodo.tooltip}"
+                                                                                               id="ot87"/>
+                                                                            </af:column>
+                                                                            <af:column sortProperty="#{bindings.confHerramientasappsFindAll.hints.herramientasDescripcion.name}"
+                                                                                       filterable="true" sortable="true"
+                                                                                       headerText="#{bindings.confHerramientasappsFindAll.hints.herramientasDescripcion.label}"
+                                                                                       id="c88">
+                                                                                <af:outputText value="#{row.herramientasDescripcion}"
+                                                                                               shortDesc="#{bindings.confHerramientasappsFindAll.hints.herramientasDescripcion.tooltip}"
+                                                                                               id="ot88"/>
+                                                                            </af:column>
+                                                                        </af:column>
+                                                                    </af:table>
+                                                                </af:panelCollection>
+                                                            </f:facet>
+                                                            <f:facet name="conf_parametrosliquidador">
+                                                                <af:panelCollection id="pc9">
+                                                                    <f:facet name="menus"/>
+                                                                    <f:facet name="toolbar"/>
+                                                                    <f:facet name="statusbar"/>
+                                                                    <af:table value="#{bindings.confParametrosliquidadorFindAll.collectionModel}"
+                                                                              var="row"
+                                                                              rows="#{bindings.confParametrosliquidadorFindAll.rangeSize}"
+                                                                              emptyText="#{bindings.confParametrosliquidadorFindAll.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                              rowBandingInterval="0"
+                                                                              selectedRowKeys="#{bindings.confParametrosliquidadorFindAll.collectionModel.selectedRow}"
+                                                                              selectionListener="#{bindings.confParametrosliquidadorFindAll.collectionModel.makeCurrent}"
+                                                                              rowSelection="single"
+                                                                              fetchSize="#{bindings.confParametrosliquidadorFindAll.rangeSize}"
+                                                                              filterModel="#{bindings.confParametrosliquidadorFindAllQuery.queryDescriptor}"
+                                                                              queryListener="#{bindings.confParametrosliquidadorFindAllQuery.processQuery}"
+                                                                              filterVisible="true" varStatus="vs"
+                                                                              id="t9">
+                                                                        <af:column sortProperty="#{bindings.confParametrosliquidadorFindAll.hints.id.name}"
+                                                                                   sortable="true"
+                                                                                   headerText="#{bindings.confParametrosliquidadorFindAll.hints.id.label}"
+                                                                                   filterable="true" id="c75">
+                                                                            <af:outputText value="#{row.id}"
+                                                                                           shortDesc="#{bindings.confParametrosliquidadorFindAll.hints.id.tooltip}"
+                                                                                           id="ot75"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.confParametrosliquidadorFindAll.hints.nombrecampo.name}"
+                                                                                   sortable="true"
+                                                                                   headerText="#{bindings.confParametrosliquidadorFindAll.hints.nombrecampo.label}"
+                                                                                   filterable="true" id="c76">
+                                                                            <af:outputText value="#{row.nombrecampo}"
+                                                                                           shortDesc="#{bindings.confParametrosliquidadorFindAll.hints.nombrecampo.tooltip}"
+                                                                                           id="ot76"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.confParametrosliquidadorFindAll.hints.valorcampo.name}"
+                                                                                   sortable="true"
+                                                                                   headerText="#{bindings.confParametrosliquidadorFindAll.hints.valorcampo.label}"
+                                                                                   filterable="true" id="c77">
+                                                                            <af:outputText value="#{row.valorcampo}"
+                                                                                           shortDesc="#{bindings.confParametrosliquidadorFindAll.hints.valorcampo.tooltip}"
+                                                                                           id="ot77"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.confParametrosliquidadorFindAll.hints.descripcion.name}"
+                                                                                   sortable="true"
+                                                                                   headerText="#{bindings.confParametrosliquidadorFindAll.hints.descripcion.label}"
+                                                                                   filterable="true" id="c78">
+                                                                            <af:outputText value="#{row.descripcion}"
+                                                                                           shortDesc="#{bindings.confParametrosliquidadorFindAll.hints.descripcion.tooltip}"
+                                                                                           id="ot78"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.confParametrosliquidadorFindAll.hints.nombregrupo.name}"
+                                                                                   sortable="true"
+                                                                                   headerText="#{bindings.confParametrosliquidadorFindAll.hints.nombregrupo.label}"
+                                                                                   filterable="true" id="c79">
+                                                                            <af:outputText value="#{row.nombregrupo}"
+                                                                                           shortDesc="#{bindings.confParametrosliquidadorFindAll.hints.nombregrupo.tooltip}"
+                                                                                           id="ot79"/>
+                                                                        </af:column>
+                                                                    </af:table>
+                                                                </af:panelCollection>
+                                                            </f:facet>
+                                                            <f:facet name="conf_receptorescorreos">
+                                                                <af:panelCollection id="pc10">
+                                                                    <f:facet name="menus"/>
+                                                                    <f:facet name="toolbar"/>
+                                                                    <f:facet name="statusbar"/>
+                                                                    <af:table value="#{bindings.confReceptorescorreosFindAll2.collectionModel}"
+                                                                              var="row"
+                                                                              rows="#{bindings.confReceptorescorreosFindAll2.rangeSize}"
+                                                                              emptyText="#{bindings.confReceptorescorreosFindAll2.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                              rowBandingInterval="0"
+                                                                              selectedRowKeys="#{bindings.confReceptorescorreosFindAll2.collectionModel.selectedRow}"
+                                                                              selectionListener="#{bindings.confReceptorescorreosFindAll2.collectionModel.makeCurrent}"
+                                                                              rowSelection="single"
+                                                                              fetchSize="#{bindings.confReceptorescorreosFindAll2.rangeSize}"
+                                                                              filterModel="#{bindings.confReceptorescorreosFindAllQuery.queryDescriptor}"
+                                                                              queryListener="#{bindings.confReceptorescorreosFindAllQuery.processQuery}"
+                                                                              filterVisible="true" varStatus="vs"
+                                                                              id="t8">
+                                                                        <af:column sortProperty="#{bindings.confReceptorescorreosFindAll2.hints.id.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confReceptorescorreosFindAll2.hints.id.label}"
+                                                                                   id="c65">
+                                                                            <af:outputText value="#{row.id}"
+                                                                                           shortDesc="#{bindings.confReceptorescorreosFindAll2.hints.id.tooltip}"
+                                                                                           id="ot65"/>
+                                                                        </af:column>                                                                        
+                                                                        <af:column sortProperty="#{bindings.confReceptorescorreosFindAll2.hints.aplicacion.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confReceptorescorreosFindAll2.hints.aplicacion.label}"
+                                                                                   id="c66">
+                                                                            <af:outputText value="#{row.aplicacion}"
+                                                                                           shortDesc="#{bindings.confReceptorescorreosFindAll2.hints.aplicacion.tooltip}"
+                                                                                           id="ot66"/>
+                                                                        </af:column>                                                                        
+                                                                        <af:column sortProperty="#{bindings.confReceptorescorreosFindAll2.hints.identificacion.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confReceptorescorreosFindAll2.hints.identificacion.label}"
+                                                                                   id="c67">
+                                                                            <af:outputText value="#{row.identificacion}"
+                                                                                           shortDesc="#{bindings.confReceptorescorreosFindAll2.hints.identificacion.tooltip}"
+                                                                                           id="ot67"/>
+                                                                        </af:column>                                                                        
+                                                                        <af:column sortProperty="#{bindings.confReceptorescorreosFindAll2.hints.estado.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confReceptorescorreosFindAll2.hints.estado.label}"
+                                                                                   id="c68">
+                                                                            <af:outputText value="#{row.estado}"
+                                                                                           shortDesc="#{bindings.confReceptorescorreosFindAll2.hints.estado.tooltip}"
+                                                                                           id="ot68">
+                                                                                <af:convertNumber groupingUsed="false"
+                                                                                                  pattern="#{bindings.confReceptorescorreosFindAll2.hints.estado.format}"/>
+                                                                            </af:outputText>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.confReceptorescorreosFindAll2.hints.fechacreacion.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confReceptorescorreosFindAll2.hints.fechacreacion.label}"
+                                                                                   id="c69">
+                                                                            <!-- <f:facet name="filter"> -->
+                                                                                <!-- <af:inputDate value="#{bindings.confReceptorescorreosFindAllQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.fechacreacion.value}" -->
+                                                                                              <!-- id="id6"> -->
+                                                                                    <!-- <af:convertDateTime pattern="#{bindings.confReceptorescorreosFindAll2.hints.fechacreacion.format}"/> -->
+                                                                                <!-- </af:inputDate> -->
+                                                                            <!-- </f:facet> -->
+                                                                            <af:outputText value="#{row.fechacreacion}"
+                                                                                           shortDesc="#{bindings.confReceptorescorreosFindAll2.hints.fechacreacion.tooltip}"
+                                                                                           id="ot69">
+                                                                                <af:convertDateTime pattern="#{bindings.confReceptorescorreosFindAll2.hints.fechacreacion.format}"/>
+                                                                            </af:outputText>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.confReceptorescorreosFindAll2.hints.nombre.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confReceptorescorreosFindAll2.hints.nombre.label}"
+                                                                                   id="c70">
+                                                                            <af:outputText value="#{row.nombre}"
+                                                                                           shortDesc="#{bindings.confReceptorescorreosFindAll2.hints.nombre.tooltip}"
+                                                                                           id="ot70"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.confReceptorescorreosFindAll2.hints.login.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confReceptorescorreosFindAll2.hints.login.label}"
+                                                                                   id="c71">
+                                                                            <af:outputText value="#{row.login}"
+                                                                                           shortDesc="#{bindings.confReceptorescorreosFindAll2.hints.login.tooltip}"
+                                                                                           id="ot71"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.confReceptorescorreosFindAll2.hints.correo.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confReceptorescorreosFindAll2.hints.correo.label}"
+                                                                                   id="c72">
+                                                                            <af:outputText value="#{row.correo}"
+                                                                                           shortDesc="#{bindings.confReceptorescorreosFindAll2.hints.correo.tooltip}"
+                                                                                           id="ot72"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.confReceptorescorreosFindAll2.hints.grupo.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confReceptorescorreosFindAll2.hints.grupo.label}"
+                                                                                   id="c73">
+                                                                            <af:outputText value="#{row.grupo}"
+                                                                                           shortDesc="#{bindings.confReceptorescorreosFindAll2.hints.grupo.tooltip}"
+                                                                                           id="ot73"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.confReceptorescorreosFindAll2.hints.descripcion.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confReceptorescorreosFindAll2.hints.descripcion.label}"
+                                                                                   id="c74">
+                                                                            <af:outputText value="#{row.descripcion}"
+                                                                                           shortDesc="#{bindings.confReceptorescorreosFindAll2.hints.descripcion.tooltip}"
+                                                                                           id="ot74"/>
+                                                                        </af:column>
+                                                                    </af:table>
+                                                                </af:panelCollection>
+                                                            </f:facet>
+                                                            <f:facet name="conf_usuarios">
+                                                                <af:panelCollection id="pc11">
+                                                                    <f:facet name="menus"/>
+                                                                    <f:facet name="toolbar"/>
+                                                                    <f:facet name="statusbar"/>
+                                                                    <af:table value="#{bindings.confUsuariosFindAll.collectionModel}"
+                                                                              var="row"
+                                                                              rows="#{bindings.confUsuariosFindAll.rangeSize}"
+                                                                              emptyText="#{bindings.confUsuariosFindAll.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                              rowBandingInterval="0"
+                                                                              selectedRowKeys="#{bindings.confUsuariosFindAll.collectionModel.selectedRow}"
+                                                                              selectionListener="#{bindings.confUsuariosFindAll.collectionModel.makeCurrent}"
+                                                                              rowSelection="single"
+                                                                              fetchSize="#{bindings.confUsuariosFindAll.rangeSize}"
+                                                                              filterModel="#{bindings.confUsuariosFindAllQuery.queryDescriptor}"
+                                                                              queryListener="#{bindings.confUsuariosFindAllQuery.processQuery}"
+                                                                              filterVisible="true" varStatus="vs"
+                                                                              id="t11">
+                                                                        <af:column sortProperty="#{bindings.confUsuariosFindAll.hints.correo.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confUsuariosFindAll.hints.correo.label}"
+                                                                                   id="c92">
+                                                                            <af:outputText value="#{row.correo}"
+                                                                                           shortDesc="#{bindings.confUsuariosFindAll.hints.correo.tooltip}"
+                                                                                           id="ot92"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.confUsuariosFindAll.hints.estado.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confUsuariosFindAll.hints.estado.label}"
+                                                                                   id="c93">
+                                                                            <af:outputText value="#{row.estado}"
+                                                                                           shortDesc="#{bindings.confUsuariosFindAll.hints.estado.tooltip}"
+                                                                                           id="ot93">
+                                                                                <af:convertNumber groupingUsed="false"
+                                                                                                  pattern="#{bindings.confUsuariosFindAll.hints.estado.format}"/>
+                                                                            </af:outputText>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.confUsuariosFindAll.hints.fechacreacion.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confUsuariosFindAll.hints.fechacreacion.label}"
+                                                                                   id="c94">
+                                                                            <!-- <f:facet name="filter"> -->
+                                                                                <!-- <af:inputDate value="#{bindings.confUsuariosFindAllQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.fechacreacion.value}" -->
+                                                                                              <!-- id="id2"> -->
+                                                                                    <!-- <af:convertDateTime pattern="#{bindings.confUsuariosFindAll.hints.fechacreacion.format}"/> -->
+                                                                                <!-- </af:inputDate> -->
+                                                                            <!-- </f:facet> -->
+                                                                            <af:outputText value="#{row.fechacreacion}"
+                                                                                           shortDesc="#{bindings.confUsuariosFindAll.hints.fechacreacion.tooltip}"
+                                                                                           id="ot94">
+                                                                                <af:convertDateTime pattern="#{bindings.confUsuariosFindAll.hints.fechacreacion.format}"/>
+                                                                            </af:outputText>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.confUsuariosFindAll.hints.id.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confUsuariosFindAll.hints.id.label}"
+                                                                                   id="c95">
+                                                                            <af:outputText value="#{row.id}"
+                                                                                           shortDesc="#{bindings.confUsuariosFindAll.hints.id.tooltip}"
+                                                                                           id="ot95">
+                                                                                <af:convertNumber groupingUsed="false"
+                                                                                                  pattern="#{bindings.confUsuariosFindAll.hints.id.format}"/>
+                                                                            </af:outputText>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.confUsuariosFindAll.hints.identificacion.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confUsuariosFindAll.hints.identificacion.label}"
+                                                                                   id="c96">
+                                                                            <af:outputText value="#{row.identificacion}"
+                                                                                           shortDesc="#{bindings.confUsuariosFindAll.hints.identificacion.tooltip}"
+                                                                                           id="ot96"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.confUsuariosFindAll.hints.login.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confUsuariosFindAll.hints.login.label}"
+                                                                                   id="c97">
+                                                                            <af:outputText value="#{row.login}"
+                                                                                           shortDesc="#{bindings.confUsuariosFindAll.hints.login.tooltip}"
+                                                                                           id="ot97"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.confUsuariosFindAll.hints.nombre.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.confUsuariosFindAll.hints.nombre.label}"
+                                                                                   id="c98">
+                                                                            <af:outputText value="#{row.nombre}"
+                                                                                           shortDesc="#{bindings.confUsuariosFindAll.hints.nombre.tooltip}"
+                                                                                           id="ot98"/>
+                                                                        </af:column>
+                                                                    </af:table>
+                                                                </af:panelCollection>
+                                                            </f:facet>
+                                                            <f:facet name="notif_actividades">
+                                                                <af:table value="#{bindings.notifActividadesFindAll.collectionModel}"
+                                                                          var="row"
+                                                                          rows="#{bindings.notifActividadesFindAll.rangeSize}"
+                                                                          emptyText="#{bindings.notifActividadesFindAll.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                          rowBandingInterval="0"
+                                                                          selectedRowKeys="#{bindings.notifActividadesFindAll.collectionModel.selectedRow}"
+                                                                          selectionListener="#{bindings.notifActividadesFindAll.collectionModel.makeCurrent}"
+                                                                          rowSelection="single"
+                                                                          fetchSize="#{bindings.notifActividadesFindAll.rangeSize}"
+                                                                          filterModel="#{bindings.notifActividadesFindAllQuery.queryDescriptor}"
+                                                                          queryListener="#{bindings.notifActividadesFindAllQuery.processQuery}"
+                                                                          filterVisible="true" varStatus="vs" id="t12">
+                                                                    <af:column sortProperty="#{bindings.notifActividadesFindAll.hints.id.name}"
+                                                                               filterable="true" sortable="true"
+                                                                               headerText="#{bindings.notifActividadesFindAll.hints.id.label}"
+                                                                               id="c99">
+                                                                        <af:outputText value="#{row.id}"
+                                                                                       shortDesc="#{bindings.notifActividadesFindAll.hints.id.tooltip}"
+                                                                                       id="ot99"/>
+                                                                    </af:column>
+                                                                    <af:column sortProperty="#{bindings.notifActividadesFindAll.hints.nombreactividad.name}"
+                                                                               filterable="true" sortable="true"
+                                                                               headerText="#{bindings.notifActividadesFindAll.hints.nombreactividad.label}"
+                                                                               id="c100">
+                                                                        <af:outputText value="#{row.nombreactividad}"
+                                                                                       shortDesc="#{bindings.notifActividadesFindAll.hints.nombreactividad.tooltip}"
+                                                                                       id="ot100"/>
+                                                                    </af:column>
+                                                                    <af:column sortProperty="#{bindings.notifActividadesFindAll.hints.descripcion.name}"
+                                                                               filterable="true" sortable="true"
+                                                                               headerText="#{bindings.notifActividadesFindAll.hints.descripcion.label}"
+                                                                               id="c101">
+                                                                        <af:outputText value="#{row.descripcion}"
+                                                                                       shortDesc="#{bindings.notifActividadesFindAll.hints.descripcion.tooltip}"
+                                                                                       id="ot101"/>
+                                                                    </af:column>
+                                                                </af:table>
+                                                            </f:facet>
+                                                            <f:facet name="notif_actividad_proceso">                                                            
+                                                                <af:table value="#{bindings.notifActividadProcesoFindAll.collectionModel}"
+                                                                          var="row"
+                                                                          rows="#{bindings.notifActividadProcesoFindAll.rangeSize}"
+                                                                          emptyText="#{bindings.notifActividadProcesoFindAll.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                          rowBandingInterval="0"
+                                                                          selectedRowKeys="#{bindings.notifActividadProcesoFindAll.collectionModel.selectedRow}"
+                                                                          selectionListener="#{bindings.notifActividadProcesoFindAll.collectionModel.makeCurrent}"
+                                                                          rowSelection="single"
+                                                                          fetchSize="#{bindings.notifActividadProcesoFindAll.rangeSize}"
+                                                                          filterModel="#{bindings.notifActividadProcesoFindAllQuery.queryDescriptor}"
+                                                                          queryListener="#{bindings.notifActividadProcesoFindAllQuery.processQuery}"
+                                                                          filterVisible="true" varStatus="vs" id="t13">
+                                                                    <af:column sortProperty="#{bindings.notifActividadProcesoFindAll.hints.id.name}"
+                                                                               filterable="true" sortable="true"
+                                                                               headerText="#{bindings.notifActividadProcesoFindAll.hints.id.label}"
+                                                                               id="c102">
+                                                                        <af:outputText value="#{row.id}"
+                                                                                       shortDesc="#{bindings.notifActividadProcesoFindAll.hints.id.tooltip}"
+                                                                                       id="ot102"/>
+                                                                    </af:column>
+                                                                    <af:column sortProperty="#{bindings.notifActividadProcesoFindAll.hints.orden.name}"
+                                                                               filterable="true" sortable="true"
+                                                                               headerText="#{bindings.notifActividadProcesoFindAll.hints.orden.label}"
+                                                                               id="c103">
+                                                                        <af:outputText value="#{row.orden}"
+                                                                                       shortDesc="#{bindings.notifActividadProcesoFindAll.hints.orden.tooltip}"
+                                                                                       id="ot103"/>
+                                                                    </af:column>
+                                                                    <af:column headerText="Actividad" sortable="true"
+                                                                        filterable="true" id="ConId7c60">
+                                                                        <af:column sortProperty="#{bindings.notifActividadProcesoFindAll.hints.nombreactividad.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.notifActividadProcesoFindAll.hints.nombreactividad.label}"
+                                                                                   id="c104">
+                                                                            <af:outputText value="#{row.nombreactividad}"
+                                                                                           shortDesc="#{bindings.notifActividadProcesoFindAll.hints.nombreactividad.tooltip}"
+                                                                                           id="ot104"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.notifActividadProcesoFindAll.hints.descripcionActividad.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.notifActividadProcesoFindAll.hints.descripcionActividad.label}"
+                                                                                   id="c105">
+                                                                            <af:outputText value="#{row.descripcionActividad}"
+                                                                                           shortDesc="#{bindings.notifActividadProcesoFindAll.hints.descripcionActividad.tooltip}"
+                                                                                           id="ot105"/>
+                                                                        </af:column>
+                                                                    </af:column>
+                                                                    <af:column headerText="Proceso" sortable="true"
+                                                                        filterable="true" id="ConId7c61">                                                                    
+                                                                        <af:column sortProperty="#{bindings.notifActividadProcesoFindAll.hints.nombreproceso.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.notifActividadProcesoFindAll.hints.nombreproceso.label}"
+                                                                                   id="c106">
+                                                                            <af:outputText value="#{row.nombreproceso}"
+                                                                                           shortDesc="#{bindings.notifActividadProcesoFindAll.hints.nombreproceso.tooltip}"
+                                                                                           id="ot106"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.notifActividadProcesoFindAll.hints.descripcionProceso.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.notifActividadProcesoFindAll.hints.descripcionProceso.label}"
+                                                                                   id="c107">
+                                                                            <af:outputText value="#{row.descripcionProceso}"
+                                                                                           shortDesc="#{bindings.notifActividadProcesoFindAll.hints.descripcionProceso.tooltip}"
+                                                                                           id="ot107"/>
+                                                                        </af:column>
+                                                                    </af:column>    
+                                                                </af:table>
+                                                            </f:facet>
+                                                            <f:facet name="notif_proceso">
+                                                                <af:table value="#{bindings.notifProcesoFindAll.collectionModel}"
+                                                                          var="row"
+                                                                          rows="#{bindings.notifProcesoFindAll.rangeSize}"
+                                                                          emptyText="#{bindings.notifProcesoFindAll.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                          rowBandingInterval="0"
+                                                                          selectedRowKeys="#{bindings.notifProcesoFindAll.collectionModel.selectedRow}"
+                                                                          selectionListener="#{bindings.notifProcesoFindAll.collectionModel.makeCurrent}"
+                                                                          rowSelection="single"
+                                                                          fetchSize="#{bindings.notifProcesoFindAll.rangeSize}"
+                                                                          filterModel="#{bindings.notifProcesoFindAllQuery.queryDescriptor}"
+                                                                          queryListener="#{bindings.notifProcesoFindAllQuery.processQuery}"
+                                                                          filterVisible="true" varStatus="vs" id="t14">                                                                    
+                                                                    <af:column sortProperty="#{bindings.notifProcesoFindAll.hints.id.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.notifProcesoFindAll.hints.id.label}"
+                                                                                   id="c110">
+                                                                            <af:outputText value="#{row.id}"
+                                                                                           shortDesc="#{bindings.notifProcesoFindAll.hints.id.tooltip}"
+                                                                                           id="ot110"/>
+                                                                    </af:column>
+                                                                    <af:column sortProperty="#{bindings.notifProcesoFindAll.hints.nombreproceso.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.notifProcesoFindAll.hints.nombreproceso.label}"
+                                                                                   id="c111">
+                                                                            <af:outputText value="#{row.nombreproceso}"
+                                                                                           shortDesc="#{bindings.notifProcesoFindAll.hints.nombreproceso.tooltip}"
+                                                                                           id="ot111"/>
+                                                                    </af:column>
+                                                                    <af:column sortProperty="#{bindings.notifProcesoFindAll.hints.descripcion.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.notifProcesoFindAll.hints.descripcion.label}"
+                                                                                   id="c112">
+                                                                            <af:outputText value="#{row.descripcion}"
+                                                                                           shortDesc="#{bindings.notifProcesoFindAll.hints.descripcion.tooltip}"
+                                                                                           id="ot112"/>
+                                                                    </af:column>
+                                                                    <af:column sortProperty="#{bindings.notifProcesoFindAll.hints.codtransaccion.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.notifProcesoFindAll.hints.codtransaccion.label}"
+                                                                                   id="c113">
+                                                                            <af:outputText value="#{row.codtransaccion}"
+                                                                                           shortDesc="#{bindings.notifProcesoFindAll.hints.codtransaccion.tooltip}"
+                                                                                           id="ot113"/>
+                                                                    </af:column>
+                                                                    <af:column sortProperty="#{bindings.notifProcesoFindAll.hints.esquemacobro.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.notifProcesoFindAll.hints.esquemacobro.label}"
+                                                                                   id="c114">
+                                                                            <af:outputText value="#{row.esquemacobro}"
+                                                                                           shortDesc="#{bindings.notifProcesoFindAll.hints.esquemacobro.tooltip}"
+                                                                                           id="ot114"/>
+                                                                    </af:column>
+                                                                    <af:column sortProperty="#{bindings.notifProcesoFindAll.hints.esquemadestanqueo.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.notifProcesoFindAll.hints.esquemadestanqueo.label}"
+                                                                                   id="c115">
+                                                                            <af:outputText value="#{row.esquemadestanqueo}"
+                                                                                           shortDesc="#{bindings.notifProcesoFindAll.hints.esquemadestanqueo.tooltip}"
+                                                                                           id="ot115"/>
+                                                                    </af:column>    
+                                                                    <af:column sortProperty="#{bindings.notifProcesoFindAll.hints.nombreentidadliq.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.notifProcesoFindAll.hints.nombreentidadliq.label}"
+                                                                                   id="c116">
+                                                                            <af:outputText value="#{row.nombreentidadliq}"
+                                                                                           shortDesc="#{bindings.notifProcesoFindAll.hints.nombreentidadliq.tooltip}"
+                                                                                           id="ot116"/>
+                                                                    </af:column>
+                                                                    <af:column sortProperty="#{bindings.notifProcesoFindAll.hints.nombretablaliq.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.notifProcesoFindAll.hints.nombretablaliq.label}"
+                                                                                   id="c117">
+                                                                            <af:outputText value="#{row.nombretablaliq}"
+                                                                                           shortDesc="#{bindings.notifProcesoFindAll.hints.nombretablaliq.tooltip}"
+                                                                                           id="ot117"/>
+                                                                    </af:column>
+                                                                    <af:column sortProperty="#{bindings.notifProcesoFindAll.hints.tipoliquidacion.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.notifProcesoFindAll.hints.tipoliquidacion.label}"
+                                                                                   id="c118">
+                                                                            <af:outputText value="#{row.tipoliquidacion}"
+                                                                                           shortDesc="#{bindings.notifProcesoFindAll.hints.tipoliquidacion.tooltip}"
+                                                                                           id="ot118"/>
+                                                                    </af:column>
+                                                                    <af:column headerText="Aplicacion" sortable="true"
+                                                                        filterable="true" id="conId6c6">
+                                                                        <af:column sortProperty="#{bindings.notifProcesoFindAll.hints.aplicacionAbreviatura.name}"
+                                                                                       filterable="true" sortable="true"
+                                                                                       headerText="#{bindings.notifProcesoFindAll.hints.aplicacionAbreviatura.label}"
+                                                                                       id="c119">
+                                                                                <af:outputText value="#{row.aplicacionAbreviatura}"
+                                                                                               shortDesc="#{bindings.notifProcesoFindAll.hints.aplicacionAbreviatura.tooltip}"
+                                                                                               id="ot119"/>
+                                                                            </af:column>
+                                                                            <af:column sortProperty="#{bindings.notifProcesoFindAll.hints.aplicacionDescripcion.name}"
+                                                                                       filterable="true" sortable="true"
+                                                                                       headerText="#{bindings.notifProcesoFindAll.hints.aplicacionDescripcion.label}"
+                                                                                       id="c120">
+                                                                                <af:outputText value="#{row.aplicacionDescripcion}"
+                                                                                               shortDesc="#{bindings.notifProcesoFindAll.hints.aplicacionDescripcion.tooltip}"
+                                                                                               id="ot120"/>
+                                                                            </af:column>
+                                                                            <af:column sortProperty="#{bindings.notifProcesoFindAll.hints.aplicacionFtpescritura.name}"
+                                                                                       filterable="true" sortable="true"
+                                                                                       headerText="#{bindings.notifProcesoFindAll.hints.aplicacionFtpescritura.label}"
+                                                                                       id="c121">
+                                                                                <af:outputText value="#{row.aplicacionFtpescritura}"
+                                                                                               shortDesc="#{bindings.notifProcesoFindAll.hints.aplicacionFtpescritura.tooltip}"
+                                                                                               id="ot121"/>
+                                                                            </af:column>
+                                                                            <af:column sortProperty="#{bindings.notifProcesoFindAll.hints.aplicacionFtpslectura.name}"
+                                                                                       filterable="true" sortable="true"
+                                                                                       headerText="#{bindings.notifProcesoFindAll.hints.aplicacionFtpslectura.label}"
+                                                                                       id="c122">
+                                                                                <af:outputText value="#{row.aplicacionFtpslectura}"
+                                                                                               shortDesc="#{bindings.notifProcesoFindAll.hints.aplicacionFtpslectura.tooltip}"
+                                                                                               id="ot122"/>
+                                                                            </af:column>
+                                                                            <af:column sortProperty="#{bindings.notifProcesoFindAll.hints.aplicacionId.name}"
+                                                                                       filterable="true" sortable="true"
+                                                                                       headerText="#{bindings.notifProcesoFindAll.hints.aplicacionId.label}"
+                                                                                       id="c123">
+                                                                                <af:outputText value="#{row.aplicacionId}"
+                                                                                               shortDesc="#{bindings.notifProcesoFindAll.hints.aplicacionId.tooltip}"
+                                                                                               id="ot123"/>
+                                                                            </af:column>
+                                                                            <af:column sortProperty="#{bindings.notifProcesoFindAll.hints.aplicacionNombre.name}"
+                                                                                       filterable="true" sortable="true"
+                                                                                       headerText="#{bindings.notifProcesoFindAll.hints.aplicacionNombre.label}"
+                                                                                       id="c124">
+                                                                                <af:outputText value="#{row.aplicacionNombre}"
+                                                                                               shortDesc="#{bindings.notifProcesoFindAll.hints.aplicacionNombre.tooltip}"
+                                                                                               id="ot124"/>
+                                                                            </af:column>
+                                                                            <af:column sortProperty="#{bindings.notifProcesoFindAll.hints.aplicacionCanal.name}"
+                                                                                       filterable="true" sortable="true"
+                                                                                       headerText="#{bindings.notifProcesoFindAll.hints.aplicacionCanal.label}"
+                                                                                       id="c125">
+                                                                                <af:outputText value="#{row.aplicacionCanal}"
+                                                                                               shortDesc="#{bindings.notifProcesoFindAll.hints.aplicacionCanal.tooltip}"
+                                                                                               id="ot125"/>
+                                                                            </af:column>
+                                                                        </af:column>
+                                                                </af:table>
+                                                            </f:facet>
+                                                            <f:facet name="task_filesloader">
+                                                                <af:panelCollection id="pc12">
+                                                                    <f:facet name="menus"/>
+                                                                    <f:facet name="toolbar"/>
+                                                                    <f:facet name="statusbar"/>
+                                                                    <af:table value="#{bindings.taskFilesloaderFindAll.collectionModel}"
+                                                                              var="row"
+                                                                              rows="#{bindings.taskFilesloaderFindAll.rangeSize}"
+                                                                              emptyText="#{bindings.taskFilesloaderFindAll.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                              rowBandingInterval="0"
+                                                                              selectedRowKeys="#{bindings.taskFilesloaderFindAll.collectionModel.selectedRow}"
+                                                                              selectionListener="#{bindings.taskFilesloaderFindAll.collectionModel.makeCurrent}"
+                                                                              rowSelection="single"
+                                                                              fetchSize="#{bindings.taskFilesloaderFindAll.rangeSize}"
+                                                                              filterModel="#{bindings.taskFilesloaderFindAllQuery.queryDescriptor}"
+                                                                              queryListener="#{bindings.taskFilesloaderFindAllQuery.processQuery}"
+                                                                              filterVisible="true" varStatus="vs"
+                                                                              id="t15">
+                                                                        <af:column sortProperty="#{bindings.taskFilesloaderFindAll.hints.id.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.taskFilesloaderFindAll.hints.id.label}"
+                                                                                   id="c130">
+                                                                            <af:outputText value="#{row.id}"
+                                                                                           shortDesc="#{bindings.taskFilesloaderFindAll.hints.id.tooltip}"
+                                                                                           id="ot130"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.taskFilesloaderFindAll.hints.aplicacion.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.taskFilesloaderFindAll.hints.aplicacion.label}"
+                                                                                   id="c131">
+                                                                            <af:outputText value="#{row.aplicacion}"
+                                                                                           shortDesc="#{bindings.taskFilesloaderFindAll.hints.aplicacion.tooltip}"
+                                                                                           id="ot131"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.taskFilesloaderFindAll.hints.nombrearchivo.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.taskFilesloaderFindAll.hints.nombrearchivo.label}"
+                                                                                   id="c132">
+                                                                            <af:outputText value="#{row.nombrearchivo}"
+                                                                                           shortDesc="#{bindings.taskFilesloaderFindAll.hints.nombrearchivo.tooltip}"
+                                                                                           id="ot132"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.taskFilesloaderFindAll.hints.msgId.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.taskFilesloaderFindAll.hints.msgId.label}"
+                                                                                   id="c133">
+                                                                            <af:outputText value="#{row.msgId}"
+                                                                                           shortDesc="#{bindings.taskFilesloaderFindAll.hints.msgId.tooltip}"
+                                                                                           id="ot133"/>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.taskFilesloaderFindAll.hints.endTimeTask.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.taskFilesloaderFindAll.hints.endTimeTask.label}"
+                                                                                   id="c134">
+                                                                            <!-- <f:facet name="filter"> -->
+                                                                                <!-- <af:inputDate value="#{bindings.taskFilesloaderFindAllQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.endTimeTask.value}" -->
+                                                                                              <!-- id="id3"> -->
+                                                                                    <!-- <af:convertDateTime pattern="#{bindings.taskFilesloaderFindAll.hints.endTimeTask.format}"/> -->
+                                                                                <!-- </af:inputDate> -->
+                                                                            <!-- </f:facet> -->
+                                                                            <af:outputText value="#{row.endTimeTask}"
+                                                                                           shortDesc="#{bindings.taskFilesloaderFindAll.hints.endTimeTask.tooltip}"
+                                                                                           id="ot134">
+                                                                                <af:convertDateTime pattern="#{bindings.taskFilesloaderFindAll.hints.endTimeTask.format}"/>
+                                                                            </af:outputText>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.taskFilesloaderFindAll.hints.msgTime.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.taskFilesloaderFindAll.hints.msgTime.label}"
+                                                                                   id="c135">
+                                                                            <!-- <f:facet name="filter"> -->
+                                                                                <!-- <af:inputDate value="#{bindings.taskFilesloaderFindAllQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.msgTime.value}" -->
+                                                                                              <!-- id="id4"> -->
+                                                                                    <!-- <af:convertDateTime pattern="#{bindings.taskFilesloaderFindAll.hints.msgTime.format}"/> -->
+                                                                                <!-- </af:inputDate> -->
+                                                                            <!-- </f:facet> -->
+                                                                            <af:outputText value="#{row.msgTime}"
+                                                                                           shortDesc="#{bindings.taskFilesloaderFindAll.hints.msgTime.tooltip}"
+                                                                                           id="ot135">
+                                                                                <af:convertDateTime pattern="#{bindings.taskFilesloaderFindAll.hints.msgTime.format}"/>
+                                                                            </af:outputText>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.taskFilesloaderFindAll.hints.startTimeTask.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.taskFilesloaderFindAll.hints.startTimeTask.label}"
+                                                                                   id="c136">
+                                                                            <!-- <f:facet name="filter"> -->
+                                                                                <!-- <af:inputDate value="#{bindings.taskFilesloaderFindAllQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.startTimeTask.value}" -->
+                                                                                              <!-- id="id5"> -->
+                                                                                    <!-- <af:convertDateTime pattern="#{bindings.taskFilesloaderFindAll.hints.startTimeTask.format}"/> -->
+                                                                                <!-- </af:inputDate> -->
+                                                                            <!-- </f:facet> -->
+                                                                            <af:outputText value="#{row.startTimeTask}"
+                                                                                           shortDesc="#{bindings.taskFilesloaderFindAll.hints.startTimeTask.tooltip}"
+                                                                                           id="ot136">
+                                                                                <af:convertDateTime pattern="#{bindings.taskFilesloaderFindAll.hints.startTimeTask.format}"/>
+                                                                            </af:outputText>
+                                                                        </af:column>
+                                                                        <af:column sortProperty="#{bindings.taskFilesloaderFindAll.hints.status.name}"
+                                                                                   filterable="true" sortable="true"
+                                                                                   headerText="#{bindings.taskFilesloaderFindAll.hints.status.label}"
+                                                                                   id="c137">
+                                                                            <af:outputText value="#{row.status}"
+                                                                                           shortDesc="#{bindings.taskFilesloaderFindAll.hints.status.tooltip}"
+                                                                                           id="ot137"/>
+                                                                        </af:column>
+                                                                    </af:table>
+                                                                </af:panelCollection>
+                                                            </f:facet>
+                                                            <f:facet name="genericTable">
+                                                                <af:panelCollection id="pc13">
+                                                                    <af:table value="#{controlPane.genericTable.values}" var="row"
+                                                                              varStatus="vs" rowSelection="single"
+                                                                              id="t16" width="100%" editingMode="clickToEdit"
+                                                                              fetchSize="100"
+                                                                              disableColumnReordering="true">
+                                                                      <af:iterator value="#{controlPane.genericTable.attributesModel.attributes}" id="itr1"
+                                                                                   var="col" rows="100">
+                                                                        <af:column headerText="#{col.label}" id="c150">
+                                                                          <af:dynamicComponent value="#{row[col.name]}"
+                                                                                               attributeModel="#{col}" id="dc1"/>
+                                                                        </af:column>
+                                                                      </af:iterator>
+                                                                    </af:table>
+                                                                </af:panelCollection>
+                                                            </f:facet>
+                                                        </af:switcher>
+                                                    </f:facet>
+                                                </af:decorativeBox>
+                                            </f:facet>
+                                            <f:facet name="second">
+                                                <af:decorativeBox id="dbTABLES3" theme="light">
+                                                    <f:facet name="center">
+                                                        <af:panelGroupLayout id="pglTABLES2" layout="vertical">
+                                                            <af:inputText label="Comando SQL " id="rteTABLES" rows="5"
+                                                                          columns="130"
+                                                                          contentStyle="color:Blue; font-family:sans-serif;"
+                                                                          value="#{controlPane.myQuery}"
+                                                                          partialTriggers="bTABLES2 bTABLES3"
+                                                                          inlineStyle=""/>
+                                                            <af:spacer width="10" height="2" id="sTABLES2"/>
+                                                            <af:panelGroupLayout id="pgl1" layout="horizontal">
+                                                                <af:button text="Ejecutar" id="bTABLES2"
+                                                                           actionListener="#{controlPane.QueryToDatabase}"/>
+                                                                <af:spacer width="5" height="10" id="sTABLES4"/>
+                                                                <af:button text="Limpiar" id="bTABLES3"
+                                                                           actionListener="#{controlPane.CleanQuery}"/>
+                                                            </af:panelGroupLayout>
+                                                        </af:panelGroupLayout>
+                                                    </f:facet>
+                                                </af:decorativeBox>
+                                            </f:facet>
+                                        </af:panelSplitter>
+                                    </f:facet>
+                                </af:panelSplitter>
+                            </af:showDetailItem>
+                            <af:showDetailItem text="Consola servidor" id="sdiCONS1" disclosed="true"
+                                               icon="/images/console-icon-transparent.png"
+                                               depressedIcon="/images/console-icon-selected.png"
+                                               hoverIcon="/images/console-icon-hover.png">
+                                <af:decorativeBox id="dbCONS1">
+                                    <f:facet name="center">
+                                        <af:panelFormLayout id="pfl1" rows="5" labelWidth="15">
+                                            <af:inputText label="Servidor" id="itCONS3" value="#{console.server}"
+                                                          readOnly="true"/>
+                                            <af:inputText label="Usuario" id="itCONS4" value="#{console.user}"
+                                                          readOnly="true"/>
+                                            <af:inputText id="itCONS1" label="Comando"
+                                                          contentStyle="background-color:Black;color:Lime;" rows="1"
+                                                          columns="180" value="#{console.commands}" autoSubmit="true"
+                                                          binding="#{console.txtinput}">
+                                                <af:clientListener method="handleEnterEvent" type="keyPress"/>
+                                                <af:serverListener type="EnterEvent"
+                                                                   method="#{console.handleEnterEven}"/>
+                                            </af:inputText>
+                                            <af:inputText label="Consola" id="itCONS2" value="#{console.history}"
+                                                          binding="#{console.txthistory}"
+                                                          contentStyle="#{console.style}" rows="28" columns="168"
+                                                          readOnly="true"/>
+                                        </af:panelFormLayout>
+                                    </f:facet>
+                                </af:decorativeBox>
+                            </af:showDetailItem>
+                        </af:panelSpringboard>
+                    </f:facet>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

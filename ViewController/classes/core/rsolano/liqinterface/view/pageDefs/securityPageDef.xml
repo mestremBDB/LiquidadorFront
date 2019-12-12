@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.10.8" id="securityPageDef"
+                Package="core.rsolano.liqinterface.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables">
+      <variable Type="java.util.Date" Name="ExecuteWithParams_startDate" IsQueriable="false"/>
+      <variable Type="java.util.Date" Name="ExecuteWithParams_endDate" IsQueriable="false"/>
+      <variable Name="confirm" Type="java.lang.String"/>
+    </variableIterator>
+    <iterator Binds="root" RangeSize="25" DataControl="LIQTLBean" id="LIQTLBeanIterator" ChangeEventPolicy="ppr"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="confCryptoalmacenFindAll" RangeSize="25"
+                      DataControl="LIQTLBean" BeanClass="core.rsolano.liqinterface.model.entities.ConfCryptoalmacen"
+                      id="confCryptoalmacenFindAllIterator" ChangeEventPolicy="ppr"/>
+    <searchRegion Binds="confCryptoalmacenFindAllIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="confCryptoalmacenFindAllQuery"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="confCryptofirmasFindAll" RangeSize="25"
+                      DataControl="LIQTLBean" BeanClass="core.rsolano.liqinterface.model.entities.ConfCryptofirmas"
+                      id="confCryptofirmasFindAllIterator" ChangeEventPolicy="ppr"/>
+    <searchRegion Binds="confCryptofirmasFindAllIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="confCryptofirmasFindAllQuery"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="confParametrosliquidadorFindAll" RangeSize="25"
+                      DataControl="LIQTLBean"
+                      BeanClass="core.rsolano.liqinterface.model.entities.ConfParametrosliquidador"
+                      id="confParametrosliquidadorFindAllIterator" ChangeEventPolicy="ppr"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="confSqlloaderFindAll" RangeSize="25"
+                      DataControl="LIQTLBean" BeanClass="core.rsolano.liqinterface.model.entities.ConfSqlloader"
+                      id="confSqlloaderFindAllIterator" ChangeEventPolicy="ppr"/>
+    <searchRegion Binds="confSqlloaderFindAllIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="confSqlloaderFindAllQuery"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="logCryptologFindByFecha" RangeSize="25"
+                      DataControl="LIQTLBean" BeanClass="core.rsolano.liqinterface.model.entities.LogCryptolog"
+                      id="logCryptologFindByFechaIterator" ChangeEventPolicy="ppr"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="idmGruposFindAll" RangeSize="25" DataControl="LIQTLBean"
+                      BeanClass="core.rsolano.liqinterface.model.entities.IdmGrupos" id="idmGruposFindAllIterator"
+                      ChangeEventPolicy="ppr"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="idmUsuariosFindAll" RangeSize="25"
+                      DataControl="LIQTLBean" BeanClass="core.rsolano.liqinterface.model.entities.IdmUsuarios"
+                      id="idmUsuariosFindAllIterator" ChangeEventPolicy="ppr"/>
+    <searchRegion Binds="idmUsuariosFindAllIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="idmUsuariosFindAllQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="confCryptoalmacenFindAllIterator" id="confCryptoalmacenFindAll">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.ConfCryptoalmacen"
+                      Name="confCryptoalmacenFindAll0">
+        <AttrNames>
+          <Item Value="nombre"/>
+          <Item Value="ruta"/>
+          <Item Value="activo"/>
+          <Item Value="nhost"/>
+          <Item Value="aplicacion"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="confCryptofirmasFindAllIterator" id="confCryptofirmasFindAll">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.ConfCryptofirmas"
+                      Name="confCryptofirmasFindAll0">
+        <AttrNames>
+          <Item Value="id"/>
+          <Item Value="aliaspub"/>
+          <Item Value="nombrepub"/>
+          <Item Value="aplicacion"/>
+          <Item Value="nhost"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="confCryptofirmasFindAllIterator" id="id">
+      <AttrNames>
+        <Item Value="id"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="confCryptofirmasFindAllIterator" id="aliaspub">
+      <AttrNames>
+        <Item Value="aliaspub"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="confCryptofirmasFindAllIterator" id="nombrepub">
+      <AttrNames>
+        <Item Value="nombrepub"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="confCryptofirmasFindAllIterator" id="aplicacion">
+      <AttrNames>
+        <Item Value="aplicacion"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="confCryptofirmasFindAllIterator" id="nhost">
+      <AttrNames>
+        <Item Value="nhost"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="confCryptofirmasFindAllIterator" id="First" RequiresUpdateModel="true" Action="first"/>
+    <action IterBinding="confCryptofirmasFindAllIterator" id="Previous" RequiresUpdateModel="true" Action="previous"/>
+    <action IterBinding="confCryptofirmasFindAllIterator" id="Next" RequiresUpdateModel="true" Action="next"/>
+    <action IterBinding="confCryptofirmasFindAllIterator" id="Last" RequiresUpdateModel="true" Action="last"/>
+    <action IterBinding="confCryptofirmasFindAllIterator" id="Delete" RequiresUpdateModel="false"
+            Action="removeCurrentRow"/>
+    <list IterBinding="confParametrosliquidadorFindAllIterator" id="nombrecampo" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject" StaticList="true" NullValueFlag="start">
+      <AttrNames>
+        <Item Value="nombrecampo"/>
+      </AttrNames>
+    </list>
+    <tree IterBinding="confSqlloaderFindAllIterator" id="confSqlloaderFindAll">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.ConfSqlloader" Name="confSqlloaderFindAll0">
+        <AttrNames>
+          <Item Value="id"/>
+          <Item Value="ndatabase"/>
+          <Item Value="username"/>
+          <Item Value="password"/>
+          <Item Value="installRoot"/>
+          <Item Value="infileRoot"/>
+          <Item Value="controlRoot"/>
+          <Item Value="logfileRoot"/>
+          <Item Value="nhost"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="confSqlloaderFindAllIterator" id="id1">
+      <AttrNames>
+        <Item Value="id"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="confSqlloaderFindAllIterator" id="ndatabase">
+      <AttrNames>
+        <Item Value="ndatabase"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="confSqlloaderFindAllIterator" id="username">
+      <AttrNames>
+        <Item Value="username"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="confSqlloaderFindAllIterator" id="password">
+      <AttrNames>
+        <Item Value="password"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="confSqlloaderFindAllIterator" id="installRoot">
+      <AttrNames>
+        <Item Value="installRoot"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="confSqlloaderFindAllIterator" id="infileRoot">
+      <AttrNames>
+        <Item Value="infileRoot"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="confSqlloaderFindAllIterator" id="controlRoot">
+      <AttrNames>
+        <Item Value="controlRoot"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="confSqlloaderFindAllIterator" id="logfileRoot">
+      <AttrNames>
+        <Item Value="logfileRoot"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="confSqlloaderFindAllIterator" id="nhost1">
+      <AttrNames>
+        <Item Value="nhost"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="confSqlloaderFindAllIterator" id="First1" RequiresUpdateModel="true" Action="first"/>
+    <action IterBinding="confSqlloaderFindAllIterator" id="Previous1" RequiresUpdateModel="true" Action="previous"/>
+    <action IterBinding="confSqlloaderFindAllIterator" id="Next1" RequiresUpdateModel="true" Action="next"/>
+    <action IterBinding="confSqlloaderFindAllIterator" id="Last1" RequiresUpdateModel="true" Action="last"/>
+    <action IterBinding="confSqlloaderFindAllIterator" id="Create" RequiresUpdateModel="true" Action="createRow"/>
+    <action IterBinding="confSqlloaderFindAllIterator" id="Delete1" RequiresUpdateModel="false"
+            Action="removeCurrentRow"/>
+    <methodAction id="persistConfSqlloader" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="persistConfSqlloader" IsViewObjectMethod="false" DataControl="LIQTLBean"
+                  InstanceName="data.LIQTLBean.dataProvider"
+                  ReturnName="data.LIQTLBean.methodResults.persistConfSqlloader_LIQTLBean_dataProvider_persistConfSqlloader_result">
+      <NamedData NDName="confSqlloader" NDValue="#{bindings.confSqlloaderFindAllIterator.currentRow.dataProvider}"
+                 NDType="core.rsolano.liqinterface.model.entities.ConfSqlloader"/>
+    </methodAction>
+    <action IterBinding="logCryptologFindByFechaIterator" id="ExecuteWithParams" RequiresUpdateModel="true"
+            Action="executeWithParams">
+      <NamedData NDName="startDate" NDType="java.util.Date" NDValue="${bindings.ExecuteWithParams_startDate}"/>
+      <NamedData NDName="endDate" NDType="java.util.Date" NDValue="${bindings.ExecuteWithParams_endDate}"/>
+    </action>
+    <attributeValues IterBinding="variables" id="startDate">
+      <AttrNames>
+        <Item Value="ExecuteWithParams_startDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="endDate">
+      <AttrNames>
+        <Item Value="ExecuteWithParams_endDate"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="logCryptologFindByFechaIterator" id="logCryptologFindByFecha">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.LogCryptolog" Name="logCryptologFindByFecha0">
+        <AttrNames>
+          <Item Value="accion"/>
+          <Item Value="fecha"/>
+          <Item Value="descripcion"/>
+          <Item Value="usuario"/>
+          <Item Value="nhost"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="variables" id="isNewitem">
+      <AttrNames>
+        <Item Value="confirm"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="idmGruposFindAllIterator" id="idmGruposFindAll">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.IdmGrupos" Name="idmGruposFindAll0">
+        <AttrNames>
+          <Item Value="id"/>
+          <Item Value="grupo"/>
+          <Item Value="permisos"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="idmGruposFindAllIterator" id="id2">
+      <AttrNames>
+        <Item Value="id"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="idmGruposFindAllIterator" id="grupo">
+      <AttrNames>
+        <Item Value="grupo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="idmGruposFindAllIterator" id="permisos">
+      <AttrNames>
+        <Item Value="permisos"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="idmGruposFindAllIterator" id="First2" RequiresUpdateModel="true" Action="first"/>
+    <action IterBinding="idmGruposFindAllIterator" id="Previous2" RequiresUpdateModel="true" Action="previous"/>
+    <action IterBinding="idmGruposFindAllIterator" id="Next2" RequiresUpdateModel="true" Action="next"/>
+    <action IterBinding="idmGruposFindAllIterator" id="Last2" RequiresUpdateModel="true" Action="last"/>
+    <action IterBinding="idmGruposFindAllIterator" id="Create1" RequiresUpdateModel="true" Action="createRow"/>
+    <methodAction id="persistIdmGrupos" RequiresUpdateModel="true" Action="invokeMethod" MethodName="persistIdmGrupos"
+                  IsViewObjectMethod="false" DataControl="LIQTLBean" InstanceName="data.LIQTLBean.dataProvider"
+                  ReturnName="data.LIQTLBean.methodResults.persistIdmGrupos_LIQTLBean_dataProvider_persistIdmGrupos_result">
+      <NamedData NDName="idmGrupos" NDValue="#{bindings.idmGruposFindAllIterator.currentRow.dataProvider}"
+                 NDType="core.rsolano.liqinterface.model.entities.IdmGrupos"/>
+    </methodAction>
+    <tree IterBinding="idmUsuariosFindAllIterator" id="idmUsuariosFindAll">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.IdmUsuarios" Name="idmUsuariosFindAll0">
+        <AttrNames>
+          <Item Value="id"/>
+          <Item Value="nt"/>
+          <Item Value="grupo"/>
+          <Item Value="nombre"/>
+          <Item Value="cn"/>
+          <Item Value="inhabilitado"/>
+          <Item Value="fecha"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

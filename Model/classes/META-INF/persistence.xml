@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+  <persistence-unit name="LiquidadorTasas">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <jta-data-source>jdbc/lico12</jta-data-source>
+    <class>core.rsolano.liqinterface.model.entities.ConfCryptoalmacen</class>
+    <class>core.rsolano.liqinterface.model.entities.ConfCryptofirmas</class>
+    <class>core.rsolano.liqinterface.model.entities.ConfParametrosliquidador</class>
+    <class>core.rsolano.liqinterface.model.entities.LogCryptolog</class>
+    <class>core.rsolano.liqinterface.model.entities.AppAplicaciones</class>
+    <class>core.rsolano.liqinterface.model.entities.ConfSqlloader</class>
+    <class>core.rsolano.liqinterface.model.entities.AppArchivos</class>
+    <class>core.rsolano.liqinterface.model.entities.AppArchivosaplicaciones</class>
+    <class>core.rsolano.liqinterface.model.entities.AppCamposprocesoliq</class>
+    <class>core.rsolano.liqinterface.model.entities.AppHerramientas</class>
+    <class>core.rsolano.liqinterface.model.entities.ConfDiasfestivos</class>
+    <class>core.rsolano.liqinterface.model.entities.ConfGruposcorreo</class>
+    <class>core.rsolano.liqinterface.model.entities.ConfHerramientasapps</class>
+    <class>core.rsolano.liqinterface.model.entities.ConfReceptorescorreos</class>
+    <class>core.rsolano.liqinterface.model.entities.ConfUsuarios</class>
+    <class>core.rsolano.liqinterface.model.entities.HistActividadesProcesos</class>
+    <class>core.rsolano.liqinterface.model.entities.HistProcesos</class>
+    <class>core.rsolano.liqinterface.model.entities.LiqBusiness</class>
+    <class>core.rsolano.liqinterface.model.entities.LiqCorporate</class>
+    <class>core.rsolano.liqinterface.model.entities.LiqPse</class>
+    <class>core.rsolano.liqinterface.model.entities.LogErroresliq</class>
+    <class>core.rsolano.liqinterface.model.entities.LogErroresnotificacion</class>
+    <class>core.rsolano.liqinterface.model.entities.LogInicionotificacion</class>
+    <class>core.rsolano.liqinterface.model.entities.LogRegistroserrados</class>
+    <class>core.rsolano.liqinterface.model.entities.NotifActividades</class>
+    <class>core.rsolano.liqinterface.model.entities.NotifProceso</class>
+    <class>core.rsolano.liqinterface.model.entities.TaskFilesloader</class>
+    <class>core.rsolano.liqinterface.model.entities.TempRespuestahost</class>
+    <class>core.rsolano.liqinterface.model.entities.TempTemppse</class>
+    <class>core.rsolano.liqinterface.model.entities.TempTemppse1</class>
+    <class>core.rsolano.liqinterface.model.entities.TempTemppse2</class>
+    <class>core.rsolano.liqinterface.model.entities.IdmGrupos</class>
+    <class>core.rsolano.liqinterface.model.entities.IdmUsuarios</class>
+    <class>core.rsolano.liqinterface.model.entities.HistInsumoliq</class>
+    <class>core.rsolano.liqinterface.model.entities.ConfEventosproceso</class>
+    <class>core.rsolano.liqinterface.model.entities.AppEventos</class>
+    <class>core.rsolano.liqinterface.model.entities.ConfFuenteinsumofile</class>
+    <class>core.rsolano.liqinterface.model.entities.ConfFuenteinsumostructure</class>
+    <class>core.rsolano.liqinterface.model.entities.ConfProcesoparamcobro</class>
+    <class>core.rsolano.liqinterface.model.entities.LiqPseTotal</class>
+    <class>core.rsolano.liqinterface.model.entities.LiqTRE</class>
+    <properties>
+      <property name="javax.persistence.jtaDataSource" value="jdbc/lico11"/>
+      <property name="eclipselink.target-server" value="WebLogic_10"/>
+      <property name="eclipselink.cache.shared.default" value="false"/>
+    </properties>
+  </persistence-unit>
+</persistence>

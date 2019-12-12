@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:f="http://java.sun.com/jsf/core">
+            <af:panelGroupLayout id="pglDVR1" layout="horizontal">
+                <af:image id="iDVR1" source="/images/drive-icon.png"/>
+                <af:selectOneChoice label="" value="#{drive.choice}" id="socDVR1" autoSubmit="true" >
+                    <f:selectItems value="#{drive.driveLetter}" id="siDVR1"/>
+                </af:selectOneChoice>
+                <af:spacer width="2" height="10" id="spDVR1"/>
+                <af:image id="iDVR2" source="/images/folder-icon.png"/>
+                <af:inputText id="itDVR1" value="#{drive.dir}" partialTriggers="socDVR1"  binding="#{drive.txtinput}" columns="56"/>
+              </af:panelGroupLayout>
+              <af:separator id="sDVR1"/>
+              
+              <af:table id="tDVR1" immediate="true" value="#{fs.fsb}" var="row" rowBandingInterval="0" 
+                        columnBandingInterval="0" autoHeightRows="0" styleClass="AFStretchWidth" width="700" 
+                        summary="Directorios" fetchSize="10" selectionListener="#{fs.SelectRow}"
+                        selectedRowKeys="#{drive.selected}" binding="#{drive.table}" rowSelection="single"
+                        partialTriggers="::socDVR1">
+                <af:column headerText="Name" align="start" id="cDVR1" width="300">
+                    <af:panelGroupLayout id="pglDVR3" layout="horizontal">
+                        <af:image source="#{row.icon}" id="iDVR3" shortDesc="icon"/>
+                        <af:outputText value="#{row.name}" id="otDVR1"/>  
+                    </af:panelGroupLayout>
+                </af:column>
+                <af:column headerText="Size" align="start" id="cDVR2" width="100">
+                    <af:outputText value="#{row.size}" id="otDVR2"/>
+                </af:column>
+                <af:column headerText="Date" align="start" id="cDVR3" width="200">
+                    <af:outputText value="#{row.date}" id="otDVR3"/>
+                </af:column>
+              </af:table>
+              <af:spacer width="10" height="10" id="spDVR2"/>
+</ui:composition>

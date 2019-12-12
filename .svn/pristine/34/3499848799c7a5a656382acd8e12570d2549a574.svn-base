@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="Login" id="d1">
+            <af:form id="f1" defaultCommand="b1">
+                <af:panelGridLayout id="pgl1">
+                    <af:gridRow height="50px" id="gr1">
+                        <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc2">
+                            <!-- Header -->
+                            <af:decorativeBox id="pt_db1" theme="dark">
+                            <f:facet name="center">
+                                <af:panelGroupLayout id="pt_pgl2" layout="horizontal">
+                                    <af:spacer width="10" height="10" id="pt_s1"/>
+                                    <af:image source="/images/banner.png" id="pt_i1"
+                                              shortDesc="Banner Banco de Bogotá;"/>
+                                    <af:spacer width="100" height="10" id="pt_s2"/>
+                                    <af:outputText value="LIQUIDADOR DE COMISIONES" id="pt_ot1" inlineStyle="color:White; font-size:xx-large; font-weight:normal;"/>
+                                    <af:spacer width="50" height="10" id="pt_s3"/>
+                                </af:panelGroupLayout>
+                            </f:facet>
+                    </af:decorativeBox>
+                        </af:gridCell>
+                    </af:gridRow>
+                    <af:gridRow height="50%" id="gr2">
+                        <af:gridCell width="50%" id="gc1" valign="middle" halign="center">
+                            <!-- Content -->
+                            <af:panelAccordion discloseMany="false" id="pa1" dimensionsFrom="parent"
+                                               inlineStyle="height:139px;">
+                                <af:showDetailItem id="pane1" text="Ingreso a la aplicación" icon="/images/login-icon.png" inlineStyle="font-weight:bold;"
+                                                   stretchChildren="none" inflexibleHeight="100">
+                                    <af:panelFormLayout id="pfl1" maxColumns="1">
+                                        <af:spacer width="10" height="10" id="s1"/>
+                                        <af:inputText label="Usuario" id="it1" value="#{login.username}" required="true"
+                                                      requiredMessageDetail="Debe ingresar el usuario" partialTriggers="b1" />
+                                        <af:inputText label="Contraseña" id="it2" value="#{login.password}" secret="true" required="true"
+                                                      requiredMessageDetail="Debe ingresar la contraseña" partialTriggers="b1"/>
+                                        <af:spacer width="10" height="10" id="s2"/>
+                                        <af:button text="Login" id="b1" icon="/images/key-login.png"
+                                                   actionListener="#{login.DoLogin}"/>
+                                        <af:spacer width="10" height="10" id="s3"/>
+                                    </af:panelFormLayout>
+                                </af:showDetailItem>
+                            </af:panelAccordion>
+                        </af:gridCell>
+                    </af:gridRow>
+                </af:panelGridLayout>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

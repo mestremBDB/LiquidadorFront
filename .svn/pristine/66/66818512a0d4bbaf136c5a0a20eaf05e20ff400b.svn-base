@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:f="http://java.sun.com/jsf/core">
+
+    <af:spacer width="10" height="10" id="sPGP1"/>
+    
+    <af:panelGroupLayout id="pgPGP1" layout="horizontal">
+        <af:image source="/images/private-key.png" shortDesc="Llave privada pgp" id="iPGP1"/>
+        <af:selectOneChoice id="socPGP1" value="#{pgpConfigure.choice}">
+            <f:selectItems value="#{pgpConfigure.pgpKeys}" id="siPGP1"/>
+        </af:selectOneChoice>
+    </af:panelGroupLayout>
+    <af:separator id="spPGP1"/>
+    
+    <af:inputText label="Contraseña" id="itPGPPassword" secret="true"
+        shortDesc="Se debe ingresar la contraseña de la llave privada PGP" required="true"
+        requiredMessageDetail="Se necesita una contraseña que cumpla las politicas de seguridad del banco"
+        value="#{pgpConfigure.crypto_password}" partialTriggers="bPGP1 bPGP2"/>
+    <af:separator id="spPGP2"/>
+    
+    <af:inputText label="Confirmar contraseña" id="itPGPConfirm" secret="true" 
+        shortDesc="La contraseña de la llave privada PGP debe ser confirmada" required="true"
+        requiredMessageDetail="Se necesita una contraseña que cumpla las politicas de seguridad del banco"
+        value="#{pgpConfigure.crypto_confirm}" partialTriggers="bPGP1 bPGP2"/>
+    <af:separator id="spPGP3"/>
+    
+    <af:panelGroupLayout id="pgPGP2">
+        <af:button text="Configurar" id="bPGP1" icon="/images/flash-icon.png" actionListener="#{pgpConfigure.UpdatePrivatePGP}"/>
+        <af:spacer width="10" height="10" id="sPGP2"/>
+        <af:button text="Limpiar" id="bPGP2" icon="/images/reset-icon.png" actionListener="#{pgpConfigure.Cancel}" immediate="true"/>
+    </af:panelGroupLayout>
+    <af:separator id="spPGP4"/>
+    
+    <af:panelGroupLayout id="pgPGP3" layout="horizontal">
+        <af:image source="#{pgpConfigure.msgImage}" shortDesc="img" id="iPGP2" binding="#{pgpConfigure.bmsgImage}"
+                  visible="#{pgpConfigure.msgActive}" partialTriggers="bPGP1 bPGP2"/>
+        <af:spacer width="2" height="10" id="sPGP3"/>
+        <af:outputText value="#{pgpConfigure.msgText}" id="otPGP1" binding="#{pgpConfigure.bmsgText}" 
+                       partialTriggers="bPGP1 bPGP2" inlineStyle="#{pgpConfigure.msgStyle}"/>
+    </af:panelGroupLayout> 
+    
+</ui:composition>

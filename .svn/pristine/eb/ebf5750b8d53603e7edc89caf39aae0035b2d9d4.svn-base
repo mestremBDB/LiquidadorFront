@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE PDefViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<PDefViewObject xmlns="http://xmlns.oracle.com/bc4j" Name="LogErroresliq" Version="12.1.3.10.8" BindingStyle="OracleName">
+  <DesignTime>
+    <Attr Name="_DCName" Value="core.rsolano.liqinterface.model.DataControls.LIQTLBean"/>
+    <Attr Name="_SDName" Value="core.rsolano.liqinterface.model.entities.LogErroresliq"/>
+  </DesignTime>
+  <Variable
+    Name="fechaA" Kind="viewcriteria" Type="java.util.Date">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL ResId="${adfBundle['core.rsolano.liqinterface.model.ModelBundle']['core.rsolano.liqinterface.model.entities.LogErroresliq.fechaA_LABEL']}"/>
+        <CONTROLTYPE Value="date"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Variable>
+  <Variable
+    Name="fechaB" Kind="viewcriteria" Type="java.util.Date">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL ResId="${adfBundle['core.rsolano.liqinterface.model.ModelBundle']['core.rsolano.liqinterface.model.entities.LogErroresliq.fechaB_LABEL']}"/>
+        <CONTROLTYPE Value="date"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Variable>
+  <PDefAttribute Name="fecha" IsUpdateable="true">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL ResId="${adfBundle['core.rsolano.liqinterface.model.ModelBundle']['core.rsolano.liqinterface.model.entities.LogErroresliq.fecha_LABEL']}"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </PDefAttribute>
+  <PDefAttribute Name="componente" IsUpdateable="true">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL ResId="${adfBundle['core.rsolano.liqinterface.model.ModelBundle']['core.rsolano.liqinterface.model.entities.LogErroresliq.componente_LABEL']}"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </PDefAttribute>
+  <PDefAttribute Name="id" IsUpdateable="while_insert">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL ResId="${adfBundle['core.rsolano.liqinterface.model.ModelBundle']['core.rsolano.liqinterface.model.entities.LogErroresliq.id_LABEL']}"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </PDefAttribute>
+  <PDefAttribute Name="mensaje" IsUpdateable="true">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL ResId="${adfBundle['core.rsolano.liqinterface.model.ModelBundle']['core.rsolano.liqinterface.model.entities.LogErroresliq.mensaje_LABEL']}"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </PDefAttribute>
+  <PDefAttribute Name="severidad" IsUpdateable="true">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL ResId="${adfBundle['core.rsolano.liqinterface.model.ModelBundle']['core.rsolano.liqinterface.model.entities.LogErroresliq.severidad_LABEL']}"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </PDefAttribute>
+  <PDefAttribute Name="tipo" IsUpdateable="true">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL ResId="${adfBundle['core.rsolano.liqinterface.model.ModelBundle']['core.rsolano.liqinterface.model.entities.LogErroresliq.tipo_LABEL']}"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </PDefAttribute>
+  <ViewCriteria Name="LogErroresliqCriteria" ViewObjectName="core.rsolano.liqinterface.model.entities.LogErroresliq" Conjunction="AND" Mode="2">
+    <Properties>
+      <CustomProperties>
+        <Property Name="displayOperators"
+          Value="Never"/>
+        <Property Name="autoExecute" Value="false"/>
+        <Property Name="allowConjunctionOverride"
+          Value="false"/>
+        <Property Name="showInList"
+          Value="false"/>
+        <Property Name="mode" Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow Name="LogErroresliqCriteria_row_0" UpperColumns="1">
+      <ViewCriteriaItemCompound Name="fecha" ViewAttribute="fecha">
+        <ViewCriteria Name="LogErroresliqCriteria_LogErroresliqCriteria_row_0_fecha_itemHolder"
+          ViewObjectName="core.rsolano.liqinterface.model.entities.LogErroresliq" Conjunction="OR">
+          <ViewCriteriaRow Name="LogErroresliqCriteria_LogErroresliqCriteria_row_0_fecha_itemHolder_row_0" Conjunction="AND">
+            <ViewCriteriaItem Name="fecha" ViewAttribute="fecha" Operator=">=" Conjunction="AND"
+              Value=":fechaA" IsBindVarValue="true" Required="Optional"/>
+          </ViewCriteriaRow>
+          <ViewCriteriaRow Name="LogErroresliqCriteria_LogErroresliqCriteria_row_0_fecha_itemHolder_row_1" Conjunction="AND">
+            <ViewCriteriaItem Name="LogErroresliqCriteria_LogErroresliqCriteria_row_0_fecha_LogErroresliqCriteria_LogErroresliqCriteria_row_0_fecha_itemHolder_LogErroresliqCriteria_LogErroresliqCriteria_row_0_fecha_itemHolder_row_1_fecha"
+              ViewAttribute="fecha" Operator="&lt;=" Conjunction="AND"
+              Value=":fechaB" IsBindVarValue="true" Required="Optional"/>
+          </ViewCriteriaRow>
+        </ViewCriteria>
+      </ViewCriteriaItemCompound>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="src.persdef.core.rsolano.liqinterface.model.entities.common.LogErroresliqMsgBundle"/>
+  </ResourceBundle>
+</PDefViewObject>

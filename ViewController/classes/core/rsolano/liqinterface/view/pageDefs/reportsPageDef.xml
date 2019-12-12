@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.10.8" id="reportsPageDef"
+                Package="core.rsolano.liqinterface.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables">
+      <variable Type="java.lang.String" Name="ExecuteWithParams_app" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="ExecuteWithParams_date" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="ExecuteWithParams_dateI" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="ExecuteWithParams_dateF" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="ExecuteWithParams1_app" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="ExecuteWithParams1_date" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="ExecuteWithParams1_dateI" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="ExecuteWithParams1_dateF" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="ExecuteWithParams2_app" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="ExecuteWithParams2_date" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="ExecuteWithParams2_dateI" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="ExecuteWithParams2_dateF" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="ExecuteWithParams3_date" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="ExecuteWithParams3_app" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="ExecuteWithParams3_dateI" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="ExecuteWithParams3_dateF" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="ExecuteWithParams4_app" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="ExecuteWithParams5_app" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="ExecuteWithParams5_date" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="ExecuteWithParams5_dateI" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="ExecuteWithParams5_dateF" IsQueriable="false"/>
+    </variableIterator>
+    <iterator Binds="root" RangeSize="25" DataControl="LIQTLBean" id="LIQTLBeanIterator"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="appAplicacionesFindAll" RangeSize="25"
+                      DataControl="LIQTLBean" BeanClass="core.rsolano.liqinterface.model.entities.AppAplicaciones"
+                      id="appAplicacionesFindAllIterator"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="months" RangeSize="25" DataControl="LIQTLBean"
+                      BeanClass="core.rsolano.liqinterface.model.graph.model.cMonth" id="monthsIterator"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="years" RangeSize="25" DataControl="LIQTLBean"
+                      BeanClass="core.rsolano.liqinterface.model.graph.model.cYear" id="yearsIterator"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="chargeByPeriod" RangeSize="-1" DataControl="LIQTLBean"
+                      BeanClass="core.rsolano.liqinterface.model.graph.model.ChargeByPeriod"
+                      id="chargeByPeriodIterator"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="failChargeDetils" RangeSize="-1" DataControl="LIQTLBean"
+                      BeanClass="core.rsolano.liqinterface.model.graph.model.FailChargeDetils"
+                      id="failChargeDetilsIterator"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="chargeByModality" RangeSize="-1" DataControl="LIQTLBean"
+                      BeanClass="core.rsolano.liqinterface.model.graph.model.ChargeByModalities"
+                      id="chargeByModalityIterator"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="customerCharges" RangeSize="25" DataControl="LIQTLBean"
+                      BeanClass="core.rsolano.liqinterface.model.graph.model.CustomerCharges"
+                      id="customerChargesIterator"/>
+    <accessorIterator id="daysIterator" MasterBinding="LIQTLBeanIterator" Binds="days" RangeSize="25"
+                      DataControl="LIQTLBean" BeanClass="core.rsolano.liqinterface.model.graph.model.cDay"/>    
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="charges" RangeSize="25" DataControl="LIQTLBean"
+                      BeanClass="core.rsolano.liqinterface.model.graph.model.Charge"
+                      id="chargesIterator"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="customerWithoutCharges" RangeSize="25"
+                      DataControl="LIQTLBean"
+                      BeanClass="core.rsolano.liqinterface.model.graph.model.CustomerWithoutCharges"
+                      id="customerWithoutChargesIterator"/>
+  </executables>
+  <bindings>
+    <list IterBinding="appAplicacionesFindAllIterator" ListOperMode="navigation"
+          ListIter="appAplicacionesFindAllIterator" id="appAplicacionesFindAll" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject">
+      <AttrNames>
+        <Item Value="nombre"/>
+      </AttrNames>
+    </list>
+    <list IterBinding="monthsIterator" ListOperMode="navigation" ListIter="monthsIterator" id="months"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject">
+      <AttrNames>
+        <Item Value="month"/>
+      </AttrNames>
+    </list>
+    <list IterBinding="yearsIterator" ListOperMode="navigation" ListIter="yearsIterator" id="years"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject">
+      <AttrNames>
+        <Item Value="year"/>
+      </AttrNames>
+    </list>
+    <tree IterBinding="chargeByPeriodIterator" id="chargeByPeriod" ChangeEventPolicy="ppr">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.graph.model.ChargeByPeriod" Name="chargeByPeriod">
+        <AttrNames>
+          <Item Value="totaltransacciones"/>
+          <Item Value="color"/>
+          <Item Value="serie"/>
+          <Item Value="valor"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="chargeByPeriodIterator" id="ExecuteWithParams" RequiresUpdateModel="true"
+            Action="executeWithParams">
+      <NamedData NDName="app" NDType="java.lang.String" NDValue="${bindings.ExecuteWithParams_app}"/>
+      <NamedData NDName="date" NDType="java.lang.String" NDValue="${bindings.ExecuteWithParams_date}"/>
+      <NamedData NDName="dateI" NDType="java.lang.String" NDValue="${bindings.ExecuteWithParams_dateI}"/>
+      <NamedData NDName="dateF" NDType="java.lang.String" NDValue="${bindings.ExecuteWithParams_dateF}"/>
+    </action>
+    <attributeValues IterBinding="variables" id="app">
+      <AttrNames>
+        <Item Value="ExecuteWithParams_app"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="date">
+      <AttrNames>
+        <Item Value="ExecuteWithParams_date"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="dateI">
+      <AttrNames>
+        <Item Value="ExecuteWithParams_dateI"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="dateF">
+      <AttrNames>
+        <Item Value="ExecuteWithParams_dateF"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="failChargeDetilsIterator" id="failChargeDetils" ChangeEventPolicy="ppr">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.graph.model.FailChargeDetils" Name="failChargeDetils">
+        <AttrNames>
+          <Item Value="totaltransacciones"/>
+          <Item Value="valor"/>
+          <Item Value="descripcion"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="failChargeDetilsIterator" id="ExecuteWithParams1" RequiresUpdateModel="true"
+            Action="executeWithParams">
+      <NamedData NDName="app" NDType="java.lang.String" NDValue="${bindings.ExecuteWithParams1_app}"/>
+      <NamedData NDName="date" NDType="java.lang.String" NDValue="${bindings.ExecuteWithParams1_date}"/>
+      <NamedData NDName="dateI" NDType="java.lang.String" NDValue="${bindings.ExecuteWithParams1_dateI}"/>
+      <NamedData NDName="dateF" NDType="java.lang.String" NDValue="${bindings.ExecuteWithParams1_dateF}"/>
+    </action>
+    <attributeValues IterBinding="variables" id="app1">
+      <AttrNames>
+        <Item Value="ExecuteWithParams1_app"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="date1">
+      <AttrNames>
+        <Item Value="ExecuteWithParams1_date"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="dateI1">
+      <AttrNames>
+        <Item Value="ExecuteWithParams1_dateI"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="dateF1">
+      <AttrNames>
+        <Item Value="ExecuteWithParams1_dateF"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="chargeByModalityIterator" id="chargeByModality" ChangeEventPolicy="ppr">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.graph.model.ChargeByModalities" Name="chargeByModality">
+        <AttrNames>
+          <Item Value="totalcobro"/>
+          <Item Value="modalidad"/>
+          <Item Value="valor"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="chargeByModalityIterator" id="ExecuteWithParams2" RequiresUpdateModel="true"
+            Action="executeWithParams">
+      <NamedData NDName="app" NDType="java.lang.String" NDValue="${bindings.ExecuteWithParams2_app}"/>
+      <NamedData NDName="date" NDType="java.lang.String" NDValue="${bindings.ExecuteWithParams2_date}"/>
+      <NamedData NDName="dateI" NDType="java.lang.String" NDValue="${bindings.ExecuteWithParams2_dateI}"/>
+      <NamedData NDName="dateF" NDType="java.lang.String" NDValue="${bindings.ExecuteWithParams2_dateF}"/>
+    </action>
+    <attributeValues IterBinding="variables" id="app2">
+      <AttrNames>
+        <Item Value="ExecuteWithParams2_app"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="date2">
+      <AttrNames>
+        <Item Value="ExecuteWithParams2_date"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="dateI2">
+      <AttrNames>
+        <Item Value="ExecuteWithParams2_dateI"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="dateF2">
+      <AttrNames>
+        <Item Value="ExecuteWithParams2_dateF"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="customerChargesIterator" id="customerCharges">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.graph.model.CustomerCharges" Name="customerCharges0">
+        <AttrNames>
+          <Item Value="record"/>
+          <Item Value="nombre"/>
+          <Item Value="totalCobro"/>
+          <Item Value="tipoIdent"/>
+          <Item Value="numIdent"/>
+          <Item Value="tipoProd"/>
+          <Item Value="numProd"/>
+          <Item Value="tipoTarifa"/>
+          <Item Value="tipoRecaudo"/>
+          <Item Value="valorEsperado"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="customerChargesIterator" id="ExecuteWithParams3" RequiresUpdateModel="true"
+            Action="executeWithParams">
+      <NamedData NDName="date" NDType="java.lang.String" NDValue="${bindings.ExecuteWithParams3_date}"/>
+      <NamedData NDName="app" NDType="java.lang.String" NDValue="${bindings.ExecuteWithParams3_app}"/>
+      <NamedData NDName="dateI" NDType="java.lang.String" NDValue="${bindings.ExecuteWithParams3_dateI}"/>
+      <NamedData NDName="dateF" NDType="java.lang.String" NDValue="${bindings.ExecuteWithParams3_dateF}"/>
+    </action>
+    <attributeValues IterBinding="variables" id="date3">
+      <AttrNames>
+        <Item Value="ExecuteWithParams3_date"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="app3">
+      <AttrNames>
+        <Item Value="ExecuteWithParams3_app"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="dateI3">
+      <AttrNames>
+        <Item Value="ExecuteWithParams3_dateI"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="dateF3">
+      <AttrNames>
+        <Item Value="ExecuteWithParams3_dateF"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="daysIterator" id="day">
+      <AttrNames>
+        <Item Value="day"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="chargesIterator" id="charges" ChangeEventPolicy="ppr">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.graph.model.Charge" Name="charges">
+        <AttrNames>
+          <Item Value="fecha"/>
+          <Item Value="exitosos"/>
+          <Item Value="fallidos"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="chargesIterator" id="ExecuteWithParams4" RequiresUpdateModel="true"
+            Action="executeWithParams">    
+      <NamedData NDName="app" NDType="java.lang.String" NDValue="${bindings.ExecuteWithParams4_app}"/>
+    </action>
+    <attributeValues IterBinding="variables" id="app4">
+      <AttrNames>
+        <Item Value="ExecuteWithParams4_app"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="customerWithoutChargesIterator" id="customerWithoutCharges">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.graph.model.CustomerWithoutCharges"
+                      Name="customerWithoutCharges0">
+        <AttrNames>
+          <Item Value="record"/>
+          <Item Value="tipoIdent"/>
+          <Item Value="numIdent"/>
+          <Item Value="totalCobro"/>
+          <Item Value="valorEsperado"/>
+          <Item Value="tipoTarifa"/>
+          <Item Value="tipoRecaudo"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="customerWithoutChargesIterator" id="ExecuteWithParams5"
+            InstanceName="core.rsolano.liqinterface.model.facades.LIQTLBean.customerWithoutCharges"
+            DataControl="LIQTLBean" RequiresUpdateModel="true" Action="executeWithParams">
+      <NamedData NDName="app" NDType="java.lang.String" NDValue="${bindings.ExecuteWithParams5_app}"/>
+      <NamedData NDName="date" NDType="java.lang.String" NDValue="${bindings.ExecuteWithParams5_date}"/>
+      <NamedData NDName="dateI" NDType="java.lang.String" NDValue="${bindings.ExecuteWithParams5_dateI}"/>
+      <NamedData NDName="dateF" NDType="java.lang.String" NDValue="${bindings.ExecuteWithParams5_dateF}"/>
+    </action>
+    <attributeValues IterBinding="variables" id="date5">
+      <AttrNames>
+        <Item Value="ExecuteWithParams5_date"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="app5">
+      <AttrNames>
+        <Item Value="ExecuteWithParams5_app"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="dateI5">
+      <AttrNames>
+        <Item Value="ExecuteWithParams5_dateI"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="dateF5">
+      <AttrNames>
+        <Item Value="ExecuteWithParams5_dateF"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

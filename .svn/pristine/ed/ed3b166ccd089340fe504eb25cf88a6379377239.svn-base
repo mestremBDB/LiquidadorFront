@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE PDefViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<PDefViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="TaskFilesloader"
+  Version="12.1.3.10.8">
+  <DesignTime>
+    <Attr Name="_DCName" Value="core.rsolano.liqinterface.model.DataControls.LIQTLBean"/>
+    <Attr Name="_SDName" Value="core.rsolano.liqinterface.model.entities.TaskFilesloader"/>
+  </DesignTime>
+  <PDefAttribute
+    Name="endTimeTask"
+    IsUpdateable="true">
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMATTER
+          ResId="${adfBundle['core.rsolano.liqinterface.model.ModelBundle']['core.rsolano.liqinterface.model.entities.TaskFilesloader.endTimeTask_FMT_FORMATTER']}"/>
+        <FMT_FORMAT
+          ResId="${adfBundle['core.rsolano.liqinterface.model.ModelBundle']['core.rsolano.liqinterface.model.entities.TaskFilesloader.endTimeTask_FMT_FORMAT']}"/>
+        <DISPLAYWIDTH
+          Value="20"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </PDefAttribute>
+  <PDefAttribute
+    Name="msgTime"
+    IsUpdateable="true">
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMATTER
+          ResId="${adfBundle['core.rsolano.liqinterface.model.ModelBundle']['core.rsolano.liqinterface.model.entities.TaskFilesloader.msgTime_FMT_FORMATTER']}"/>
+        <FMT_FORMAT
+          ResId="${adfBundle['core.rsolano.liqinterface.model.ModelBundle']['core.rsolano.liqinterface.model.entities.TaskFilesloader.msgTime_FMT_FORMAT']}"/>
+        <DISPLAYWIDTH
+          Value="20"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </PDefAttribute>
+  <PDefAttribute
+    Name="startTimeTask"
+    IsUpdateable="true">
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMATTER
+          ResId="${adfBundle['core.rsolano.liqinterface.model.ModelBundle']['core.rsolano.liqinterface.model.entities.TaskFilesloader.startTimeTask_FMT_FORMATTER']}"/>
+        <FMT_FORMAT
+          ResId="${adfBundle['core.rsolano.liqinterface.model.ModelBundle']['core.rsolano.liqinterface.model.entities.TaskFilesloader.startTimeTask_FMT_FORMAT']}"/>
+        <DISPLAYWIDTH
+          Value="20"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </PDefAttribute>
+</PDefViewObject>

@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <af:pageTemplateDef var="attrs" definition="private">
+        <af:xmlContent>
+            <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+                <description/>
+                <display-name>mainTemplate</display-name>
+                <facet>
+                    <description>El contenido principal</description>
+                    <facet-name>main</facet-name>
+                </facet>
+                <attribute>
+                    <attribute-name>Title</attribute-name>
+                    <attribute-class>java.lang.String</attribute-class>
+                    <required>true</required>
+                </attribute>
+                <attribute>
+                    <attribute-name>Width</attribute-name>
+                    <attribute-class>int</attribute-class>
+                    <required>true</required>
+                </attribute>
+            </component>
+        </af:xmlContent>
+        
+        <af:panelGridLayout id="pt_pgl1">
+            <af:gridRow height="70px" id="pt_gr2">
+                <af:gridCell halign="stretch" valign="stretch" columnSpan="2" id="pt_gc3">
+                    <!-- Header -->
+                    <af:decorativeBox id="pt_db1" theme="dark">
+                        <f:facet name="center">
+                            <af:panelGridLayout id="pt_pgl5">
+                                <af:gridRow height="auto" id="pt_gr3">
+                                    <af:gridCell width="30%" id="pt_gc4" halign="stretch" valign="top">
+                                        <af:panelGroupLayout id="pt_pgl2" layout="horizontal" halign="start">
+                                            <af:spacer width="5" height="10" id="pt_s1"/>
+                                            <af:panelGroupLayout id="pt_pgl10" layout="vertical" halign="center">
+                                                <af:spacer width="10" height="10" id="pt_s10"/>
+                                                <af:statusIndicator id="pt_si1"/>
+                                                <af:outputText value="#{login.fecha}" id="pt_ot5" inlineStyle="color:#ccccee; font-size:xx-small; font-weight:bolder;"/>
+                                            </af:panelGroupLayout>
+                                            <af:spacer width="20" height="10" id="pt_s9"/>
+                                            <af:image source="/images/banner.png" id="pt_i1" shortDesc="Banner Banco de Bogotá;"/>
+                                        </af:panelGroupLayout>
+                                    </af:gridCell>
+                                    
+                                    <af:gridCell width="50%" id="pt_gc5" halign="stretch" valign="top">
+                                        <af:panelGroupLayout id="pt_pgl8" layout="horizontal" halign="center" valign="middle">
+                                            <af:spacer width="10" height="10" id="pt_s2"/>
+                                            <af:outputText value="LIQUIDADOR DE COMISIONES" id="pt_ot1" inlineStyle="color:White; font-size:xx-large; font-weight:normal;"/>             
+                                            <af:spacer width="10" height="10" id="pt_s3"/>
+                                        </af:panelGroupLayout>
+                                    </af:gridCell>
+                                    <af:gridCell width="20%" id="pt_gc6" halign="end" valign="top">
+                                        <af:panelGroupLayout id="pt_pgl3" layout="vertical">
+                                            <af:spacer width="10" height="10" id="pt_s6"/>
+                                            <af:panelGroupLayout id="pt_pgl6" layout="horizontal">
+                                                <af:spacer width="10" height="10" id="pt_s8"/>
+                                                <af:panelGroupLayout id="pt_pgl9" layout="vertical" halign="center">
+                                                    <af:image source="/images/user-icon-h.png" shortDesc="user" id="pt_i2"/>
+                                                    <af:outputText value="#{login.username}" id="pt_ot2" inlineStyle="color:#ccccee; font-size:xx-small; font-weight:bolder;"/>
+                                                </af:panelGroupLayout>
+                                                <af:spacer width="10" height="10" id="pt_s7"/>
+                                                <af:panelGroupLayout id="pt_pgl7" layout="vertical" halign="center">
+                                                    <af:link text="" id="pt_l1" immediate="true" icon="/images/logout-icon_d.png" shortDesc="Cerrar sesión" actionListener="#{login.DoLogout}"/>
+                                                    <af:outputText value="Cerrar sesión" id="pt_ot3" inlineStyle="color:#ffff99; font-size:xx-small; font-weight:bolder;"/>
+                                                </af:panelGroupLayout>
+                                            </af:panelGroupLayout>
+                                        </af:panelGroupLayout>
+                                    </af:gridCell>
+                                </af:gridRow>
+                            </af:panelGridLayout>
+                        </f:facet>
+                    </af:decorativeBox>
+                </af:gridCell>
+            </af:gridRow>
+            
+            <af:gridRow height="100%" id="pt_gr1">
+                <af:gridCell width="165px" halign="stretch" valign="top" id="pt_gc2">
+                    <!-- Left -->
+                    <af:panelGroupLayout id="pt_left"  inlineStyle="border-left-color:#bbbbbb;border-right-color:#bbbbbb;border-top-color:#bbbbbb;border-bottom-color:#bbbbbb; border-left-style:solid; border-right-style:solid; border-top-style:none; border-bottom-style:solid; border-left-width:thin; border-right-width:thin; border-bottom-width:thin;">
+                        <!-- Main menu link -->
+                        <af:panelGroupLayout id="pt_pgl4"  inlineStyle="padding-left:6px; padding-top:0px; padding-bottom:5px;">
+                            <af:link id="liMain" icon="/images/home-icon.png" action="#{navigate.GoToIndex}" immediate="true"/>
+                        </af:panelGroupLayout>
+                        
+                        <!-- Nav Bar menu -->
+                        <af:panelGroupLayout id="pgMenuBar" layout="vertical"
+                                             inlineStyle="padding-bottom:0px; padding-left:0px; padding-right:0px; padding-top:5px; border-top-color:#bbbbbb; border-top-width:thin; border-top-style:solid;">
+                            <af:link id="miControl" icon="/images/control-pane.png" hoverIcon="/images/control-pane-hover.png"
+                                     depressedIcon="/images/control-pane-sel.png" disabledIcon="/images/control-pane-inactive.png"
+                                     action="#{navigate.GoToControl}" immediate="true"/>
+                            <af:link id="miSecurity" icon="/images/security.png" hoverIcon="/images/security-hover.png"
+                                     depressedIcon="/images/security-sel.png" disabledIcon="/images/security-inactive.png"
+                                     action="#{navigate.GoToSecurity}" immediate="true"/>
+                            <af:link id="miRegistry" icon="/images/regitry.png" hoverIcon="/images/registry-hover.png" 
+                                     depressedIcon="/images/registry-sel.png" disabledIcon="/images/registry-inactive.png"
+                                     action="#{navigate.GoToRegister}" immediate="true"/>
+                            <af:link id="miReport" icon="/images/report.png" hoverIcon="/images/report-hover.png"
+                                     depressedIcon="/images/report-sel.png" disabledIcon="/images/report-inactive.png"
+                                     action="#{navigate.GoToReports}" immediate="true"/>
+                        </af:panelGroupLayout>
+                        
+                    </af:panelGroupLayout>
+                </af:gridCell>
+                
+                
+                
+                <af:gridCell width="100%" halign="stretch" valign="top" id="pt_gc1">
+                    <!-- Content -->
+                    <af:panelGroupLayout id="ptContenido" layout="vertical">
+                        <af:decorativeBox id="pt_dbtemp2" theme="medium">
+                            <f:facet name="center">
+                                <af:panelGroupLayout id="ptTitle" layout="horizontal">
+                                    <af:spacer width="10" height="10" id="pt_s4"/>
+                                    <af:outputText value="#{attrs.Title}" id="otTitle" inlineStyle="color:Gray; font-size:17px; font-weight:bold;"/>
+                                    <af:spacer width="#{attrs.Width}" height="10" id="pt_s5"/>
+                                </af:panelGroupLayout>
+                            </f:facet>
+                        </af:decorativeBox>
+                        
+                        
+                        <af:panelGroupLayout id="PageContent">
+                            <af:facetRef facetName="main"/>  
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </af:gridCell>
+            </af:gridRow>
+            
+        </af:panelGridLayout>
+    </af:pageTemplateDef>
+</jsp:root>

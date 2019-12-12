@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="Registro contingencia" id="d1">
+            <f:facet name="metaContainer">
+                <af:resource source="/script/clientEvents.js" type="javascript"/>
+            </f:facet>
+            <af:messages id="m1"/>
+            <af:form id="f1">
+                <af:pageTemplate viewId="/template/mainTemplate.jspx" id="pt1">
+                    <f:attribute name="Title" value="Registro contingencia"/>
+                    <f:attribute name="Width" value="2"/>
+                   <f:facet name="main">
+                        <af:panelBorderLayout id="panel1">
+                            <af:panelGridLayout id="pgl1"
+                                                inlineStyle="border-bottom-left-radius:0px 0px; border-bottom-right-radius:0px 0px; border-top-left-radius:1px 1px; border-top-right-radius:1px 1px;">
+                                <af:gridRow marginTop="5px" height="auto" id="gr1">
+                                    <af:gridCell marginStart="5px" width="10%" id="gc1"/>
+                                    <af:gridCell marginStart="5px" width="5%" id="gc2"/>
+                                    <af:gridCell marginStart="5px" width="10%" id="gc3"/>
+                                    <af:gridCell marginStart="5px" width="10px" id="gc4">
+                                        <af:panelDashboard id="pd1" rowHeight="40px"/>
+                                    </af:gridCell>
+                                    <af:gridCell marginStart="5px" width="20%" marginEnd="5px" id="gc5"/>
+                                </af:gridRow>
+                                <af:gridRow marginTop="5px" height="auto" id="gr2">
+                                    <af:gridCell marginStart="5px" width="10%" id="gc6"/>
+                                    <af:gridCell marginStart="5px" width="5%" id="gc7"/>
+                                    <af:gridCell marginStart="5px" width="10%" id="gc8">
+                                        <af:selectOneChoice label="Proceso" id="soc1" contentStyle="width:200.0px"
+                                                            value="#{registroContingencia.proceso}"
+                                                            inlineStyle="flex-item-align:auto;" 
+                                                            required="true">
+                                                            <af:forEach items="#{registroContingencia.listaProcesos}" var="proceso">
+                                                                    <af:selectItem label="#{proceso.nombre}" id="si1" />
+                                                           </af:forEach>
+                                        </af:selectOneChoice>
+                                        <af:spacer width="10" height="10" id="s1"/>
+                                        <af:inputDate label="Fecha contingencia" id="id1" minValue="#{registroContingencia.fechaMin}" maxValue="#{registroContingencia.fechaMax}"
+                                                      contentStyle="width:120.0px" required="true" value="#{registroContingencia.fechaContingencia}"  />
+                                        <af:spacer width="10" height="10" id="s2"/>
+                                        <!--<af:inputText label="Nombre archivo" id="it1" contentStyle="width:150.0px" required="true" value="#{registroContingencia.nombreArchivo}" />-->
+                                        <af:selectOneChoice label="Extensión archivo" id="it1" contentStyle="width:150.0px"
+                                                            value="#{registroContingencia.extension}"
+                                                            inlineStyle="flex-item-align:auto;" 
+                                                            required="true">
+                                                            <af:forEach items="#{registroContingencia.extensiones}" var="extension">
+                                                                    <af:selectItem label="#{extension}" id="sic1" />
+                                                           </af:forEach>
+                                        </af:selectOneChoice>
+                                        <af:spacer width="17" height="16" id="s3"/>
+                                    </af:gridCell>
+                                    <af:gridCell marginStart="5px" width="10px" id="gc9"/>
+                                    <af:gridCell marginStart="5px" width="20%" marginEnd="5px" id="gc10"/>
+                                </af:gridRow>
+                                <af:gridRow marginTop="5px" height="auto" id="gr3">
+                                    <af:gridCell marginStart="5px" width="10%" id="gc11"/>
+                                    <af:gridCell marginStart="5px" width="5%" id="gc12"/>
+                                    <af:gridCell marginStart="5px" width="10%" id="gc13" halign="center">
+                                        <af:button text="Registrar" id="b1"
+                                                   action="#{registroContingencia.registrarContingencia}"/>
+                                    </af:gridCell>
+                                    <af:gridCell marginStart="5px" width="10px" id="gc14"/>
+                                    <af:gridCell marginStart="5px" width="20%" marginEnd="5px" id="gc15"/>
+                                </af:gridRow>
+                                <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr4">
+                                    <af:gridCell marginStart="5px" width="10%" id="gc16"/>
+                                    <af:gridCell marginStart="5px" width="5%" id="gc17"/>
+                                    <af:gridCell marginStart="5px" width="10%" id="gc18" halign="center">
+                                        <af:spacer width="19" height="49" id="s4"/>
+                                    </af:gridCell>
+                                    <af:gridCell marginStart="5px" width="10px" id="gc19"/>
+                                    <af:gridCell marginStart="5px" width="20%" marginEnd="5px" id="gc20"/>
+                                </af:gridRow>
+                            </af:panelGridLayout>
+                           
+                            <f:facet name="bottom">
+                                
+                                <f:verbatim>* Recuerde que si necesita que el proceso se ejecute de manera urgente, debe solicitar la ejecuci&#243;n de 
+                                la malla de forma manual, ya que este únicamente se llevar&#225; acabo cuando se ejecuten las mallas según como fueron programadas.</f:verbatim>
+                               
+                            </f:facet>
+                           
+                            <f:facet name="top"/>
+                        </af:panelBorderLayout>
+                    </f:facet>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+    <!--oracle-jdev-comment:preferred-managed-bean-name:registroContingencia-->
+</jsp:root>

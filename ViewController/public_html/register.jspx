@@ -1,0 +1,971 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="Log" id="d1">
+            <af:messages id="m1"/>
+            <af:form id="f1">
+                <af:pageTemplate viewId="/template/mainTemplate.jspx" id="pt1">
+                    <f:attribute name="Title" value="Log de liquidación"/>
+                    <f:attribute name="Width" value="2"/>   
+                    <f:facet name="main">
+                        <af:panelSplitter id="psLOG1" splitterPosition="220">
+                            <f:facet name="first">
+                                <af:decorativeBox id="dbLOG1" theme="light">
+                                    <f:facet name="center">
+                                        <af:panelGroupLayout id="pglLOG1"  layout="vertical">
+                                            <af:table id="tLOG1" value="#{register.tables}" var="myvar" rowBandingInterval="0" 
+                                                    columnBandingInterval="0" autoHeightRows="0" styleClass="AFStretchWidth" width="208" 
+                                                    fetchSize="10" rowSelection="single"
+                                                    selectionListener="#{register.selectedTable}">
+                                                <af:column id="cLOG1" sortable="false" headerText="Tablas de log" align="start" width="200" >
+                                                    <af:panelGroupLayout id="pglLOG2" valign="middle" layout="horizontal">
+                                                        <af:image source="/images/table-icon.png" shortDesc="image" id="iLOG1"/>
+                                                        <af:spacer width="2" height="10" id="sLOG1"/>
+                                                        <af:outputText value="#{myvar.name}" id="otLOG1"/>
+                                                    </af:panelGroupLayout>
+                                                </af:column>
+                                            </af:table>
+                                            <af:spacer width="5" height="300" id="sLOG2"/>
+                                        </af:panelGroupLayout>
+                                    </f:facet>
+                                </af:decorativeBox>
+                            </f:facet>
+                            <f:facet name="second">
+                                <af:decorativeBox id="dbLOG2" theme="light" partialTriggers="tLOG1">
+                                    <f:facet name="center">
+                                        <af:switcher id="s1" defaultFacet="log_errorresliq" facetName="#{register.sel_table}">
+                                            <f:facet name="log_errorresliq">
+                                                <af:panelGroupLayout layout="vertical" id="pgl1">
+                                                    <af:panelHeader text="Log de errores de liquidación" id="ph1">
+                                                        <af:query id="qryId1" headerText="Campos" disclosed="true"
+                                                                  value="#{bindings.LogErroresliqCriteriaQuery.queryDescriptor}"
+                                                                  model="#{bindings.LogErroresliqCriteriaQuery.queryModel}"
+                                                                  queryListener="#{bindings.LogErroresliqCriteriaQuery.processQuery}"
+                                                                  queryOperationListener="#{bindings.LogErroresliqCriteriaQuery.processQueryOperation}"
+                                                                  resultComponentId="::resId1" displayMode="default"
+                                                                  saveQueryMode="default" searchButtonText="Buscar"
+                                                                  saveButtonText="Guardar" resetButtonText="Reset"
+                                                                  addFieldsButtonText="Agregar"/>
+                                                    </af:panelHeader>
+                                                    <af:table value="#{bindings.logErroresliqFindAll.collectionModel}"
+                                                              var="row"
+                                                              rows="#{bindings.logErroresliqFindAll.rangeSize}"
+                                                              emptyText="#{bindings.logErroresliqFindAll.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                              rowBandingInterval="0"
+                                                              selectedRowKeys="#{bindings.logErroresliqFindAll.collectionModel.selectedRow}"
+                                                              selectionListener="#{bindings.logErroresliqFindAll.collectionModel.makeCurrent}"
+                                                              rowSelection="single"
+                                                              fetchSize="#{bindings.logErroresliqFindAll.rangeSize}"
+                                                              filterModel="#{bindings.LogErroresliqCriteriaQuery.queryDescriptor}"
+                                                              queryListener="#{bindings.LogErroresliqCriteriaQuery.processQuery}"
+                                                              filterVisible="true" varStatus="vs" id="resId1">
+                                                        <af:column sortProperty="#{bindings.logErroresliqFindAll.hints.id.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.logErroresliqFindAll.hints.id.label}"
+                                                                   id="resId1c1">
+                                                            <af:outputText value="#{row.id}"
+                                                                           shortDesc="#{bindings.logErroresliqFindAll.hints.id.tooltip}"
+                                                                           id="ot1"/>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.logErroresliqFindAll.hints.componente.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.logErroresliqFindAll.hints.componente.label}"
+                                                                   id="resId1c2">
+                                                            <af:outputText value="#{row.componente}"
+                                                                           shortDesc="#{bindings.logErroresliqFindAll.hints.componente.tooltip}"
+                                                                           id="ot2"/>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.logErroresliqFindAll.hints.tipo.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.logErroresliqFindAll.hints.tipo.label}"
+                                                                   id="resId1c3">
+                                                            <af:outputText value="#{row.tipo}"
+                                                                           shortDesc="#{bindings.logErroresliqFindAll.hints.tipo.tooltip}"
+                                                                           id="ot3"/>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.logErroresliqFindAll.hints.severidad.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.logErroresliqFindAll.hints.severidad.label}"
+                                                                   id="resId1c4">
+                                                            <af:outputText value="#{row.severidad}"
+                                                                           shortDesc="#{bindings.logErroresliqFindAll.hints.severidad.tooltip}"
+                                                                           id="ot4"/>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.logErroresliqFindAll.hints.fecha.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.logErroresliqFindAll.hints.fecha.label}"
+                                                                   id="resId1c5">
+                                                            <!--<f:facet name="filter">
+                                                                <af:inputDate value="#{bindings.LogErroresliqCriteriaQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.fecha.value}"
+                                                                              id="id1">
+                                                                    <af:convertDateTime pattern="#{bindings.logErroresliqFindAll.hints.fecha.format}"/>
+                                                                </af:inputDate>
+                                                            </f:facet> -->
+                                                            <af:outputText value="#{row.fecha}"
+                                                                           shortDesc="#{bindings.logErroresliqFindAll.hints.fecha.tooltip}"
+                                                                           id="ot5">
+                                                                <af:convertDateTime pattern="#{bindings.logErroresliqFindAll.hints.fecha.format}"/>
+                                                            </af:outputText>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.logErroresliqFindAll.hints.mensaje.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.logErroresliqFindAll.hints.mensaje.label}"
+                                                                   id="resId1c6">
+                                                            <af:outputText value="#{row.mensaje}"
+                                                                           shortDesc="#{bindings.logErroresliqFindAll.hints.mensaje.tooltip}"
+                                                                           id="ot6"/>
+                                                        </af:column>
+                                                    </af:table>
+                                                </af:panelGroupLayout>
+                                            </f:facet>
+                                            <f:facet name="log_errorresnotificacion">
+                                                <af:panelGroupLayout layout="vertical" id="pgl2">
+                                                    <af:panelHeader text="Log de errores de notificación" id="ph2">
+                                                        <af:query id="qryId2" headerText="Campos" disclosed="true"
+                                                                  value="#{bindings.LogErroresnotificacionCriteriaQuery.queryDescriptor}"
+                                                                  model="#{bindings.LogErroresnotificacionCriteriaQuery.queryModel}"
+                                                                  queryListener="#{bindings.LogErroresnotificacionCriteriaQuery.processQuery}"
+                                                                  queryOperationListener="#{bindings.LogErroresnotificacionCriteriaQuery.processQueryOperation}"
+                                                                  resultComponentId="::resId2"
+                                                                  searchButtonText="Buscar"
+                                                                  addFieldsButtonText="Agregar"
+                                                                  resetButtonText="Reset" saveButtonText="Guardar"/>
+                                                    </af:panelHeader>
+                                                    <af:table value="#{bindings.logErroresnotificacionFindAll.collectionModel}"
+                                                              var="row"
+                                                              rows="#{bindings.logErroresnotificacionFindAll.rangeSize}"
+                                                              emptyText="#{bindings.logErroresnotificacionFindAll.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                              rowBandingInterval="0"
+                                                              selectedRowKeys="#{bindings.logErroresnotificacionFindAll.collectionModel.selectedRow}"
+                                                              selectionListener="#{bindings.logErroresnotificacionFindAll.collectionModel.makeCurrent}"
+                                                              rowSelection="single"
+                                                              fetchSize="#{bindings.logErroresnotificacionFindAll.rangeSize}"
+                                                              filterModel="#{bindings.LogErroresnotificacionCriteriaQuery.queryDescriptor}"
+                                                              queryListener="#{bindings.LogErroresnotificacionCriteriaQuery.processQuery}"
+                                                              filterVisible="true" varStatus="vs" id="resId2">
+                                                        <af:column sortProperty="#{bindings.logErroresnotificacionFindAll.hints.id.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.logErroresnotificacionFindAll.hints.id.label}"
+                                                                   id="resId2c1">
+                                                            <af:outputText value="#{row.id}"
+                                                                           shortDesc="#{bindings.logErroresnotificacionFindAll.hints.id.tooltip}"
+                                                                           id="ot7"/>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.logErroresnotificacionFindAll.hints.componente.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.logErroresnotificacionFindAll.hints.componente.label}"
+                                                                   id="resId2c2">
+                                                            <af:outputText value="#{row.componente}"
+                                                                           shortDesc="#{bindings.logErroresnotificacionFindAll.hints.componente.tooltip}"
+                                                                           id="ot8"/>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.logErroresnotificacionFindAll.hints.tipo.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.logErroresnotificacionFindAll.hints.tipo.label}"
+                                                                   id="resId2c3">
+                                                            <af:outputText value="#{row.tipo}"
+                                                                           shortDesc="#{bindings.logErroresnotificacionFindAll.hints.tipo.tooltip}"
+                                                                           id="ot9"/>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.logErroresnotificacionFindAll.hints.fechaerror.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.logErroresnotificacionFindAll.hints.fechaerror.label}"
+                                                                   id="resId2c4">
+                                                            <!--<f:facet name="filter">
+                                                                <af:inputDate value="#{bindings.LogErroresnotificacionCriteriaQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.fechaerror.value}"
+                                                                              id="id2">
+                                                                    <af:convertDateTime pattern="#{bindings.logErroresnotificacionFindAll.hints.fechaerror.format}"/>
+                                                                </af:inputDate>
+                                                            </f:facet>-->
+                                                            <af:outputText value="#{row.fechaerror}"
+                                                                           shortDesc="#{bindings.logErroresnotificacionFindAll.hints.fechaerror.tooltip}"
+                                                                           id="ot10">
+                                                                <af:convertDateTime pattern="#{bindings.logErroresnotificacionFindAll.hints.fechaerror.format}"/>
+                                                            </af:outputText>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.logErroresnotificacionFindAll.hints.errormessage.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.logErroresnotificacionFindAll.hints.errormessage.label}"
+                                                                   id="resId2c5">
+                                                            <af:outputText value="#{row.errormessage}"
+                                                                           shortDesc="#{bindings.logErroresnotificacionFindAll.hints.errormessage.tooltip}"
+                                                                           id="ot11"/>
+                                                        </af:column>
+                                                    </af:table>
+                                                </af:panelGroupLayout>
+                                            </f:facet>
+                                            <f:facet name="log_inicionotificacion">
+                                                <af:panelGroupLayout layout="vertical" id="pgl3">
+                                                    <af:panelHeader text="Log de inicio notificación" id="ph3">
+                                                        <af:query id="qryId3" headerText="Campos" disclosed="true"
+                                                                  value="#{bindings.LogInicionotificacionCriteriaQuery.queryDescriptor}"
+                                                                  model="#{bindings.LogInicionotificacionCriteriaQuery.queryModel}"
+                                                                  queryListener="#{bindings.LogInicionotificacionCriteriaQuery.processQuery}"
+                                                                  queryOperationListener="#{bindings.LogInicionotificacionCriteriaQuery.processQueryOperation}"
+                                                                  resultComponentId="::resId3"
+                                                                  searchButtonText="Buscar" saveButtonText="Guardar"
+                                                                  resetButtonText="Reset"
+                                                                  addFieldsButtonText="Agregar"/>
+                                                    </af:panelHeader>
+                                                    <af:table value="#{bindings.logInicionotificacionFindAll.collectionModel}"
+                                                              var="row"
+                                                              rows="#{bindings.logInicionotificacionFindAll.rangeSize}"
+                                                              emptyText="#{bindings.logInicionotificacionFindAll.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                              rowBandingInterval="0"
+                                                              selectedRowKeys="#{bindings.logInicionotificacionFindAll.collectionModel.selectedRow}"
+                                                              selectionListener="#{bindings.logInicionotificacionFindAll.collectionModel.makeCurrent}"
+                                                              rowSelection="single"
+                                                              fetchSize="#{bindings.logInicionotificacionFindAll.rangeSize}"
+                                                              filterModel="#{bindings.LogInicionotificacionCriteriaQuery.queryDescriptor}"
+                                                              queryListener="#{bindings.LogInicionotificacionCriteriaQuery.processQuery}"
+                                                              filterVisible="true" varStatus="vs" id="resId3">
+                                                        <af:column sortProperty="#{bindings.logInicionotificacionFindAll.hints.id.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.logInicionotificacionFindAll.hints.id.label}"
+                                                                   id="resId3c1">
+                                                            <af:outputText value="#{row.id}"
+                                                                           shortDesc="#{bindings.logInicionotificacionFindAll.hints.id.tooltip}"
+                                                                           id="ot12"/>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.logInicionotificacionFindAll.hints.tipoarchivo.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.logInicionotificacionFindAll.hints.tipoarchivo.label}"
+                                                                   id="resId3c2">
+                                                            <af:outputText value="#{row.tipoarchivo}"
+                                                                           shortDesc="#{bindings.logInicionotificacionFindAll.hints.tipoarchivo.tooltip}"
+                                                                           id="ot13"/>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.logInicionotificacionFindAll.hints.nombrearchivo.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.logInicionotificacionFindAll.hints.nombrearchivo.label}"
+                                                                   id="resId3c3">
+                                                            <af:outputText value="#{row.nombrearchivo}"
+                                                                           shortDesc="#{bindings.logInicionotificacionFindAll.hints.nombrearchivo.tooltip}"
+                                                                           id="ot14"/>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.logInicionotificacionFindAll.hints.canal.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.logInicionotificacionFindAll.hints.canal.label}"
+                                                                   id="resId3c4">
+                                                            <af:outputText value="#{row.canal}"
+                                                                           shortDesc="#{bindings.logInicionotificacionFindAll.hints.canal.tooltip}"
+                                                                           id="ot15"/>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.logInicionotificacionFindAll.hints.algoritmo.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.logInicionotificacionFindAll.hints.algoritmo.label}"
+                                                                   id="resId3c5">
+                                                            <af:outputText value="#{row.algoritmo}"
+                                                                           shortDesc="#{bindings.logInicionotificacionFindAll.hints.algoritmo.tooltip}"
+                                                                           id="ot16"/>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.logInicionotificacionFindAll.hints.hash.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.logInicionotificacionFindAll.hints.hash.label}"
+                                                                   id="resId3c6">
+                                                            <af:outputText value="#{row.hash}"
+                                                                           shortDesc="#{bindings.logInicionotificacionFindAll.hints.hash.tooltip}"
+                                                                           id="ot17"/>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.logInicionotificacionFindAll.hints.fechanotificacion.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.logInicionotificacionFindAll.hints.fechanotificacion.label}"
+                                                                   id="resId3c7">
+                                                             <!--<f:facet name="filter">
+                                                               <af:inputDate value="#{bindings.LogInicionotificacionCriteriaQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.fechanotificacion.value}"
+                                                                              id="id3">
+                                                                    <af:convertDateTime pattern="#{bindings.logInicionotificacionFindAll.hints.fechanotificacion.format}"/>
+                                                                </af:inputDate>
+                                                            </f:facet>-->
+                                                            <af:outputText value="#{row.fechanotificacion}"
+                                                                           shortDesc="#{bindings.logInicionotificacionFindAll.hints.fechanotificacion.tooltip}"
+                                                                           id="ot18">
+                                                                <af:convertDateTime pattern="#{bindings.logInicionotificacionFindAll.hints.fechanotificacion.format}"/>
+                                                            </af:outputText>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.logInicionotificacionFindAll.hints.guidmessage.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.logInicionotificacionFindAll.hints.guidmessage.label}"
+                                                                   id="resId3c8">
+                                                            <af:outputText value="#{row.guidmessage}"
+                                                                           shortDesc="#{bindings.logInicionotificacionFindAll.hints.guidmessage.tooltip}"
+                                                                           id="ot19"/>
+                                                        </af:column>
+                                                    </af:table>
+                                                </af:panelGroupLayout>
+                                            </f:facet>
+                                            <f:facet name="log_resgistroserrados">
+                                                <af:panelGroupLayout layout="vertical" id="pgl4">
+                                                    <af:panelHeader text="Log de registros errados" id="ph4">
+                                                        <af:query id="qryId4" headerText="Campos" disclosed="true"
+                                                                  value="#{bindings.LogRegistroserradosCriteriaQuery.queryDescriptor}"
+                                                                  model="#{bindings.LogRegistroserradosCriteriaQuery.queryModel}"
+                                                                  queryListener="#{bindings.LogRegistroserradosCriteriaQuery.processQuery}"
+                                                                  queryOperationListener="#{bindings.LogRegistroserradosCriteriaQuery.processQueryOperation}"
+                                                                  resultComponentId="::resId4"
+                                                                  searchButtonText="Buscar" saveButtonText="Guardar"
+                                                                  resetButtonText="Reset"
+                                                                  addFieldsButtonText="Agregar"/>
+                                                    </af:panelHeader>
+                                                    <af:table value="#{bindings.logRegistroserradosFindAll.collectionModel}"
+                                                              var="row"
+                                                              rows="#{bindings.logRegistroserradosFindAll.rangeSize}"
+                                                              emptyText="#{bindings.logRegistroserradosFindAll.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                              rowBandingInterval="0"
+                                                              selectedRowKeys="#{bindings.logRegistroserradosFindAll.collectionModel.selectedRow}"
+                                                              selectionListener="#{bindings.logRegistroserradosFindAll.collectionModel.makeCurrent}"
+                                                              rowSelection="single"
+                                                              fetchSize="#{bindings.logRegistroserradosFindAll.rangeSize}"
+                                                              filterModel="#{bindings.LogRegistroserradosCriteriaQuery.queryDescriptor}"
+                                                              queryListener="#{bindings.LogRegistroserradosCriteriaQuery.processQuery}"
+                                                              filterVisible="true" varStatus="vs" id="resId4">
+                                                        <af:column sortProperty="#{bindings.logRegistroserradosFindAll.hints.componente.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.logRegistroserradosFindAll.hints.componente.label}"
+                                                                   id="c1">
+                                                            <af:outputText value="#{row.componente}"
+                                                                           shortDesc="#{bindings.logRegistroserradosFindAll.hints.componente.tooltip}"
+                                                                           id="ot20"/>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.logRegistroserradosFindAll.hints.fecha.name}"
+                                                                   sortable="true"
+                                                                   headerText="#{bindings.logRegistroserradosFindAll.hints.fecha.label}"
+                                                                   filterable="true" id="c2">
+                                                            <af:outputText value="#{row.fecha}"
+                                                                           shortDesc="#{bindings.logRegistroserradosFindAll.hints.fecha.tooltip}"
+                                                                           id="ot21">
+                                                                <af:convertDateTime pattern="#{bindings.logRegistroserradosFindAll.hints.fecha.format}"/>
+                                                            </af:outputText>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.logRegistroserradosFindAll.hints.id.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.logRegistroserradosFindAll.hints.id.label}"
+                                                                   id="c3">
+                                                            <af:outputText value="#{row.id}"
+                                                                           shortDesc="#{bindings.logRegistroserradosFindAll.hints.id.tooltip}"
+                                                                           id="ot22"/>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.logRegistroserradosFindAll.hints.linea.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.logRegistroserradosFindAll.hints.linea.label}"
+                                                                   id="c4">
+                                                            <af:outputText value="#{row.linea}"
+                                                                           shortDesc="#{bindings.logRegistroserradosFindAll.hints.linea.tooltip}"
+                                                                           id="ot23"/>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.logRegistroserradosFindAll.hints.message.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.logRegistroserradosFindAll.hints.message.label}"
+                                                                   id="c5">
+                                                            <af:outputText value="#{row.message}"
+                                                                           shortDesc="#{bindings.logRegistroserradosFindAll.hints.message.tooltip}"
+                                                                           id="ot24"/>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.logRegistroserradosFindAll.hints.registro.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.logRegistroserradosFindAll.hints.registro.label}"
+                                                                   id="c6">
+                                                            <af:outputText value="#{row.registro}"
+                                                                           shortDesc="#{bindings.logRegistroserradosFindAll.hints.registro.tooltip}"
+                                                                           id="ot25">
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.logRegistroserradosFindAll.hints.registro.format}"/>
+                                                            </af:outputText>
+                                                        </af:column>
+                                                        <af:column headerText="Hist Actividades Procesos" sortable="true"
+                                                                   filterable="true" id="resId4c7">
+                                                            <af:column sortProperty="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosId.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosId.label}"
+                                                                       id="c7">
+                                                                <af:outputText value="#{row.histActividadesProcesosId}"
+                                                                               shortDesc="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosId.tooltip}"
+                                                                               id="ot26"/>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosFechainicio.name}"
+                                                                       sortable="true"
+                                                                       headerText="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosFechainicio.label}"
+                                                                       filterable="true" id="c8">
+                                                                <af:outputText value="#{row.histActividadesProcesosFechainicio}"
+                                                                               shortDesc="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosFechainicio.tooltip}"
+                                                                               id="ot27">
+                                                                    <af:convertDateTime pattern="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosFechainicio.format}"/>
+                                                                </af:outputText>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosFechafin.name}"
+                                                                       sortable="true"
+                                                                       headerText="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosFechafin.label}"
+                                                                       filterable="true" id="c9">
+                                                                <af:outputText value="#{row.histActividadesProcesosFechafin}"
+                                                                               shortDesc="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosFechafin.tooltip}"
+                                                                               id="ot28">
+                                                                    <af:convertDateTime pattern="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosFechafin.format}"/>
+                                                                </af:outputText>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosFechanotificacion.name}"
+                                                                       sortable="true"
+                                                                       headerText="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosFechanotificacion.label}"
+                                                                       filterable="true" id="c10">
+                                                                <af:outputText value="#{row.histActividadesProcesosFechanotificacion}"
+                                                                               shortDesc="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosFechanotificacion.tooltip}"
+                                                                               id="ot29">
+                                                                    <af:convertDateTime pattern="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosFechanotificacion.format}"/>
+                                                                </af:outputText>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosEstado.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosEstado.label}"
+                                                                       id="c11">
+                                                                <af:outputText value="#{row.histActividadesProcesosEstado}"
+                                                                               shortDesc="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosEstado.tooltip}"
+                                                                               id="ot30"/>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosRegistroserrados.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosRegistroserrados.label}"
+                                                                       id="c12">
+                                                                <af:outputText value="#{row.histActividadesProcesosRegistroserrados}"
+                                                                               shortDesc="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosRegistroserrados.tooltip}"
+                                                                               id="ot31">
+                                                                    <af:convertNumber groupingUsed="false"
+                                                                                      pattern="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosRegistroserrados.format}"/>
+                                                                </af:outputText>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosRegistrosprocesados.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosRegistrosprocesados.label}"
+                                                                       id="c13">
+                                                                <af:outputText value="#{row.histActividadesProcesosRegistrosprocesados}"
+                                                                               shortDesc="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosRegistrosprocesados.tooltip}"
+                                                                               id="ot32">
+                                                                    <af:convertNumber groupingUsed="false"
+                                                                                      pattern="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosRegistrosprocesados.format}"/>
+                                                                </af:outputText>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosRegistrostotales.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosRegistrostotales.label}"
+                                                                       id="c14">
+                                                                <af:outputText value="#{row.histActividadesProcesosRegistrostotales}"
+                                                                               shortDesc="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosRegistrostotales.tooltip}"
+                                                                               id="ot35">
+                                                                    <af:convertNumber groupingUsed="false"
+                                                                                      pattern="#{bindings.logRegistroserradosFindAll.hints.histActividadesProcesosRegistrostotales.format}"/>
+                                                                </af:outputText>
+                                                            </af:column>
+                                                        </af:column>
+                                                    </af:table>                                                    
+                                                </af:panelGroupLayout>
+                                            </f:facet>
+                                            <f:facet name="hist_actividades_procesos">
+                                                <af:panelGroupLayout layout="vertical" id="pgl5">
+                                                    <af:panelHeader text="Histórico actividades procesos" id="ph5">
+                                                        <af:query id="qryId5" headerText="Campos" disclosed="true"
+                                                                  value="#{bindings.HistActividadesProcesosCriteriaQuery.queryDescriptor}"
+                                                                  model="#{bindings.HistActividadesProcesosCriteriaQuery.queryModel}"
+                                                                  queryListener="#{bindings.HistActividadesProcesosCriteriaQuery.processQuery}"
+                                                                  queryOperationListener="#{bindings.HistActividadesProcesosCriteriaQuery.processQueryOperation}"
+                                                                  resultComponentId="::resId5"
+                                                                  searchButtonText="Buscar"
+                                                                  saveButtonText="Guardar"
+                                                                  addFieldsButtonText="Agregar"
+                                                                  resetButtonText="Reset"/>
+                                                    </af:panelHeader>
+                                                    <af:table value="#{bindings.histActividadesProcesosFindAll.collectionModel}"
+                                                              var="row"
+                                                              rows="#{bindings.histActividadesProcesosFindAll.rangeSize}"
+                                                              emptyText="#{bindings.histActividadesProcesosFindAll.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                              rowBandingInterval="0"
+                                                              selectedRowKeys="#{bindings.histActividadesProcesosFindAll.collectionModel.selectedRow}"
+                                                              selectionListener="#{bindings.histActividadesProcesosFindAll.collectionModel.makeCurrent}"
+                                                              rowSelection="single"
+                                                              fetchSize="#{bindings.histActividadesProcesosFindAll.rangeSize}"
+                                                              filterModel="#{bindings.HistActividadesProcesosCriteriaQuery.queryDescriptor}"
+                                                              queryListener="#{bindings.HistActividadesProcesosCriteriaQuery.processQuery}"
+                                                              filterVisible="true" varStatus="vs" id="resId5">
+                                                        <af:column sortProperty="#{bindings.histActividadesProcesosFindAll.hints.id.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.histActividadesProcesosFindAll.hints.id.label}"
+                                                                   id="resId5c1">
+                                                            <af:outputText value="#{row.id}"
+                                                                           shortDesc="#{bindings.histActividadesProcesosFindAll.hints.id.tooltip}"
+                                                                           id="ot33"/>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.histActividadesProcesosFindAll.hints.estado.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.histActividadesProcesosFindAll.hints.estado.label}"
+                                                                   id="resId5c2">
+                                                            <af:outputText value="#{row.estado}"
+                                                                           shortDesc="#{bindings.histActividadesProcesosFindAll.hints.estado.tooltip}"
+                                                                           id="ot34"/>
+                                                        </af:column>                                                        
+                                                        <af:column sortProperty="#{bindings.histActividadesProcesosFindAll.hints.fechainicio.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.histActividadesProcesosFindAll.hints.fechainicio.label}"
+                                                                   id="resId5c5">
+                                                            <!--<f:facet name="filter">
+                                                                <af:inputDate value="#{bindings.HistActividadesProcesosCriteriaQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.fechainicio.value}"
+                                                                              id="id7">
+                                                                    <af:convertDateTime pattern="#{bindings.histActividadesProcesosFindAll.hints.fechainicio.format}"/>
+                                                                </af:inputDate>
+                                                            </f:facet>-->
+                                                            <af:outputText value="#{row.fechainicio}"
+                                                                           shortDesc="#{bindings.histActividadesProcesosFindAll.hints.fechainicio.tooltip}"
+                                                                           id="ot37">
+                                                                <af:convertDateTime pattern="#{bindings.histActividadesProcesosFindAll.hints.fechainicio.format}"/>
+                                                            </af:outputText>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.histActividadesProcesosFindAll.hints.fechafin.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.histActividadesProcesosFindAll.hints.fechafin.label}"
+                                                                   id="resId5c4">
+                                                            <!--<f:facet name="filter">
+                                                                <af:inputDate value="#{bindings.HistActividadesProcesosCriteriaQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.fechafin.value}"
+                                                                              id="id6">
+                                                                    <af:convertDateTime pattern="#{bindings.histActividadesProcesosFindAll.hints.fechafin.format}"/>
+                                                                </af:inputDate>
+                                                            </f:facet>-->
+                                                            <af:outputText value="#{row.fechafin}"
+                                                                           shortDesc="#{bindings.histActividadesProcesosFindAll.hints.fechafin.tooltip}"
+                                                                           id="ot36">
+                                                                <af:convertDateTime pattern="#{bindings.histActividadesProcesosFindAll.hints.fechafin.format}"/>
+                                                            </af:outputText>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.histActividadesProcesosFindAll.hints.fechanotificacion.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.histActividadesProcesosFindAll.hints.fechanotificacion.label}"
+                                                                   id="resId5c6">
+                                                            <!--<f:facet name="filter">
+                                                                <af:inputDate value="#{bindings.HistActividadesProcesosCriteriaQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.fechanotificacion.value}"
+                                                                              id="id8">
+                                                                    <af:convertDateTime pattern="#{bindings.histActividadesProcesosFindAll.hints.fechanotificacion.format}"/>
+                                                                </af:inputDate>
+                                                            </f:facet>-->
+                                                            <af:outputText value="#{row.fechanotificacion}"
+                                                                           shortDesc="#{bindings.histActividadesProcesosFindAll.hints.fechanotificacion.tooltip}"
+                                                                           id="ot38">
+                                                                <af:convertDateTime pattern="#{bindings.histActividadesProcesosFindAll.hints.fechanotificacion.format}"/>
+                                                            </af:outputText>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.histActividadesProcesosFindAll.hints.registroserrados.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.histActividadesProcesosFindAll.hints.registroserrados.label}"
+                                                                   id="resId5c7">
+                                                            <af:outputText value="#{row.registroserrados}"
+                                                                           shortDesc="#{bindings.histActividadesProcesosFindAll.hints.registroserrados.tooltip}"
+                                                                           id="ot39">
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.histActividadesProcesosFindAll.hints.registroserrados.format}"/>
+                                                            </af:outputText>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.histActividadesProcesosFindAll.hints.registrosprocesados.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.histActividadesProcesosFindAll.hints.registrosprocesados.label}"
+                                                                   id="resId5c8">
+                                                            <af:outputText value="#{row.registrosprocesados}"
+                                                                           shortDesc="#{bindings.histActividadesProcesosFindAll.hints.registrosprocesados.tooltip}"
+                                                                           id="ot40">
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.histActividadesProcesosFindAll.hints.registrosprocesados.format}"/>
+                                                            </af:outputText>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.histActividadesProcesosFindAll.hints.registrostotales.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.histActividadesProcesosFindAll.hints.registrostotales.label}"
+                                                                   id="resId5c9">
+                                                            <af:outputText value="#{row.registrostotales}"
+                                                                           shortDesc="#{bindings.histActividadesProcesosFindAll.hints.registrostotales.tooltip}"
+                                                                           id="ot41">
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.histActividadesProcesosFindAll.hints.registrostotales.format}"/>
+                                                            </af:outputText>
+                                                        </af:column>
+                                                        <af:column headerText="Hist Procesos" sortable="true"
+                                                                   filterable="true" id="resId5c10">
+                                                            <af:column sortProperty="#{bindings.histActividadesProcesosFindAll.hints.procesosId.name}"
+                                                                       filterable="true" sortable="true" headerText="id"
+                                                                       id="c42">
+                                                                <af:outputText value="#{row.procesosId}"
+                                                                               shortDesc="#{bindings.histActividadesProcesosFindAll.hints.procesosId.tooltip}"
+                                                                               id="ot42"/>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.histActividadesProcesosFindAll.hints.procesosEstado.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="estado" id="c43">
+                                                                <af:outputText value="#{row.procesosEstado}"
+                                                                               shortDesc="#{bindings.histActividadesProcesosFindAll.hints.procesosEstado.tooltip}"
+                                                                               id="ot43"/>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.histActividadesProcesosFindAll.hints.procesosFechaInicio.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="fecha inicio" id="c44">
+                                                                <!--<f:facet name="filter">
+                                                                    <af:inputDate value="#{bindings.HistActividadesProcesosCriteriaQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.procesosFechaInicio.value}"
+                                                                                  id="id9">
+                                                                        <af:convertDateTime pattern="#{bindings.histActividadesProcesosFindAll.hints.procesosFechaInicio.format}"/>
+                                                                    </af:inputDate>
+                                                                </f:facet>-->
+                                                                <af:outputText value="#{row.procesosFechaInicio}"
+                                                                               shortDesc="#{bindings.histActividadesProcesosFindAll.hints.procesosFechaInicio.tooltip}"
+                                                                               id="ot44">
+                                                                    <af:convertDateTime pattern="#{bindings.histActividadesProcesosFindAll.hints.procesosFechaInicio.format}"/>
+                                                                </af:outputText>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.histActividadesProcesosFindAll.hints.procesosFechaFin.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="fecha fin" id="c45">
+                                                                <!--<f:facet name="filter">
+                                                                    <af:inputDate value="#{bindings.HistActividadesProcesosCriteriaQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.procesosFechaFin.value}"
+                                                                                  id="id10">
+                                                                        <af:convertDateTime pattern="#{bindings.histActividadesProcesosFindAll.hints.procesosFechaFin.format}"/>
+                                                                    </af:inputDate>
+                                                                </f:facet>-->
+                                                                <af:outputText value="#{row.procesosFechaFin}"
+                                                                               shortDesc="#{bindings.histActividadesProcesosFindAll.hints.procesosFechaFin.tooltip}"
+                                                                               id="ot45">
+                                                                    <af:convertDateTime pattern="#{bindings.histActividadesProcesosFindAll.hints.procesosFechaFin.format}"/>
+                                                                </af:outputText>
+                                                            </af:column>
+                                                        </af:column>
+                                                        <af:column headerText="Notif Actividad Proceso" sortable="true"
+                                                                   filterable="true" id="resId5c11">
+                                                            <af:column sortProperty="#{bindings.histActividadesProcesosFindAll.hints.actividadId.name}"
+                                                                       filterable="true" sortable="true" headerText="id"
+                                                                       id="c46">
+                                                                <af:outputText value="#{row.actividadId}"
+                                                                               shortDesc="#{bindings.histActividadesProcesosFindAll.hints.actividadId.tooltip}"
+                                                                               id="ot46"/>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.histActividadesProcesosFindAll.hints.actividadNombre.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="nombre" id="c47">
+                                                                <af:outputText value="#{row.actividadNombre}"
+                                                                               shortDesc="#{bindings.histActividadesProcesosFindAll.hints.actividadNombre.tooltip}"
+                                                                               id="ot47"/>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.histActividadesProcesosFindAll.hints.actividadOrden.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="orden" id="c48">
+                                                                <af:outputText value="#{row.actividadOrden}"
+                                                                               shortDesc="#{bindings.histActividadesProcesosFindAll.hints.actividadOrden.tooltip}"
+                                                                               id="ot48"/>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.histActividadesProcesosFindAll.hints.actividadDescripcion.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="descripcion" id="c15">
+                                                                <af:outputText value="#{row.actividadDescripcion}"
+                                                                               shortDesc="#{bindings.histActividadesProcesosFindAll.hints.actividadDescripcion.tooltip}"
+                                                                               id="ot49"/>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.histActividadesProcesosFindAll.hints.procesoNombre.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="proc_nombre" id="c16">
+                                                                <af:outputText value="#{row.procesoNombre}"
+                                                                               shortDesc="#{bindings.histActividadesProcesosFindAll.hints.procesoNombre.tooltip}"
+                                                                               id="ot50"/>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.histActividadesProcesosFindAll.hints.procesoDescripcion.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="proc_descripcion" id="c17">
+                                                                <af:outputText value="#{row.procesoDescripcion}"
+                                                                               shortDesc="#{bindings.histActividadesProcesosFindAll.hints.procesoDescripcion.tooltip}"
+                                                                               id="ot51"/>
+                                                            </af:column>
+                                                        </af:column>
+                                                    </af:table>
+                                                </af:panelGroupLayout>
+                                            </f:facet>
+                                            <f:facet name="hist_procesos">
+                                                <af:panelGroupLayout layout="vertical" id="pgl6">
+                                                    <af:panelHeader text="Histórico de procesos" id="ph6">
+                                                        <af:query id="qryId6" headerText="Campos" disclosed="true"
+                                                                  value="#{bindings.HistProcesosCriteriaQuery.queryDescriptor}"
+                                                                  model="#{bindings.HistProcesosCriteriaQuery.queryModel}"
+                                                                  queryListener="#{bindings.HistProcesosCriteriaQuery.processQuery}"
+                                                                  queryOperationListener="#{bindings.HistProcesosCriteriaQuery.processQueryOperation}"
+                                                                  resultComponentId="::resId6"
+                                                                  searchButtonText="Buscar" saveButtonText="Guardar"
+                                                                  resetButtonText="Reset"
+                                                                  addFieldsButtonText="Agregar"/>
+                                                    </af:panelHeader>
+                                                    <af:table value="#{bindings.histProcesosFindAll.collectionModel}"
+                                                              var="row" rows="#{bindings.histProcesosFindAll.rangeSize}"
+                                                              emptyText="#{bindings.histProcesosFindAll.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                              rowBandingInterval="0"
+                                                              selectedRowKeys="#{bindings.histProcesosFindAll.collectionModel.selectedRow}"
+                                                              selectionListener="#{bindings.histProcesosFindAll.collectionModel.makeCurrent}"
+                                                              rowSelection="single"
+                                                              fetchSize="#{bindings.histProcesosFindAll.rangeSize}"
+                                                              filterModel="#{bindings.HistProcesosCriteriaQuery.queryDescriptor}"
+                                                              queryListener="#{bindings.HistProcesosCriteriaQuery.processQuery}"
+                                                              filterVisible="true" varStatus="vs" id="resId6">
+                                                        <af:column sortProperty="#{bindings.histProcesosFindAll.hints.estado.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.histProcesosFindAll.hints.estado.label}"
+                                                                   id="c33">
+                                                            <af:outputText value="#{row.estado}"
+                                                                           shortDesc="#{bindings.histProcesosFindAll.hints.estado.tooltip}"
+                                                                           id="ot52"/>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.histProcesosFindAll.hints.fechafin.name}"
+                                                                   sortable="true"
+                                                                   headerText="#{bindings.histProcesosFindAll.hints.fechafin.label}"
+                                                                   filterable="true" id="c34">
+                                                            <af:outputText value="#{row.fechafin}"
+                                                                           shortDesc="#{bindings.histProcesosFindAll.hints.fechafin.tooltip}"
+                                                                           id="ot53">
+                                                                <af:convertDateTime pattern="#{bindings.histProcesosFindAll.hints.fechafin.format}"/>
+                                                            </af:outputText>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.histProcesosFindAll.hints.fechainicio.name}"
+                                                                   sortable="true"
+                                                                   headerText="#{bindings.histProcesosFindAll.hints.fechainicio.label}"
+                                                                   filterable="true" id="c35">
+                                                            <af:outputText value="#{row.fechainicio}"
+                                                                           shortDesc="#{bindings.histProcesosFindAll.hints.fechainicio.tooltip}"
+                                                                           id="ot54">
+                                                                <af:convertDateTime pattern="#{bindings.histProcesosFindAll.hints.fechainicio.format}"/>
+                                                            </af:outputText>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.histProcesosFindAll.hints.id.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.histProcesosFindAll.hints.id.label}"
+                                                                   id="c36">
+                                                            <af:outputText value="#{row.id}"
+                                                                           shortDesc="#{bindings.histProcesosFindAll.hints.id.tooltip}"
+                                                                           id="ot55"/>
+                                                        </af:column>
+                                                        <af:column headerText="Notif proceso" sortable="true"
+                                                                   filterable="true" id="resId6c5">
+                                                            <af:column sortProperty="#{bindings.histProcesosFindAll.hints.notifProcesoCodtransaccion.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="#{bindings.histProcesosFindAll.hints.notifProcesoCodtransaccion.label}"
+                                                                       id="c37">
+                                                                <af:outputText value="#{row.notifProcesoCodtransaccion}"
+                                                                               shortDesc="#{bindings.histProcesosFindAll.hints.notifProcesoCodtransaccion.tooltip}"
+                                                                               id="ot56"/>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.histProcesosFindAll.hints.notifProcesoDescripcion.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="#{bindings.histProcesosFindAll.hints.notifProcesoDescripcion.label}"
+                                                                       id="c38">
+                                                                <af:outputText value="#{row.notifProcesoDescripcion}"
+                                                                               shortDesc="#{bindings.histProcesosFindAll.hints.notifProcesoDescripcion.tooltip}"
+                                                                               id="ot57"/>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.histProcesosFindAll.hints.notifProcesoEsquemacobro.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="#{bindings.histProcesosFindAll.hints.notifProcesoEsquemacobro.label}"
+                                                                       id="c39">
+                                                                <af:outputText value="#{row.notifProcesoEsquemacobro}"
+                                                                               shortDesc="#{bindings.histProcesosFindAll.hints.notifProcesoEsquemacobro.tooltip}"
+                                                                               id="ot58"/>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.histProcesosFindAll.hints.notifProcesoEsquemadestanqueo.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="#{bindings.histProcesosFindAll.hints.notifProcesoEsquemadestanqueo.label}"
+                                                                       id="c40">
+                                                                <af:outputText value="#{row.notifProcesoEsquemadestanqueo}"
+                                                                               shortDesc="#{bindings.histProcesosFindAll.hints.notifProcesoEsquemadestanqueo.tooltip}"
+                                                                               id="ot59"/>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.histProcesosFindAll.hints.notifProcesoId.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="#{bindings.histProcesosFindAll.hints.notifProcesoId.label}"
+                                                                       id="c41">
+                                                                <af:outputText value="#{row.notifProcesoId}"
+                                                                               shortDesc="#{bindings.histProcesosFindAll.hints.notifProcesoId.tooltip}"
+                                                                               id="ot60"/>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.histProcesosFindAll.hints.notifProcesoNombreentidadliq.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="#{bindings.histProcesosFindAll.hints.notifProcesoNombreentidadliq.label}"
+                                                                       id="c61">
+                                                                <af:outputText value="#{row.notifProcesoNombreentidadliq}"
+                                                                               shortDesc="#{bindings.histProcesosFindAll.hints.notifProcesoNombreentidadliq.tooltip}"
+                                                                               id="ot61"/>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.histProcesosFindAll.hints.notifProcesoNombreproceso.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="#{bindings.histProcesosFindAll.hints.notifProcesoNombreproceso.label}"
+                                                                       id="c62">
+                                                                <af:outputText value="#{row.notifProcesoNombreproceso}"
+                                                                               shortDesc="#{bindings.histProcesosFindAll.hints.notifProcesoNombreproceso.tooltip}"
+                                                                               id="ot62"/>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.histProcesosFindAll.hints.notifProcesoNombretablaliq.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="#{bindings.histProcesosFindAll.hints.notifProcesoNombretablaliq.label}"
+                                                                       id="c63">
+                                                                <af:outputText value="#{row.notifProcesoNombretablaliq}"
+                                                                               shortDesc="#{bindings.histProcesosFindAll.hints.notifProcesoNombretablaliq.tooltip}"
+                                                                               id="ot63"/>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.histProcesosFindAll.hints.notifProcesoTipoliquidacion.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="#{bindings.histProcesosFindAll.hints.notifProcesoTipoliquidacion.label}"
+                                                                       id="c64">
+                                                                <af:outputText value="#{row.notifProcesoTipoliquidacion}"
+                                                                               shortDesc="#{bindings.histProcesosFindAll.hints.notifProcesoTipoliquidacion.tooltip}"
+                                                                               id="ot64"/>
+                                                            </af:column>
+                                                        </af:column>
+                                                        <af:column headerText="Hist Insumo Liq" sortable="true"
+                                                                   filterable="true" id="resId6c6">
+                                                            <af:column sortProperty="#{bindings.histProcesosFindAll.hints.histInsumoliqFecha.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="#{bindings.histProcesosFindAll.hints.histInsumoliqFecha.label}"
+                                                                       id="c65">
+                                                                <!--<f:facet name="filter">
+                                                                    <af:inputDate value="#{bindings.HistProcesosCriteriaQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.histInsumoliqFecha.value}"
+                                                                                  id="id1">
+                                                                        <af:convertDateTime pattern="#{bindings.histProcesosFindAll.hints.histInsumoliqFecha.format}"/>
+                                                                    </af:inputDate>
+                                                                </f:facet>-->
+                                                                <af:outputText value="#{row.histInsumoliqFecha}"
+                                                                               shortDesc="#{bindings.histProcesosFindAll.hints.histInsumoliqFecha.tooltip}"
+                                                                               id="ot65">
+                                                                    <af:convertDateTime pattern="#{bindings.histProcesosFindAll.hints.histInsumoliqFecha.format}"/>
+                                                                </af:outputText>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.histProcesosFindAll.hints.histInsumoliqId.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="#{bindings.histProcesosFindAll.hints.histInsumoliqId.label}"
+                                                                       id="c66">
+                                                                <af:outputText value="#{row.histInsumoliqId}"
+                                                                               shortDesc="#{bindings.histProcesosFindAll.hints.histInsumoliqId.tooltip}"
+                                                                               id="ot66"/>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.histProcesosFindAll.hints.histInsumoliqNombre.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="#{bindings.histProcesosFindAll.hints.histInsumoliqNombre.label}"
+                                                                       id="c67">
+                                                                <af:outputText value="#{row.histInsumoliqNombre}"
+                                                                               shortDesc="#{bindings.histProcesosFindAll.hints.histInsumoliqNombre.tooltip}"
+                                                                               id="ot67"/>
+                                                            </af:column>
+                                                        </af:column>
+                                                    </af:table>
+                                                    <!--<af:table value="#{bindings.histProcesosFindAll.collectionModel}"
+                                                              var="row" rows="#{bindings.histProcesosFindAll.rangeSize}"
+                                                              emptyText="#{bindings.histProcesosFindAll.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                              rowBandingInterval="0"
+                                                              selectedRowKeys="#{bindings.histProcesosFindAll.collectionModel.selectedRow}"
+                                                              selectionListener="#{bindings.histProcesosFindAll.collectionModel.makeCurrent}"
+                                                              rowSelection="single"
+                                                              fetchSize="#{bindings.histProcesosFindAll.rangeSize}"
+                                                              filterModel="#{bindings.HistProcesosCriteriaQuery.queryDescriptor}"
+                                                              queryListener="#{bindings.HistProcesosCriteriaQuery.processQuery}"
+                                                              filterVisible="true" varStatus="vs" id="resId6">
+                                                        <af:column sortProperty="#{bindings.histProcesosFindAll.hints.id.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.histProcesosFindAll.hints.id.label}"
+                                                                   id="resId6c1">
+                                                            <af:outputText value="#{row.id}"
+                                                                           shortDesc="#{bindings.histProcesosFindAll.hints.id.tooltip}"
+                                                                           id="ot52"/>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.histProcesosFindAll.hints.estado.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.histProcesosFindAll.hints.estado.label}"
+                                                                   id="resId6c2">
+                                                            <af:outputText value="#{row.estado}"
+                                                                           shortDesc="#{bindings.histProcesosFindAll.hints.estado.tooltip}"
+                                                                           id="ot53"/>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.histProcesosFindAll.hints.fechainicio.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.histProcesosFindAll.hints.fechainicio.label}"
+                                                                   id="resId6c4">-->
+                                                            <!--<f:facet name="filter">
+                                                                <af:inputDate value="#{bindings.HistProcesosCriteriaQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.fechainicio.value}"
+                                                                              id="id12">
+                                                                    <af:convertDateTime pattern="#{bindings.histProcesosFindAll.hints.fechainicio.format}"/>
+                                                                </af:inputDate>
+                                                            </f:facet>-->
+                                                            <!--<af:outputText value="#{row.fechainicio}"
+                                                                           shortDesc="#{bindings.histProcesosFindAll.hints.fechainicio.tooltip}"
+                                                                           id="ot55">
+                                                                <af:convertDateTime pattern="#{bindings.histProcesosFindAll.hints.fechainicio.format}"/>
+                                                            </af:outputText>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.histProcesosFindAll.hints.fechafin.name}"
+                                                                   filterable="true" sortable="true"
+                                                                   headerText="#{bindings.histProcesosFindAll.hints.fechafin.label}"
+                                                                   id="resId6c3">-->
+                                                            <!--<f:facet name="filter">
+                                                                <af:inputDate value="#{bindings.HistProcesosCriteriaQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.fechafin.value}"
+                                                                              id="id11">
+                                                                    <af:convertDateTime pattern="#{bindings.histProcesosFindAll.hints.fechafin.format}"/>
+                                                                </af:inputDate>
+                                                            </f:facet>-->
+                                                            <!--<af:outputText value="#{row.fechafin}"
+                                                                           shortDesc="#{bindings.histProcesosFindAll.hints.fechafin.tooltip}"
+                                                                           id="ot54">
+                                                                <af:convertDateTime pattern="#{bindings.histProcesosFindAll.hints.fechafin.format}"/>
+                                                            </af:outputText>
+                                                        </af:column>
+                                                        <af:column headerText="Proceso" sortable="true"
+                                                                   filterable="true" id="resId6c5">
+                                                            <af:column sortProperty="#{bindings.histProcesosFindAll.hints.procesoId.name}"
+                                                                       filterable="true" sortable="true" headerText="id"
+                                                                       id="c18">
+                                                                <af:outputText value="#{row.procesoId}"
+                                                                               shortDesc="#{bindings.histProcesosFindAll.hints.procesoId.tooltip}"
+                                                                               id="ot56"/>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.histProcesosFindAll.hints.procesoNombre.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="nombre" id="c19">
+                                                                <af:outputText value="#{row.procesoNombre}"
+                                                                               shortDesc="#{bindings.histProcesosFindAll.hints.procesoNombre.tooltip}"
+                                                                               id="ot57"/>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.histProcesosFindAll.hints.procesoDescripcion.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="descripcion" id="c20">
+                                                                <af:outputText value="#{row.procesoDescripcion}"
+                                                                               shortDesc="#{bindings.histProcesosFindAll.hints.procesoDescripcion.tooltip}"
+                                                                               id="ot58"/>
+                                                            </af:column>
+                                                        </af:column>
+                                                        <af:column headerText="InsumoLiq" sortable="true"
+                                                                   filterable="true" id="resId6c6">
+                                                            <af:column sortProperty="#{bindings.histProcesosFindAll.hints.procesoId.name}"
+                                                                       filterable="true" sortable="true" headerText="id"
+                                                                       id="c18">
+                                                                <af:outputText value="#{row.procesoId}"
+                                                                               shortDesc="#{bindings.histProcesosFindAll.hints.procesoId.tooltip}"
+                                                                               id="ot56"/>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.histProcesosFindAll.hints.procesoNombre.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="nombre" id="c19">
+                                                                <af:outputText value="#{row.procesoNombre}"
+                                                                               shortDesc="#{bindings.histProcesosFindAll.hints.procesoNombre.tooltip}"
+                                                                               id="ot57"/>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.histProcesosFindAll.hints.procesoDescripcion.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="descripcion" id="c20">
+                                                                <af:outputText value="#{row.procesoDescripcion}"
+                                                                               shortDesc="#{bindings.histProcesosFindAll.hints.procesoDescripcion.tooltip}"
+                                                                               id="ot58"/>
+                                                            </af:column>
+                                                        </af:column>
+                                                    </af:table>-->
+                                                </af:panelGroupLayout>
+                                            </f:facet>
+                                        </af:switcher>
+                                    </f:facet>
+                                </af:decorativeBox>
+                            </f:facet>
+                        </af:panelSplitter>
+                    </f:facet>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

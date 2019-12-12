@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="Error" id="d1">
+            <af:form id="f1">
+                <af:pageTemplate viewId="/template/mainTemplate.jspx" id="pt1">
+                    <f:attribute name="Title" value="Acceso denegado"/>
+                    <f:attribute name="Width" value="2"/>   
+                    <f:facet name="main">
+                        <af:panelGroupLayout id="pgl1" layout="vertical">
+                            <af:message id="m1" messageType="error" message="#{navigate.view}"/>
+                            <af:spacer width="10" height="10" id="s1"/>
+                            <af:panelGroupLayout id="pgl2" layout="horizontal">
+                                <af:spacer width="22" height="10" id="s2"/>
+                                <af:link text="Ir a página principal" id="l1" action="#{displayError.GoToIndex}"/>
+                            </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

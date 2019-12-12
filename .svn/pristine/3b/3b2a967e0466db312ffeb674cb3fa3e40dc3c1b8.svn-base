@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="Menú principal" id="d1">
+            <af:form id="f1">
+                <af:pageTemplate viewId="/template/mainTemplate.jspx" id="pt1">
+                    <f:attribute name="Title" value="Vista rápida"/>
+                    <f:attribute name="Width" value="2"/>   
+                    <f:facet name="main">
+                        <af:panelDashboard id="pdmenuPanel" columns="5" dimensionsFrom="auto"  rowHeight="150px">
+                            <af:panelBox text="Actividades y procesos" id="pbactivity" type="flow" icon="/images/setting-icon.png"
+                                         inlineStyle="padding-top:10px;">
+                                <af:panelGroupLayout id="pgl1" layout="vertical">
+                                    <af:spacer width="10" height="5" id="s1"/>
+                                    <af:outputText value="Visualiza las tablas de base de datos relacionadas con actividades y procesos, esta es una vista para el perfil de desarrollador o analista de soporte." id="ot1"/>
+                                    <af:spacer width="10" height="4" id="s4"/>
+                                    <af:link text="Ir a actividades y procesos" id="l1" action="#{bindex.GoToControl}"/>
+                                </af:panelGroupLayout>
+                            </af:panelBox>
+                            <af:panelBox text="Administración de Seguridad" id="pbsecurity" type="flow" icon="/images/lock-icon.png"
+                                         inlineStyle="padding-top:10px;">
+                                <af:panelGroupLayout id="pgl2" layout="vertical">
+                                    <af:spacer width="10" height="5" id="s2"/>
+                                    <af:outputText value="Para configuraciones de cryptovault, sqlloader o configuración role y usuarios IDM. Sólo funcionarios de seguridad deben tener acceso a esta configuración." id="ot2"/>
+                                    <af:spacer width="10" height="4" id="s5"/>
+                                    <af:link text="Ir a seguridad" id="l2" action="#{bindex.GoToSecurity}"/>
+                                </af:panelGroupLayout>
+                            </af:panelBox>
+                            <af:panelBox text="Procesos de facturación" id="pbbilling" type="flow" icon="/images/money-icon.png"
+                                         inlineStyle="padding-top:10px;">
+                                <af:panelGroupLayout id="pgl3" layout="vertical">
+                                    <af:spacer width="10" height="5" id="s3"/>
+                                    <af:outputText value="Diagramas de facturación de la aplicación, ideal para efectuar el seguimiento de los cobros realizados por liquidador de comisiones a las diferentes aplicaciones." id="ot3"/>
+                                    <af:spacer width="10" height="4" id="s6"/>
+                                    <af:link text="Ir a facturación" id="l3" action="#{bindex.GoToReports}"/>
+                                </af:panelGroupLayout>
+                            </af:panelBox>
+                        </af:panelDashboard>
+                    </f:facet>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

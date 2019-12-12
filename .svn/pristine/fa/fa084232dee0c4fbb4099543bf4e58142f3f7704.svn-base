@@ -1,0 +1,789 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="Seguridad" id="d1">
+            <af:messages id="m1"/>
+            <af:form id="f1">
+            
+                <af:pageTemplate viewId="/template/mainTemplate.jspx" id="pt1">
+                    <f:attribute name="Title" value="Seguridad"/>
+                <f:attribute name="Width" value="2"/>   
+                
+                <f:facet name="main">
+                    <af:panelSpringboard id="ps1" displayMode="strip" inlineStyle="background-color:#dfe4e6;" immediate="true">
+                        <af:showDetailItem text="Crear almacén de llaves" id="sdi1"
+                                           icon="/images/key-store-transparent.png" disclosed="true" immediate="true"
+                                           depressedIcon="/images/key-store-selected.png"
+                                           hoverIcon="/images/key-store-hover.png">
+                            <af:panelSplitter id="psSEC2" splitterPosition="250">
+                                <f:facet name="first">
+                                    <af:panelAccordion discloseMany="false" id="paCKS1">
+                                        <af:showDetailItem id="paneCKS1" text="Configuracion">
+                                            <af:panelFormLayout id="pflCKS1" rows="20" labelAlignment="top" fieldWidth="200" labelWidth="200">
+                                                <jsp:include page="/fragment/createKeystore.jsff"/>
+                                            </af:panelFormLayout>
+                                        </af:showDetailItem>
+                                    </af:panelAccordion>
+                                </f:facet>
+                                
+                                <f:facet name="second">
+                                    <af:decorativeBox id="dbDVR1">
+                                        <f:facet name="center">
+                                            <af:panelAccordion discloseMany="false" id="paDVR1">
+                                                <af:showDetailItem id="paneDVR1" text="Busqueda de directorios">
+                                                    <af:panelFormLayout id="pflDVR1" rows="5" labelAlignment="top">
+                                                        <jsp:include page="/fragment/directoryViewer.jsff"/>    
+                                                    </af:panelFormLayout>   
+                                                </af:showDetailItem>
+                                                <af:showDetailItem id="paneDVR2" text="Repositorio actual">
+                                                    <af:panelFormLayout id="pflDVR2" rows="3" labelAlignment="top">
+                                                        <af:panelCollection id="pc1">
+                                                            <f:facet name="menus"/>
+                                                            <f:facet name="toolbar"/>
+                                                            <f:facet name="statusbar"/>
+                                                            <af:table value="#{bindings.confCryptoalmacenFindAll.collectionModel}"
+                                                                      var="row"
+                                                                      rows="#{bindings.confCryptoalmacenFindAll.rangeSize}"
+                                                                      emptyText="#{bindings.confCryptoalmacenFindAll.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                      rowBandingInterval="0"
+                                                                      selectedRowKeys="#{bindings.confCryptoalmacenFindAll.collectionModel.selectedRow}"
+                                                                      selectionListener="#{bindings.confCryptoalmacenFindAll.collectionModel.makeCurrent}"
+                                                                      rowSelection="single"
+                                                                      fetchSize="#{bindings.confCryptoalmacenFindAll.rangeSize}"
+                                                                      filterModel="#{bindings.confCryptoalmacenFindAllQuery.queryDescriptor}"
+                                                                      queryListener="#{bindings.confCryptoalmacenFindAllQuery.processQuery}"
+                                                                      filterVisible="true" varStatus="vs" id="t1"
+                                                                      width="900">
+                                                                <af:column sortProperty="#{bindings.confCryptoalmacenFindAll.hints.nombre.name}"
+                                                                           sortable="true"
+                                                                           headerText="#{bindings.confCryptoalmacenFindAll.hints.nombre.label}"
+                                                                           filterable="true" id="c1">
+                                                                    <af:inputText value="#{row.bindings.nombre.inputValue}"
+                                                                                  label="#{bindings.confCryptoalmacenFindAll.hints.nombre.label}"
+                                                                                  required="#{bindings.confCryptoalmacenFindAll.hints.nombre.mandatory}"
+                                                                                  columns="#{bindings.confCryptoalmacenFindAll.hints.nombre.displayWidth}"
+                                                                                  maximumLength="#{bindings.confCryptoalmacenFindAll.hints.nombre.precision}"
+                                                                                  shortDesc="#{bindings.confCryptoalmacenFindAll.hints.nombre.tooltip}"
+                                                                                  id="it1">
+                                                                        <f:validator binding="#{row.bindings.nombre.validator}"/>
+                                                                    </af:inputText>
+                                                                </af:column>
+                                                                <af:column sortProperty="#{bindings.confCryptoalmacenFindAll.hints.ruta.name}"
+                                                                           sortable="true"
+                                                                           headerText="#{bindings.confCryptoalmacenFindAll.hints.ruta.label}"
+                                                                           filterable="true" id="c2"
+                                                                           width="600">
+                                                                    <af:inputText value="#{row.bindings.ruta.inputValue}"
+                                                                                  label="#{bindings.confCryptoalmacenFindAll.hints.ruta.label}"
+                                                                                  required="#{bindings.confCryptoalmacenFindAll.hints.ruta.mandatory}"
+                                                                                  columns="#{bindings.confCryptoalmacenFindAll.hints.ruta.displayWidth}"
+                                                                                  maximumLength="#{bindings.confCryptoalmacenFindAll.hints.ruta.precision}"
+                                                                                  shortDesc="#{bindings.confCryptoalmacenFindAll.hints.ruta.tooltip}"
+                                                                                  id="it2">
+                                                                        <f:validator binding="#{row.bindings.ruta.validator}"/>
+                                                                    </af:inputText>
+                                                                </af:column>
+                                                                <af:column sortProperty="#{bindings.confCryptoalmacenFindAll.hints.activo.name}"
+                                                                           sortable="true"
+                                                                           headerText="#{bindings.confCryptoalmacenFindAll.hints.activo.label}"
+                                                                           filterable="true" id="c3">
+                                                                    <af:inputText value="#{row.bindings.activo.inputValue}"
+                                                                                  label="#{bindings.confCryptoalmacenFindAll.hints.activo.label}"
+                                                                                  required="#{bindings.confCryptoalmacenFindAll.hints.activo.mandatory}"
+                                                                                  columns="#{bindings.confCryptoalmacenFindAll.hints.activo.displayWidth}"
+                                                                                  maximumLength="#{bindings.confCryptoalmacenFindAll.hints.activo.precision}"
+                                                                                  shortDesc="#{bindings.confCryptoalmacenFindAll.hints.activo.tooltip}"
+                                                                                  id="it3">
+                                                                        <f:validator binding="#{row.bindings.activo.validator}"/>
+                                                                    </af:inputText>
+                                                                </af:column>
+                                                                <af:column sortProperty="#{bindings.confCryptoalmacenFindAll.hints.nhost.name}"
+                                                                           sortable="true"
+                                                                           headerText="#{bindings.confCryptoalmacenFindAll.hints.nhost.label}"
+                                                                           filterable="true" id="c4">
+                                                                    <af:inputText value="#{row.bindings.nhost.inputValue}"
+                                                                                  label="#{bindings.confCryptoalmacenFindAll.hints.nhost.label}"
+                                                                                  required="#{bindings.confCryptoalmacenFindAll.hints.nhost.mandatory}"
+                                                                                  columns="#{bindings.confCryptoalmacenFindAll.hints.nhost.displayWidth}"
+                                                                                  maximumLength="#{bindings.confCryptoalmacenFindAll.hints.nhost.precision}"
+                                                                                  shortDesc="#{bindings.confCryptoalmacenFindAll.hints.nhost.tooltip}"
+                                                                                  id="it4">
+                                                                        <f:validator binding="#{row.bindings.nhost.validator}"/>
+                                                                    </af:inputText>
+                                                                </af:column>
+                                                                <af:column sortProperty="#{bindings.confCryptoalmacenFindAll.hints.aplicacion.name}"
+                                                                           sortable="true"
+                                                                           headerText="#{bindings.confCryptoalmacenFindAll.hints.aplicacion.label}"
+                                                                           filterable="true" id="c5">
+                                                                    <af:inputText value="#{row.bindings.aplicacion.inputValue}"
+                                                                                  label="#{bindings.confCryptoalmacenFindAll.hints.aplicacion.label}"
+                                                                                  required="#{bindings.confCryptoalmacenFindAll.hints.aplicacion.mandatory}"
+                                                                                  columns="#{bindings.confCryptoalmacenFindAll.hints.aplicacion.displayWidth}"
+                                                                                  maximumLength="#{bindings.confCryptoalmacenFindAll.hints.aplicacion.precision}"
+                                                                                  shortDesc="#{bindings.confCryptoalmacenFindAll.hints.aplicacion.tooltip}"
+                                                                                  id="it4a">
+                                                                        <f:validator binding="#{row.bindings.aplicacion.validator}"/>
+                                                                    </af:inputText>
+                                                                </af:column>
+                                                            </af:table>
+                                                        </af:panelCollection>
+                                                    </af:panelFormLayout>
+                                                </af:showDetailItem>
+                                            </af:panelAccordion>
+                                        </f:facet>
+                                    </af:decorativeBox>
+                                </f:facet>
+                            </af:panelSplitter>
+                        </af:showDetailItem>
+                        
+                        <af:showDetailItem text="Configurar llaves PGP" id="sdi2"
+                                           icon="/images/pgp-keys-transparent.png" immediate="true"
+                                           depressedIcon="/images/pgp-keys-selected.png"
+                                           hoverIcon="/images/pgp-keys-hover.png">
+                            <af:panelSplitter id="psPUB3" orientation="vertical">
+                                <f:facet name="first">
+                                    <af:panelCollection id="pcPUB2">
+                                        <f:facet name="menus"/>
+                                        <f:facet name="toolbar"/>
+                                        <f:facet name="statusbar"/>
+                                        <af:table value="#{bindings.confCryptofirmasFindAll.collectionModel}"
+                                                   var="row"
+                                                   rows="#{bindings.confCryptofirmasFindAll.rangeSize}"
+                                                   emptyText="#{bindings.confCryptofirmasFindAll.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                   rowBandingInterval="0"
+                                                   selectedRowKeys="#{bindings.confCryptofirmasFindAll.collectionModel.selectedRow}"
+                                                   selectionListener="#{bindings.confCryptofirmasFindAll.collectionModel.makeCurrent}"
+                                                   rowSelection="single"
+                                                   fetchSize="#{bindings.confCryptofirmasFindAll.rangeSize}"
+                                                   filterModel="#{bindings.confCryptofirmasFindAllQuery.queryDescriptor}"
+                                                   queryListener="#{bindings.confCryptofirmasFindAllQuery.processQuery}"
+                                                   filterVisible="true" varStatus="vs" id="t2"
+                                                   partialTriggers=":::b1 :::b2 :::b3 :::b4 :::b5 :::bRPUB1 :::bRPUB2">
+                                             <af:column sortProperty="#{bindings.confCryptofirmasFindAll.hints.id.name}"
+                                                        sortable="true"
+                                                        headerText="#{bindings.confCryptofirmasFindAll.hints.id.label}"
+                                                        filterable="true" id="c6">
+                                                 <af:outputText value="#{row.id}"
+                                                                shortDesc="#{bindings.confCryptofirmasFindAll.hints.id.tooltip}"
+                                                                id="ot1"/>
+                                             </af:column>
+                                             <af:column sortProperty="#{bindings.confCryptofirmasFindAll.hints.aliaspub.name}"
+                                                        sortable="true"
+                                                        headerText="#{bindings.confCryptofirmasFindAll.hints.aliaspub.label}"
+                                                        filterable="true" id="c7">
+                                                 <af:outputText value="#{row.aliaspub}"
+                                                                shortDesc="#{bindings.confCryptofirmasFindAll.hints.aliaspub.tooltip}"
+                                                                id="ot2"/>
+                                             </af:column>
+                                             <af:column sortProperty="#{bindings.confCryptofirmasFindAll.hints.nombrepub.name}"
+                                                        sortable="true"
+                                                        headerText="#{bindings.confCryptofirmasFindAll.hints.nombrepub.label}"
+                                                        filterable="true" id="c8">
+                                                 <af:outputText value="#{row.nombrepub}"
+                                                                shortDesc="#{bindings.confCryptofirmasFindAll.hints.nombrepub.tooltip}"
+                                                                id="ot3"/>
+                                             </af:column>
+                                             <af:column sortProperty="#{bindings.confCryptofirmasFindAll.hints.aplicacion.name}"
+                                                        sortable="true"
+                                                        headerText="#{bindings.confCryptofirmasFindAll.hints.aplicacion.label}"
+                                                        filterable="true" id="c9">
+                                                 <af:outputText value="#{row.aplicacion}"
+                                                                shortDesc="#{bindings.confCryptofirmasFindAll.hints.aplicacion.tooltip}"
+                                                                id="ot7"/>
+                                             </af:column>
+                                             <af:column sortProperty="#{bindings.confCryptofirmasFindAll.hints.nhost.name}"
+                                                        sortable="true"
+                                                        headerText="#{bindings.confCryptofirmasFindAll.hints.nhost.label}"
+                                                        filterable="true" id="c10">
+                                                 <af:outputText value="#{row.nhost}"
+                                                                shortDesc="#{bindings.confCryptofirmasFindAll.hints.nhost.tooltip}"
+                                                                id="ot8"/>
+                                             </af:column>
+                                         </af:table>
+                                    </af:panelCollection>
+                                </f:facet>
+                                <f:facet name="second">
+                                    <af:panelTabbed position="above" id="ptPUB2">
+                                        <af:showDetailItem id="tabPUB1" text="Resumen de firma" immediate="true">
+                                            <af:panelFormLayout id="pfl1">
+                                                <af:inputText value="#{bindings.id.inputValue}"
+                                                    label="#{bindings.id.hints.label}"
+                                                    required="#{bindings.id.hints.mandatory}"
+                                                    readOnly="true"
+                                                    columns="#{bindings.id.hints.displayWidth}"
+                                                    maximumLength="#{bindings.id.hints.precision}"
+                                                    shortDesc="#{bindings.id.hints.tooltip}"
+                                                    id="it5" >
+                                                    <f:validator binding="#{bindings.id.validator}"/>
+                                                </af:inputText>
+                                                 <af:inputText value="#{bindings.aliaspub.inputValue}"
+                                                              label="#{bindings.aliaspub.hints.label}"
+                                                              required="#{bindings.aliaspub.hints.mandatory}"
+                                                              readOnly="true"
+                                                              columns="#{bindings.aliaspub.hints.displayWidth}"
+                                                              maximumLength="#{bindings.aliaspub.hints.precision}"
+                                                              shortDesc="#{bindings.aliaspub.hints.tooltip}"
+                                                              id="it6">
+                                                    <f:validator binding="#{bindings.aliaspub.validator}"/>
+                                                </af:inputText>
+                                                <af:inputText value="#{bindings.nombrepub.inputValue}"
+                                                              label="#{bindings.nombrepub.hints.label}"
+                                                              required="#{bindings.nombrepub.hints.mandatory}"
+                                                              readOnly="true"
+                                                              columns="#{bindings.nombrepub.hints.displayWidth}"
+                                                              maximumLength="#{bindings.nombrepub.hints.precision}"
+                                                              shortDesc="#{bindings.nombrepub.hints.tooltip}"
+                                                              id="it7">
+                                                    <f:validator binding="#{bindings.nombrepub.validator}"/>
+                                                </af:inputText>
+                                                <af:inputText value="#{bindings.aplicacion.inputValue}"
+                                                              label="#{bindings.aplicacion.hints.label}"
+                                                              required="#{bindings.aplicacion.hints.mandatory}"
+                                                              readOnly="true"
+                                                              columns="#{bindings.aplicacion.hints.displayWidth}"
+                                                              maximumLength="#{bindings.aplicacion.hints.precision}"
+                                                              shortDesc="#{bindings.aplicacion.hints.tooltip}"
+                                                              id="it8">
+                                                    <f:validator binding="#{bindings.aplicacion.validator}"/>
+                                                </af:inputText>
+                                                <af:inputText value="#{bindings.nhost.inputValue}"
+                                                              label="#{bindings.nhost.hints.label}"
+                                                              required="#{bindings.nhost.hints.mandatory}"
+                                                              readOnly="true"
+                                                              columns="#{bindings.nhost.hints.displayWidth}"
+                                                              maximumLength="#{bindings.nhost.hints.precision}"
+                                                              shortDesc="#{bindings.nhost.hints.tooltip}"
+                                                              id="it9">
+                                                    <f:validator binding="#{bindings.nhost.validator}"/>
+                                                </af:inputText>
+                                                <f:facet name="footer">
+                                                    <af:panelGroupLayout layout="horizontal" id="pgl1">
+                                                        <af:button actionListener="#{bindings.First.execute}"
+                                                                   text=""
+                                                                   disabled="#{!bindings.First.enabled}"
+                                                                   partialSubmit="true" id="b1" immediate="true"
+                                                                   icon="/images/first-icon.png"
+                                                                   disabledIcon="/images/first-icon-dis.png"/>
+                                                        <af:button actionListener="#{bindings.Previous.execute}"
+                                                                   text=""
+                                                                   disabled="#{!bindings.Previous.enabled}"
+                                                                   partialSubmit="true" id="b2" immediate="true"
+                                                                   icon="/images/prev-icon.png"
+                                                                   disabledIcon="/images/prev-icon-dis.png"/>
+                                                        <af:button actionListener="#{bindings.Next.execute}"
+                                                                   text=""
+                                                                   disabled="#{!bindings.Next.enabled}"
+                                                                   partialSubmit="true" id="b3" immediate="true"
+                                                                   icon="/images/next-icon.png"
+                                                                   disabledIcon="/images/next-icon-dis.png"/>
+                                                        <af:button actionListener="#{bindings.Last.execute}"
+                                                                   text=""
+                                                                   disabled="#{!bindings.Last.enabled}"
+                                                                   partialSubmit="true" id="b4" immediate="true"
+                                                                   icon="/images/last-icon.png"
+                                                                   disabledIcon="/images/last-icon-dis.png"/>
+                                                        <af:button actionListener="#{recipients.DeletePUB}"
+                                                                   text=""
+                                                                   disabled="#{!bindings.Delete.enabled}"
+                                                                   id="b5" immediate="true"
+                                                                   icon="/images/garbage-icon.png"
+                                                                   shortDesc="Si borra el registro actual la firma seleccionada desaparecera de la base de datos y de la instlación de cryptovault" />
+                                                    </af:panelGroupLayout>
+                                                </f:facet>
+                                            </af:panelFormLayout>
+                                        </af:showDetailItem>
+                                        <af:showDetailItem id="panePGP1" text="Agregar llave privada PGP" immediate="true">
+                                            <af:panelFormLayout id="pflPGP1" rows="11" labelAlignment="top" fieldWidth="200" labelWidth="200">
+                                                <jsp:include page="/fragment/pgpConfigure.jsff"/>            
+                                            </af:panelFormLayout>
+                                        </af:showDetailItem>
+                                        <af:showDetailItem id="tabPUB2" text="Agregar llave pública PGP" immediate="true">
+                                            <af:panelFormLayout id="pflPUB1" rows="7" labelAlignment="top" fieldWidth="70" labelWidth="70">
+                                                <jsp:include page="/fragment/recipients.jsff"/>            
+                                            </af:panelFormLayout>
+                                        </af:showDetailItem>
+                                        <af:showDetailItem id="tabTEST" text="Prueba descifrado" immediate="true">
+                                            <af:panelFormLayout id="pflTEST1" rows="7" labelAlignment="top" fieldWidth="70" labelWidth="70">
+                                                <jsp:include page="/fragment/test.jsff"/>            
+                                            </af:panelFormLayout>
+                                        </af:showDetailItem>
+                                    </af:panelTabbed>
+                                </f:facet>
+                            </af:panelSplitter>
+                        </af:showDetailItem>
+                        
+                        <af:showDetailItem text="Configurar SQLLOADER" id="sdi3" icon="/images/sql-icon-transparent.png" immediate="true"
+                                           depressedIcon="/images/sql-icon-selected.png"
+                                           hoverIcon="/images/sql-icon-hover.png">
+                            <af:panelSplitter id="psSQL2" splitterPosition="200" orientation="vertical">
+                                <f:facet name="first">
+                                    <af:panelCollection id="pcSQL2">
+                                        <f:facet name="menus"/>
+                                        <f:facet name="toolbar"/>
+                                        <f:facet name="statusbar"/>
+                                            <af:table value="#{bindings.confSqlloaderFindAll.collectionModel}" var="row"
+                                                      rows="#{bindings.confSqlloaderFindAll.rangeSize}"
+                                                      emptyText="#{bindings.confSqlloaderFindAll.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                      rowBandingInterval="0"
+                                                      selectedRowKeys="#{bindings.confSqlloaderFindAll.collectionModel.selectedRow}"
+                                                      selectionListener="#{bindings.confSqlloaderFindAll.collectionModel.makeCurrent}"
+                                                      rowSelection="single"
+                                                      fetchSize="#{bindings.confSqlloaderFindAll.rangeSize}"
+                                                      filterModel="#{bindings.confSqlloaderFindAllQuery.queryDescriptor}"
+                                                      queryListener="#{bindings.confSqlloaderFindAllQuery.processQuery}"
+                                                      filterVisible="true" varStatus="vs" id="t3"
+                                                      partialTriggers=":::b6 :::b7 :::b8 :::b9 :::b10 :::b11">
+                                                <af:column sortProperty="#{bindings.confSqlloaderFindAll.hints.id.name}" sortable="true" 
+                                                           headerText="#{bindings.confSqlloaderFindAll.hints.id.label}" filterable="true" id="c11">
+                                                    <af:outputText value="#{row.id}" shortDesc="#{bindings.confSqlloaderFindAll.hints.id.tooltip}" id="ot4"/>
+                                                </af:column>
+                                                <af:column sortProperty="#{bindings.confSqlloaderFindAll.hints.ndatabase.name}" sortable="true" id="c12"
+                                                           headerText="#{bindings.confSqlloaderFindAll.hints.ndatabase.label}" filterable="true" >
+                                                    <af:outputText value="#{row.ndatabase}" shortDesc="#{bindings.confSqlloaderFindAll.hints.ndatabase.tooltip}" id="ot9"/>
+                                                </af:column>
+                                                <af:column sortProperty="#{bindings.confSqlloaderFindAll.hints.installRoot.name}" sortable="true" id="c14"
+                                                           headerText="#{bindings.confSqlloaderFindAll.hints.installRoot.label}" filterable="true" >
+                                                    <af:outputText value="#{row.installRoot}" shortDesc="#{bindings.confSqlloaderFindAll.hints.installRoot.tooltip}" id="ot12"/>
+                                                </af:column>
+                                                <af:column sortProperty="#{bindings.confSqlloaderFindAll.hints.infileRoot.name}" sortable="true" id="c15"
+                                                           headerText="#{bindings.confSqlloaderFindAll.hints.infileRoot.label}" filterable="true" >
+                                                    <af:outputText value="#{row.infileRoot}" shortDesc="#{bindings.confSqlloaderFindAll.hints.infileRoot.tooltip}" id="ot13"/>
+                                                </af:column>
+                                                <af:column sortProperty="#{bindings.confSqlloaderFindAll.hints.controlRoot.name}" sortable="true" id="c16"
+                                                           headerText="#{bindings.confSqlloaderFindAll.hints.controlRoot.label}" filterable="true" >
+                                                    <af:outputText value="#{row.controlRoot}" shortDesc="#{bindings.confSqlloaderFindAll.hints.controlRoot.tooltip}" id="ot14"/>
+                                                </af:column>
+                                                <af:column sortProperty="#{bindings.confSqlloaderFindAll.hints.logfileRoot.name}" sortable="true" id="c17"
+                                                           headerText="#{bindings.confSqlloaderFindAll.hints.logfileRoot.label}" filterable="true">
+                                                    <af:outputText value="#{row.logfileRoot}" shortDesc="#{bindings.confSqlloaderFindAll.hints.logfileRoot.tooltip}" id="ot15"/>
+                                                </af:column>
+                                                <af:column sortProperty="#{bindings.confSqlloaderFindAll.hints.nhost.name}" sortable="true" id="c18"
+                                                           headerText="#{bindings.confSqlloaderFindAll.hints.nhost.label}" filterable="true" >
+                                                    <af:outputText value="#{row.nhost}" shortDesc="#{bindings.confSqlloaderFindAll.hints.nhost.tooltip}" id="ot16"/>
+                                                </af:column>
+                                            </af:table>
+                                        </af:panelCollection>
+                                </f:facet>
+                                <f:facet name="second">
+                                        <af:panelTabbed position="above" id="ptSQL2">
+                                            <af:showDetailItem id="tabSQL1" text="Detalles">
+                                                <af:panelFormLayout id="pfl2">
+                                                    <af:inputText value="#{bindings.id1.inputValue}"
+                                                                  label="#{bindings.id1.hints.label}"
+                                                                  required="#{bindings.id1.hints.mandatory}"
+                                                                  columns="#{bindings.id1.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.id1.hints.precision}"
+                                                                  shortDesc="#{bindings.id1.hints.tooltip}" id="it10">
+                                                        <f:validator binding="#{bindings.id1.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.ndatabase.inputValue}"
+                                                                  label="#{bindings.ndatabase.hints.label}"
+                                                                  columns="#{bindings.ndatabase.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.ndatabase.hints.precision}"
+                                                                  shortDesc="#{bindings.ndatabase.hints.tooltip}"
+                                                                  required="#{sqlldr.required}"
+                                                                  requiredMessageDetail="Debe ingresar el nombre de la base de datos"
+                                                                  id="it11">
+                                                        <f:validator binding="#{bindings.ndatabase.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.username.inputValue}"
+                                                                  label="#{bindings.username.hints.label}"
+                                                                  required="#{sqlldr.required}"
+                                                                  columns="#{bindings.username.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.username.hints.precision}"
+                                                                  shortDesc="Debe ingresar el nombre de usuario de base de datos"
+                                                                  visible="#{sqlldr.active}"
+                                                                  partialTriggers="b14"
+                                                                  id="it12">
+                                                        <f:validator binding="#{bindings.username.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.password.inputValue}"
+                                                                  label="#{bindings.password.hints.label}"
+                                                                  required="#{sqlldr.required}"
+                                                                  columns="#{bindings.password.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.password.hints.precision}"
+                                                                  shortDesc="Debe ingresar el password de base de datos"
+                                                                  secret="true"
+                                                                  visible="#{sqlldr.active}"
+                                                                  partialTriggers="b14"
+                                                                  id="it13" >
+                                                        <f:validator binding="#{bindings.password.validator}"/>
+                                                    </af:inputText>
+                                                    
+                                                    <af:inputText required="#{sqlldr.required}"
+                                                                  visible="#{sqlldr.active}"
+                                                                  secret="true"
+                                                                  label="Confirmar contraseña"
+                                                                  shortDesc="Debe confirmar el password de base de datos"
+                                                                  id="confirm" partialTriggers="b14 b10 b11 b12 b6 b7 b8 b9"
+                                                                  value="#{sqlldr.confirm}">
+                                                    </af:inputText>
+                                                    
+                                                    <af:inputText value="#{bindings.installRoot.inputValue}"
+                                                                  label="#{bindings.installRoot.hints.label}"
+                                                                  required="#{sqlldr.required}"
+                                                                  columns="#{bindings.installRoot.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.installRoot.hints.precision}"
+                                                                  shortDesc="Ingrese la ruta de instlación de sqlldr"
+                                                                  id="it14">
+                                                        <f:validator binding="#{bindings.installRoot.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.infileRoot.inputValue}"
+                                                                  label="#{bindings.infileRoot.hints.label}"
+                                                                  required="#{sqlldr.required}"
+                                                                  columns="#{bindings.infileRoot.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.infileRoot.hints.precision}"
+                                                                  shortDesc="Ingrese la ruta de archivos de entrada"
+                                                                  id="it15">
+                                                        <f:validator binding="#{bindings.infileRoot.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.controlRoot.inputValue}"
+                                                                  label="#{bindings.controlRoot.hints.label}"
+                                                                  required="#{sqlldr.required}"
+                                                                  columns="#{bindings.controlRoot.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.controlRoot.hints.precision}"
+                                                                  shortDesc="Ingrese la ruta y en nombre del archivo de control"
+                                                                  id="it16">
+                                                        <f:validator binding="#{bindings.controlRoot.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.logfileRoot.inputValue}"
+                                                                  label="#{bindings.logfileRoot.hints.label}"
+                                                                  required="#{sqlldr.required}"
+                                                                  columns="#{bindings.logfileRoot.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.logfileRoot.hints.precision}"
+                                                                  shortDesc="Ingrese la ruta y en nombre del archivo de log"
+                                                                  id="it17">
+                                                        <f:validator binding="#{bindings.logfileRoot.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.nhost1.inputValue}"
+                                                                  label="#{bindings.nhost1.hints.label}"
+                                                                  columns="#{bindings.nhost1.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.nhost1.hints.precision}"
+                                                                  shortDesc="#{bindings.nhost1.hints.tooltip}"
+                                                                  readOnly="true"
+                                                                  id="it18">
+                                                        <f:validator binding="#{bindings.nhost1.validator}"/>
+                                                    </af:inputText>
+                                                    <f:facet name="footer">
+                                                        <af:panelGroupLayout layout="horizontal" id="pgl2">
+                                                            <af:button actionListener="#{bindings.Create.execute}"
+                                                                       text=""
+                                                                       icon="/images/add-icon.png"
+                                                                       disabled="#{!bindings.Create.enabled}" id="b10"
+                                                                       action="#{sqlldr.ActiveLogin}"/>
+                                                            <af:button text="" id="b14"
+                                                                       icon="/images/update-icon.png"
+                                                                       disabled="#{!bindings.Create.enabled}"
+                                                                       action="#{sqlldr.ActiveLogin}"/>
+                                                            <af:button actionListener="#{sqlldr.SaveConf}"
+                                                                       text=""
+                                                                       icon="/images/save-icon.png"
+                                                                       disabled="#{!bindings.persistConfSqlloader.enabled}"
+                                                                       id="b12"/>
+                                                            <af:button actionListener="#{sqlldr.DeleteConf}"
+                                                                       icon="/images/garbage-icon.png"
+                                                                       disabled="#{!bindings.Delete1.enabled}"
+                                                                       id="b11"/>
+                                                            <af:button actionListener="#{bindings.First1.execute}"
+                                                                       text=""
+                                                                       icon="/images/first-icon.png"
+                                                                       disabledIcon="/images/first-icon-dis.png"
+                                                                       disabled="#{!bindings.First1.enabled}"
+                                                                       partialSubmit="true" id="b6"/>
+                                                            <af:button actionListener="#{bindings.Previous1.execute}"
+                                                                       text=""
+                                                                       icon="/images/prev-icon.png"
+                                                                       disabledIcon="/images/prev-icon-dis.png"
+                                                                       disabled="#{!bindings.Previous1.enabled}"
+                                                                       partialSubmit="true" id="b7"/>
+                                                            <af:button actionListener="#{bindings.Next1.execute}"
+                                                                       text=""
+                                                                       disabledIcon="/images/next-icon-dis.png"
+                                                                       icon="/images/next-icon.png"
+                                                                       disabled="#{!bindings.Next1.enabled}"
+                                                                       partialSubmit="true" id="b8"/>
+                                                            <af:button actionListener="#{bindings.Last1.execute}"
+                                                                       text=""
+                                                                       disabledIcon="/images/last-icon-dis.png"
+                                                                       icon="/images/last-icon.png"
+                                                                       disabled="#{!bindings.Last1.enabled}"
+                                                                       partialSubmit="true" id="b9"/>
+                                                        </af:panelGroupLayout>
+                                                    </f:facet>
+                                                    
+                                                </af:panelFormLayout>
+                                            </af:showDetailItem>
+                                        </af:panelTabbed>
+                                    </f:facet>
+                            </af:panelSplitter>
+                        </af:showDetailItem>
+                        
+                        <af:showDetailItem text="Gestión de usuarios" id="sdi4"
+                                           icon="/images/change-keys-transparent.png" immediate="true"
+                                           depressedIcon="/images/change-keys-selected.png"
+                                           hoverIcon="/images/change-keys-hover.png">
+                            <af:panelSplitter id="psUSERS2" splitterPosition="350">
+                                <f:facet name="first">
+                                    <af:decorativeBox id="dbUSERS1">
+                                        <f:facet name="center">
+                                            <af:panelAccordion discloseMany="false" id="paUSERS1">
+                                                <af:showDetailItem id="paneUSERS1" text="Grupos IDM">
+                                                    <af:table value="#{bindings.idmGruposFindAll.collectionModel}" var="row"
+                                                      rows="#{bindings.idmGruposFindAll.rangeSize}"
+                                                      emptyText="#{bindings.idmGruposFindAll.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                      rowBandingInterval="0"
+                                                      selectedRowKeys="#{bindings.idmGruposFindAll.collectionModel.selectedRow}"
+                                                      selectionListener="#{bindings.idmGruposFindAll.collectionModel.makeCurrent}"
+                                                      rowSelection="single"
+                                                      fetchSize="#{bindings.idmGruposFindAll.rangeSize}" id="t5"
+                                                      partialTriggers="::b15 ::b16 ::b17 ::b18 ::b19"  width="332">
+                                                        <af:column headerText="#{bindings.idmGruposFindAll.hints.id.label}" width="25" id="c22">
+                                                            <af:outputText value="#{row.id}" shortDesc="#{bindings.idmGruposFindAll.hints.id.tooltip}" id="ot5"/>
+                                                        </af:column>
+                                                        <af:column headerText="#{bindings.idmGruposFindAll.hints.grupo.label}" width="120" id="c23">
+                                                            <af:outputText value="#{row.grupo}" shortDesc="#{bindings.idmGruposFindAll.hints.grupo.tooltip}" id="ot19"/>
+                                                        </af:column>
+                                                        <af:column headerText="#{bindings.idmGruposFindAll.hints.permisos.label}" width="170" id="c24">
+                                                            <af:outputText value="#{row.permisos}" shortDesc="#{bindings.idmGruposFindAll.hints.permisos.tooltip}" id="ot20"/>
+                                                        </af:column>
+                                                    </af:table>
+                                                    
+                                                    <af:panelFormLayout id="pfl4">
+                                                        <af:inputText value="#{bindings.id2.inputValue}"
+                                                                      label="#{bindings.id2.hints.label}"
+                                                                      required="#{bindings.id2.hints.mandatory}"
+                                                                      columns="#{bindings.id2.hints.displayWidth}"
+                                                                      maximumLength="#{bindings.id2.hints.precision}"
+                                                                      shortDesc="#{bindings.id2.hints.tooltip}" id="it19">
+                                                            <f:validator binding="#{bindings.id2.validator}"/>
+                                                        </af:inputText>
+                                                        <af:inputText value="#{bindings.grupo.inputValue}"
+                                                                      label="#{bindings.grupo.hints.label}"
+                                                                      required="#{bindings.grupo.hints.mandatory}"
+                                                                      columns="#{bindings.grupo.hints.displayWidth}"
+                                                                      maximumLength="#{bindings.grupo.hints.precision}"
+                                                                      shortDesc="#{bindings.grupo.hints.tooltip}" id="it20">
+                                                            <f:validator binding="#{bindings.grupo.validator}"/>
+                                                        </af:inputText>
+                                                        <af:inputText value="#{bindings.permisos.inputValue}"
+                                                                      label="#{bindings.permisos.hints.label}"
+                                                                      required="#{bindings.permisos.hints.mandatory}"
+                                                                      columns="#{bindings.permisos.hints.displayWidth}"
+                                                                      maximumLength="#{bindings.permisos.hints.precision}"
+                                                                      shortDesc="#{bindings.permisos.hints.tooltip}"
+                                                                      id="it21">
+                                                            <f:validator binding="#{bindings.permisos.validator}"/>
+                                                        </af:inputText>
+                                                        <f:facet name="footer">
+                                                            <af:panelGroupLayout layout="horizontal" id="pgl3">
+                                                                <af:button actionListener="#{bindings.Create1.execute}"
+                                                                           text=""
+                                                                           icon="/images/add-icon.png"
+                                                                           disabled="#{!bindings.Create1.enabled}"
+                                                                           id="b19"/>
+                                                                           
+                                                                <af:button id="b21" actionListener="#{userManager.SaveConf}"
+                                                                           text=""
+                                                                           icon="/images/save-icon.png"
+                                                                           disabled="#{!bindings.persistIdmGrupos.enabled}"/>
+                                                                           
+                                                                <af:button actionListener="#{bindings.First2.execute}"
+                                                                           text=""
+                                                                           icon="/images/first-icon.png"
+                                                                           disabledIcon="/images/first-icon-dis.png"
+                                                                           disabled="#{!bindings.First2.enabled}"
+                                                                           partialSubmit="true" id="b15"/>
+                                                                <af:button actionListener="#{bindings.Previous2.execute}"
+                                                                           text=""
+                                                                           icon="/images/prev-icon.png"
+                                                                           disabledIcon="/images/prev-icon-dis.png"
+                                                                           disabled="#{!bindings.Previous2.enabled}"
+                                                                           partialSubmit="true" id="b16"/>
+                                                                <af:button actionListener="#{bindings.Next2.execute}"
+                                                                           text=""
+                                                                           icon="/images/next-icon.png"
+                                                                           disabledIcon="/images/next-icon-dis.png"
+                                                                           disabled="#{!bindings.Next2.enabled}"
+                                                                           partialSubmit="true" id="b17"/>
+                                                                <af:button actionListener="#{bindings.Last2.execute}"
+                                                                           text=""
+                                                                           icon="/images/last-icon.png"
+                                                                           disabledIcon="/images/last-icon-dis.png"
+                                                                           disabled="#{!bindings.Last2.enabled}"
+                                                                           partialSubmit="true" id="b18"/>
+                                                            </af:panelGroupLayout>
+                                                        </f:facet>
+                                                    </af:panelFormLayout>
+                                                </af:showDetailItem>
+                                            </af:panelAccordion>
+                                        </f:facet>
+                                    </af:decorativeBox>
+                                </f:facet>
+                                
+                                <f:facet name="second">
+                                    <af:decorativeBox id="dbUSERS3">
+                                        <f:facet name="center">
+                                            <af:panelAccordion discloseMany="false" id="paUSERS2">
+                                                <af:showDetailItem id="paneUSERS2" text="Usuarios IDM">
+                                                        <af:table value="#{bindings.idmUsuariosFindAll.collectionModel}"
+                                                                  var="row"
+                                                                  rows="#{bindings.idmUsuariosFindAll.rangeSize}"
+                                                                  emptyText="#{bindings.idmUsuariosFindAll.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                  rowBandingInterval="0"
+                                                                  selectedRowKeys="#{bindings.idmUsuariosFindAll.collectionModel.selectedRow}"
+                                                                  selectionListener="#{bindings.idmUsuariosFindAll.collectionModel.makeCurrent}"
+                                                                  rowSelection="single"
+                                                                  fetchSize="#{bindings.idmUsuariosFindAll.rangeSize}"
+                                                                  filterModel="#{bindings.idmUsuariosFindAllQuery.queryDescriptor}"
+                                                                  queryListener="#{bindings.idmUsuariosFindAllQuery.processQuery}"
+                                                                  filterVisible="true" varStatus="vs" id="t6" width="850">
+                                                            <!-- <af:column sortProperty="#{bindings.idmUsuariosFindAll.hints.id.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="#{bindings.idmUsuariosFindAll.hints.id.label}"
+                                                                       id="c25">
+                                                                <af:outputText value="#{row.id}"
+                                                                               shortDesc="#{bindings.idmUsuariosFindAll.hints.id.tooltip}"
+                                                                               id="ot21"/>
+                                                            </af:column> -->
+                                                            <af:column sortProperty="#{bindings.idmUsuariosFindAll.hints.nt.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="#{bindings.idmUsuariosFindAll.hints.nt.label}"
+                                                                       id="c26" width="70">
+                                                                <af:outputText value="#{row.nt}"
+                                                                               shortDesc="#{bindings.idmUsuariosFindAll.hints.nt.tooltip}"
+                                                                               id="ot22"/>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.idmUsuariosFindAll.hints.grupo.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="#{bindings.idmUsuariosFindAll.hints.grupo.label}"
+                                                                       id="c27" width="160">
+                                                                <af:outputText value="#{row.grupo}"
+                                                                               shortDesc="#{bindings.idmUsuariosFindAll.hints.grupo.tooltip}"
+                                                                               id="ot23"/>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.idmUsuariosFindAll.hints.nombre.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="#{bindings.idmUsuariosFindAll.hints.nombre.label}"
+                                                                       id="c28" width="275">
+                                                                <af:outputText value="#{row.nombre}"
+                                                                               shortDesc="#{bindings.idmUsuariosFindAll.hints.nombre.tooltip}"
+                                                                               id="ot24"/>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.idmUsuariosFindAll.hints.cn.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="#{bindings.idmUsuariosFindAll.hints.cn.label}"
+                                                                       id="c29" width="100">
+                                                                <af:outputText value="#{row.cn}"
+                                                                               shortDesc="#{bindings.idmUsuariosFindAll.hints.cn.tooltip}"
+                                                                               id="ot25"/>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.idmUsuariosFindAll.hints.inhabilitado.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="#{bindings.idmUsuariosFindAll.hints.inhabilitado.label}"
+                                                                       id="c30" width="60">
+                                                                <af:outputText value="#{row.inhabilitado}"
+                                                                               shortDesc="#{bindings.idmUsuariosFindAll.hints.inhabilitado.tooltip}"
+                                                                               id="ot26"/>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.idmUsuariosFindAll.hints.fecha.name}"
+                                                                       filterable="true" sortable="true"
+                                                                       headerText="#{bindings.idmUsuariosFindAll.hints.fecha.label}"
+                                                                       id="c31" width="115">
+                                                                <f:facet name="filter">
+                                                                    <af:inputDate value="#{bindings.idmUsuariosFindAllQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.fecha.value}"
+                                                                                  id="id3">
+                                                                        <af:convertDateTime pattern="#{bindings.idmUsuariosFindAll.hints.fecha.format}"/>
+                                                                    </af:inputDate>
+                                                                </f:facet>
+                                                                <af:outputText value="#{row.fecha}"
+                                                                               shortDesc="#{bindings.idmUsuariosFindAll.hints.fecha.tooltip}"
+                                                                               id="ot27">
+                                                                    <af:convertDateTime pattern="#{bindings.idmUsuariosFindAll.hints.fecha.format}"/>
+                                                                </af:outputText>
+                                                            </af:column>
+                                                        </af:table>
+                                                    </af:showDetailItem>
+                                            </af:panelAccordion>
+                                        </f:facet>
+                                    </af:decorativeBox>
+                                </f:facet>
+                            </af:panelSplitter>
+                        </af:showDetailItem>
+                        
+                        <af:showDetailItem text="Log de seguridad" id="sdi5" icon="/images/testing-icon-transparent.png" immediate="true"
+                                           depressedIcon="/images/testing-icon-selected.png"
+                                           hoverIcon="/images/testing-icon-hover.png">
+                                <af:panelFormLayout id="pfl3" rows="1">
+                                    <af:inputDate value="#{bindings.startDate.inputValue}"
+                                                  label="Desde: "
+                                                  required="#{bindings.startDate.hints.mandatory}"
+                                                  columns="#{bindings.startDate.hints.displayWidth}"
+                                                  shortDesc="#{bindings.startDate.hints.tooltip}" id="id1">
+                                        <f:validator binding="#{bindings.startDate.validator}"/>
+                                        <af:convertDateTime pattern="#{bindings.startDate.format}"/>
+                                    </af:inputDate>
+                                    
+                                    <af:inputDate value="#{bindings.endDate.inputValue}"
+                                                  label="Hasta: "
+                                                  required="#{bindings.endDate.hints.mandatory}"
+                                                  columns="#{bindings.endDate.hints.displayWidth}"
+                                                  shortDesc="#{bindings.endDate.hints.tooltip}" id="id2">
+                                        <f:validator binding="#{bindings.endDate.validator}"/>
+                                        <af:convertDateTime pattern="#{bindings.endDate.format}"/>
+                                    </af:inputDate>
+									
+									<af:button actionListener="#{bindings.ExecuteWithParams.execute}" id="b13"
+                                               text="" disabled="#{!bindings.ExecuteWithParams.enabled}" icon="/images/search-icon.png"/>
+                                    
+                                </af:panelFormLayout>
+                                
+                                <af:spacer width="5" height="5" id="sLOG1"/>
+                                <af:separator id="sLOG2"/>
+                                
+                                <af:table value="#{bindings.logCryptologFindByFecha.collectionModel}" var="row"
+                                          rows="#{bindings.logCryptologFindByFecha.rangeSize}"
+                                          emptyText="#{bindings.logCryptologFindByFecha.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                          rowBandingInterval="0"
+                                          selectedRowKeys="#{bindings.logCryptologFindByFecha.collectionModel.selectedRow}"
+                                          selectionListener="#{bindings.logCryptologFindByFecha.collectionModel.makeCurrent}"
+                                          rowSelection="single"
+                                          fetchSize="#{bindings.logCryptologFindByFecha.rangeSize}" id="t4"
+                                          partialTriggers="::b13" width="1000">
+                                    <af:column sortable="false" headerText="" id="c12a" width="25">
+                                        <af:image source="#{row.accion eq 'ERROR' ? '/images/cuerror.png' : '/images/success.png'}" id="imga" shortDesc="image"/>
+									</af:column>
+									<af:column sortProperty="#{bindings.logCryptologFindByFecha.hints.accion.name}" sortable="true" 
+									           headerText="#{bindings.logCryptologFindByFecha.hints.accion.label}" id="c12b" width="65">
+                                        <af:outputText value="#{row.accion}" shortDesc="#{bindings.logCryptologFindByFecha.hints.accion.tooltip}" id="ot6"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.logCryptologFindByFecha.hints.fecha.name}" sortable="true"
+                                               headerText="#{bindings.logCryptologFindByFecha.hints.fecha.label}" id="c13"  width="120">
+                                        <af:outputText value="#{row.fecha}" shortDesc="#{bindings.logCryptologFindByFecha.hints.fecha.tooltip}" id="ot10">
+                                            <af:convertDateTime pattern="#{bindings.logCryptologFindByFecha.hints.fecha.format}"/>
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.logCryptologFindByFecha.hints.descripcion.name}" sortable="true"
+                                               headerText="#{bindings.logCryptologFindByFecha.hints.descripcion.label}" id="c19" width="620">
+                                        <af:outputText value="#{row.descripcion}" shortDesc="#{bindings.logCryptologFindByFecha.hints.descripcion.tooltip}" id="ot11"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.logCryptologFindByFecha.hints.usuario.name}" sortable="true"
+                                               headerText="#{bindings.logCryptologFindByFecha.hints.usuario.label}" id="c20" width="65">
+                                        <af:outputText value="#{row.usuario}" shortDesc="#{bindings.logCryptologFindByFecha.hints.usuario.tooltip}" id="ot17"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.logCryptologFindByFecha.hints.nhost.name}" sortable="true"
+                                               headerText="#{bindings.logCryptologFindByFecha.hints.nhost.label}" id="c21" width="65">
+                                        <af:outputText value="#{row.nhost}"
+                                                       shortDesc="#{bindings.logCryptologFindByFecha.hints.nhost.tooltip}"
+                                                       id="ot18"/>
+                                    </af:column>
+                                </af:table>
+                            </af:showDetailItem>
+                    </af:panelSpringboard>
+                </f:facet>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.10.8" id="controlPageDef"
+                Package="core.rsolano.liqinterface.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="root" RangeSize="25" DataControl="LIQTLBean" id="LIQTLBeanIterator"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="appAplicacionesFindAll" RangeSize="25"
+                      DataControl="LIQTLBean" BeanClass="core.rsolano.liqinterface.model.entities.AppAplicaciones"
+                      id="appAplicacionesFindAllIterator"/>
+    <searchRegion Binds="appAplicacionesFindAllIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="appAplicacionesFindAllQuery"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="appArchivosFindAll" RangeSize="25"
+                      DataControl="LIQTLBean" BeanClass="core.rsolano.liqinterface.model.entities.AppArchivos"
+                      id="appArchivosFindAllIterator"/>
+    <searchRegion Binds="appArchivosFindAllIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="appArchivosFindAllQuery"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="appArchivosaplicacionesFindAll" RangeSize="25"
+                      DataControl="LIQTLBean"
+                      BeanClass="core.rsolano.liqinterface.model.entities.AppArchivosaplicaciones"
+                      id="appArchivosaplicacionesFindAllIterator"/>
+    <searchRegion Binds="appArchivosaplicacionesFindAllIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="appArchivosaplicacionesFindAllQuery"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="appCamposprocesoliqFindAll" RangeSize="25" DataControl="LIQTLBean"
+                      BeanClass="core.rsolano.liqinterface.model.entities.AppCamposprocesoliq" id="appCamposprocesoliqFindAllIterator"/>
+    <searchRegion Binds="appCamposprocesoliqFindAllIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="appCamposprocesoliqFindAllQuery"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="appHerramientasFindAll" RangeSize="25"
+                      DataControl="LIQTLBean" BeanClass="core.rsolano.liqinterface.model.entities.AppHerramientas"
+                      id="appHerramientasFindAllIterator"/>
+    <searchRegion Binds="appHerramientasFindAllIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="appHerramientasFindAllQuery"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="confDiasfestivosFindAll" RangeSize="25"
+                      DataControl="LIQTLBean" BeanClass="core.rsolano.liqinterface.model.entities.ConfDiasfestivos"
+                      id="confDiasfestivosFindAllIterator"/>
+    <searchRegion Binds="confDiasfestivosFindAllIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="confDiasfestivosFindAllQuery"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="confGruposcorreoFindAll" RangeSize="25"
+                      DataControl="LIQTLBean" BeanClass="core.rsolano.liqinterface.model.entities.ConfGruposcorreo"
+                      id="confGruposcorreoFindAllIterator"/>
+    <searchRegion Binds="confGruposcorreoFindAllIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="confGruposcorreoFindAllQuery"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="confHerramientasappsFindAll" RangeSize="25"
+                      DataControl="LIQTLBean" BeanClass="core.rsolano.liqinterface.model.entities.ConfHerramientasapps"
+                      id="confHerramientasappsFindAllIterator"/>
+    <searchRegion Binds="confHerramientasappsFindAllIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="confHerramientasappsFindAllQuery"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="confParametrosliquidadorFindAll" RangeSize="25"
+                      DataControl="LIQTLBean"
+                      BeanClass="core.rsolano.liqinterface.model.entities.ConfParametrosliquidador"
+                      id="confParametrosliquidadorFindAllIterator"/>
+    <searchRegion Binds="confParametrosliquidadorFindAllIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="confParametrosliquidadorFindAllQuery"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="confReceptorescorreosFindAll" RangeSize="25"
+                      DataControl="LIQTLBean" BeanClass="core.rsolano.liqinterface.model.entities.ConfReceptorescorreos"
+                      id="confReceptorescorreosFindAllIterator"/>
+    <searchRegion Binds="confReceptorescorreosFindAllIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="confReceptorescorreosFindAllQuery"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="confUsuariosFindAll" RangeSize="25"
+                      DataControl="LIQTLBean" BeanClass="core.rsolano.liqinterface.model.entities.ConfUsuarios"
+                      id="confUsuariosFindAllIterator"/>
+    <searchRegion Binds="confUsuariosFindAllIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="confUsuariosFindAllQuery"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="notifActividadesFindAll" RangeSize="25"
+                      DataControl="LIQTLBean" BeanClass="core.rsolano.liqinterface.model.entities.NotifActividades"
+                      id="notifActividadesFindAllIterator"/>
+    <searchRegion Binds="notifActividadesFindAllIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="notifActividadesFindAllQuery"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="notifActividadProcesoFindAll" RangeSize="25"
+                      DataControl="LIQTLBean" BeanClass="core.rsolano.liqinterface.model.entities.NotifActividadProceso"
+                      id="notifActividadProcesoFindAllIterator"/>
+    <searchRegion Binds="notifActividadProcesoFindAllIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="notifActividadProcesoFindAllQuery"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="notifProcesoFindAll" RangeSize="25"
+                      DataControl="LIQTLBean" BeanClass="core.rsolano.liqinterface.model.entities.NotifProceso"
+                      id="notifProcesoFindAllIterator"/>
+    <searchRegion Binds="notifProcesoFindAllIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="notifProcesoFindAllQuery"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="taskFilesloaderFindAll" RangeSize="25"
+                      DataControl="LIQTLBean" BeanClass="core.rsolano.liqinterface.model.entities.TaskFilesloader"
+                      id="taskFilesloaderFindAllIterator"/>
+    <searchRegion Binds="taskFilesloaderFindAllIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="taskFilesloaderFindAllQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="appAplicacionesFindAllIterator" id="appAplicacionesFindAll">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.AppAplicaciones" Name="appAplicacionesFindAll0">
+        <AttrNames>
+          <Item Value="abreviatura"/>
+          <Item Value="descripcion"/>
+          <Item Value="ftpescritura"/>
+          <Item Value="ftpslectura"/>
+          <Item Value="id"/>
+          <Item Value="nombre"/>
+          <Item Value="canal"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="appArchivosFindAllIterator" id="appArchivosFindAll">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.AppArchivos" Name="appArchivosFindAll0">
+        <AttrNames>
+          <Item Value="id"/>
+          <Item Value="aplicacion"/>
+          <Item Value="fecha"/>
+          <Item Value="nombre"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="appArchivosaplicacionesFindAllIterator" id="appArchivosaplicacionesFindAll">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.AppArchivosaplicaciones"
+                      Name="appArchivosaplicacionesFindAll0">
+        <AttrNames>
+          <Item Value="id"/>
+          <Item Value="aplicacion"/>
+          <Item Value="aplicacionorigen"/>
+          <Item Value="cajero"/>
+          <Item Value="descripcionampliada"/>
+          <Item Value="extension"/>
+          <Item Value="extensionauxiliar"/>
+          <Item Value="flagbackdate"/>
+          <Item Value="formatofecha"/>
+          <Item Value="fuentetransaccion"/>
+          <Item Value="indicadorcalculocomision"/>
+          <Item Value="indicadorcobrogmf"/>
+          <Item Value="indicadoriva"/>
+          <Item Value="nombre"/>
+          <Item Value="nombreauxiliar"/>
+          <Item Value="nombreentidad"/>
+          <Item Value="nombreesquemadestanqueo"/>
+          <Item Value="numerocamposmonetarios"/>
+          <Item Value="recaudos"/>
+          <Item Value="secuenciacorrectora"/>
+          <Item Value="secuenciasods"/>
+          <Item Value="sep"/>
+          <Item Value="separador"/>
+          <Item Value="tabla"/>
+          <Item Value="tablaentradadatos"/>
+          <Item Value="tablakeyvalues"/>
+          <Item Value="tablalog"/>
+          <Item Value="tablatemporal"/>
+          <Item Value="terminal"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="appCamposprocesoliqFindAllIterator" id="appCamposprocesoliqFindAll">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.AppCamposprocesoliq"
+                      Name="appCamposprocesoliqFindAll0">
+        <AttrNames>
+          <Item Value="id"/>
+          <Item Value="alineacion"/>
+          <Item Value="automatico"/>
+          <Item Value="caracterrelleno"/>
+          <Item Value="cobrado"/>
+          <Item Value="enviar"/>
+          <Item Value="exportar"/>
+          <Item Value="nombre"/>
+          <Item Value="orden"/>
+          <Item Value="partefija"/>
+          <Item Value="relleno"/>
+          <Item Value="tamanio"/>
+          <Item Value="texto"/>
+          <Item Value="validacion"/>
+          <Item Value="decimales"/>
+          <Item Value="dependencia"/>
+          <Item Value="dependiente"/>
+          <Item Value="notifProcesoId"/>
+          <Item Value="notifProcesoNombreproceso"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="notifProceso2"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.NotifProceso">
+        <AttrNames>
+          <Item Value="codtransaccion"/>
+          <Item Value="descripcion"/>
+          <Item Value="esquemacobro"/>
+          <Item Value="esquemadestanqueo"/>
+          <Item Value="id"/>
+          <Item Value="nombreentidadliq"/>
+          <Item Value="nombreproceso"/>
+          <Item Value="nombretablaliq"/>
+          <Item Value="tipoliquidacion"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="appArchivosaplicacionesFindAllIterator" id="appArchivosaplicacionesFindAll1">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.AppArchivosaplicaciones"
+                      Name="appArchivosaplicacionesFindAll10">
+        <AttrNames>
+          <Item Value="id"/>
+          <Item Value="aplicacion"/>
+          <Item Value="aplicacionorigen"/>
+          <Item Value="cajero"/>
+          <Item Value="descripcionampliada"/>
+          <Item Value="extension"/>
+          <Item Value="extensionauxiliar"/>
+          <Item Value="flagbackdate"/>
+          <Item Value="formatofecha"/>
+          <Item Value="fuentetransaccion"/>
+          <Item Value="indicadorcalculocomision"/>
+          <Item Value="indicadorcobrogmf"/>
+          <Item Value="indicadoriva"/>
+          <Item Value="nombre"/>
+          <Item Value="nombreauxiliar"/>
+          <Item Value="nombreentidad"/>
+          <Item Value="nombreesquemadestanqueo"/>
+          <Item Value="numerocamposmonetarios"/>
+          <Item Value="recaudos"/>
+          <Item Value="secuenciacorrectora"/>
+          <Item Value="secuenciasods"/>
+          <Item Value="sep"/>
+          <Item Value="separador"/>
+          <Item Value="tabla"/>
+          <Item Value="tablaentradadatos"/>
+          <Item Value="tablakeyvalues"/>
+          <Item Value="tablalog"/>
+          <Item Value="tablatemporal"/>
+          <Item Value="terminal"/>
+          <Item Value="todasextsinput"/>
+          <Item Value="extensionexterna"/>
+          <Item Value="hashfile"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="appCamposprocesoliqFindAllIterator" id="appCamposprocesoliqFindAll1">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.AppCamposprocesoliq"
+                      Name="appCamposprocesoliqFindAll10">
+        <AttrNames>
+          <Item Value="id"/>
+          <Item Value="alineacion"/>
+          <Item Value="automatico"/>
+          <Item Value="caracterrelleno"/>
+          <Item Value="cobrado"/>
+          <Item Value="enviar"/>
+          <Item Value="exportar"/>
+          <Item Value="nombre"/>
+          <Item Value="orden"/>
+          <Item Value="partefija"/>
+          <Item Value="relleno"/>
+          <Item Value="tamanio"/>
+          <Item Value="texto"/>
+          <Item Value="validacion"/>
+          <Item Value="decimales"/>
+          <Item Value="dependencia"/>
+          <Item Value="dependiente"/>
+          <Item Value="notifProcesoId"/>
+          <Item Value="notifProcesoNombreproceso"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="notifProceso2"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.NotifProceso">
+        <AttrNames>
+          <Item Value="codtransaccion"/>
+          <Item Value="descripcion"/>
+          <Item Value="esquemacobro"/>
+          <Item Value="esquemadestanqueo"/>
+          <Item Value="id"/>
+          <Item Value="nombreentidadliq"/>
+          <Item Value="nombreproceso"/>
+          <Item Value="nombretablaliq"/>
+          <Item Value="tipoliquidacion"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="appHerramientasFindAllIterator" id="appHerramientasFindAll">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.AppHerramientas" Name="appHerramientasFindAll0">
+        <AttrNames>
+          <Item Value="id"/>
+          <Item Value="descripcion"/>
+          <Item Value="metodo"/>
+          <Item Value="nombre"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="confDiasfestivosFindAllIterator" id="confDiasfestivosFindAll">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.ConfDiasfestivos"
+                      Name="confDiasfestivosFindAll0">
+        <AttrNames>
+          <Item Value="ano"/>
+          <Item Value="dia"/>
+          <Item Value="mes"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="confGruposcorreoFindAllIterator" id="confGruposcorreoFindAll">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.ConfGruposcorreo"
+                      Name="confGruposcorreoFindAll0">
+        <AttrNames>
+          <Item Value="id"/>
+          <Item Value="descripcion"/>
+          <Item Value="nombre"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="confParametrosliquidadorFindAllIterator" id="confParametrosliquidadorFindAll">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.ConfParametrosliquidador"
+                      Name="confParametrosliquidadorFindAll0">
+        <AttrNames>
+          <Item Value="id"/>
+          <Item Value="nombrecampo"/>
+          <Item Value="valorcampo"/>
+          <Item Value="descripcion"/>
+          <Item Value="nombregrupo"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="confReceptorescorreosFindAllIterator" id="confReceptorescorreosFindAll">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.ConfReceptorescorreos"
+                      Name="confReceptorescorreosFindAll0">
+        <AttrNames>
+          <Item Value="id"/>          
+        </AttrNames>
+        <Accessors>
+          <Item Value="appAplicaciones2"/>
+		  <Item Value="confGruposcorreo"/>
+          <Item Value="confUsuarios"/>
+        </Accessors>
+      </nodeDefinition>
+	  <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.AppAplicaciones">
+        <AttrNames>
+		  <Item Value="descripcion"/>
+          <Item Value="abreviatura"/>
+		  <Item Value="canal"/>
+		  <Item Value="descripcion"/>
+		  <Item Value="ftpescritura"/>
+		  <Item Value="ftpslectura"/>
+		  <Item Value="id"/>
+		  <Item Value="nombre"/>
+        </AttrNames>
+      </nodeDefinition>
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.ConfGruposcorreo">
+        <AttrNames>
+          <Item Value="descripcion"/>
+          <Item Value="id"/>
+          <Item Value="nombre"/>
+        </AttrNames>
+      </nodeDefinition>
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.ConfUsuarios">
+        <AttrNames>
+          <Item Value="correo"/>
+          <Item Value="estado"/>
+          <Item Value="fechacreacion"/>
+          <Item Value="id"/>
+          <Item Value="identificacion"/>
+          <Item Value="login"/>
+          <Item Value="nombre"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="confReceptorescorreosFindAllIterator" id="confReceptorescorreosFindAll1">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.ConfReceptorescorreos"
+                      Name="confReceptorescorreosFindAll10">
+        <AttrNames>
+          <Item Value="id"/>          
+        </AttrNames>
+        <Accessors>
+          <Item Value="appAplicaciones2"/>
+		  <Item Value="confGruposcorreo"/>
+          <Item Value="confUsuarios"/>
+        </Accessors>
+      </nodeDefinition>
+	  <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.AppAplicaciones">
+        <AttrNames>
+		  <Item Value="descripcion"/>
+          <Item Value="abreviatura"/>
+		  <Item Value="canal"/>
+		  <Item Value="descripcion"/>
+		  <Item Value="ftpescritura"/>
+		  <Item Value="ftpslectura"/>
+		  <Item Value="id"/>
+		  <Item Value="nombre"/>
+        </AttrNames>
+      </nodeDefinition>
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.ConfGruposcorreo">
+        <AttrNames>
+          <Item Value="descripcion"/>
+          <Item Value="id"/>
+          <Item Value="nombre"/>
+        </AttrNames>
+      </nodeDefinition>
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.ConfUsuarios">
+        <AttrNames>
+          <Item Value="correo"/>
+          <Item Value="estado"/>
+          <Item Value="fechacreacion"/>
+          <Item Value="id"/>
+          <Item Value="identificacion"/>
+          <Item Value="login"/>
+          <Item Value="nombre"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="confUsuariosFindAllIterator" id="confUsuariosFindAll">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.ConfUsuarios" Name="confUsuariosFindAll0">
+        <AttrNames>
+          <Item Value="correo"/>
+          <Item Value="estado"/>
+          <Item Value="fechacreacion"/>
+          <Item Value="id"/>
+          <Item Value="identificacion"/>
+          <Item Value="login"/>
+          <Item Value="nombre"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="notifActividadesFindAllIterator" id="notifActividadesFindAll">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.NotifActividades"
+                      Name="notifActividadesFindAll0">
+        <AttrNames>
+          <Item Value="id"/>
+          <Item Value="nombreactividad"/>
+          <Item Value="descripcion"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="notifProcesoFindAllIterator" id="notifProcesoFindAll">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.NotifProceso" Name="notifProcesoFindAll0">
+        <AttrNames>
+          <Item Value="id"/>
+          <Item Value="nombreproceso"/>
+          <Item Value="descripcion"/>
+          <Item Value="codtransaccion"/>
+          <Item Value="esquemacobro"/>
+          <Item Value="esquemadestanqueo"/>
+          <Item Value="nombreentidadliq"/>
+          <Item Value="nombretablaliq"/>
+          <Item Value="tipoliquidacion"/>
+          <Item Value="aplicacionAbreviatura"/>
+          <Item Value="aplicacionCanal"/>
+          <Item Value="aplicacionDescripcion"/>
+          <Item Value="aplicacionFtpescritura"/>
+          <Item Value="aplicacionFtpslectura"/>
+          <Item Value="aplicacionId"/>
+          <Item Value="aplicacionNombre"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="appAplicaciones"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.AppAplicaciones">
+        <AttrNames>
+          <Item Value="descripcion"/>
+          <Item Value="abreviatura"/>
+          <Item Value="canal"/>
+          <Item Value="descripcion"/>
+          <Item Value="ftpescritura"/>
+          <Item Value="ftpslectura"/>
+          <Item Value="id"/>
+          <Item Value="nombre"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="taskFilesloaderFindAllIterator" id="taskFilesloaderFindAll">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.TaskFilesloader" Name="taskFilesloaderFindAll0">
+        <AttrNames>
+          <Item Value="id"/>
+          <Item Value="aplicacion"/>
+          <Item Value="nombrearchivo"/>
+          <Item Value="msgId"/>
+          <Item Value="endTimeTask"/>
+          <Item Value="msgTime"/>
+          <Item Value="startTimeTask"/>
+          <Item Value="status"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="confReceptorescorreosFindAllIterator" id="confReceptorescorreosFindAll2">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.ConfReceptorescorreos"
+                      Name="confReceptorescorreosFindAll20">
+        <AttrNames>
+          <Item Value="id"/>
+          <Item Value="aplicacion"/>
+          <Item Value="correo"/>
+          <Item Value="descripcion"/>
+          <Item Value="estado"/>
+          <Item Value="fechacreacion"/>
+          <Item Value="grupo"/>
+          <Item Value="identificacion"/>
+          <Item Value="login"/>
+          <Item Value="nombre"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="appAplicaciones2"/>
+          <Item Value="confGruposcorreo"/>
+          <Item Value="confUsuarios"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.AppAplicaciones">
+        <AttrNames>
+          <Item Value="descripcion"/>
+          <Item Value="abreviatura"/>
+          <Item Value="canal"/>
+          <Item Value="descripcion"/>
+          <Item Value="ftpescritura"/>
+          <Item Value="ftpslectura"/>
+          <Item Value="id"/>
+          <Item Value="nombre"/>
+        </AttrNames>
+      </nodeDefinition>
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.ConfGruposcorreo">
+        <AttrNames>
+          <Item Value="descripcion"/>
+          <Item Value="id"/>
+          <Item Value="nombre"/>
+        </AttrNames>
+      </nodeDefinition>
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.ConfUsuarios">
+        <AttrNames>
+          <Item Value="correo"/>
+          <Item Value="estado"/>
+          <Item Value="fechacreacion"/>
+          <Item Value="id"/>
+          <Item Value="identificacion"/>
+          <Item Value="login"/>
+          <Item Value="nombre"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="confHerramientasappsFindAllIterator" id="confHerramientasappsFindAll1">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.ConfHerramientasapps"
+                      Name="confHerramientasappsFindAll10">
+        <AttrNames>
+          <Item Value="id"/>
+          <Item Value="orden"/>
+          <Item Value="validacionproceso"/>
+          <Item Value="validacionws"/>
+          <Item Value="valor"/>          
+        </AttrNames>
+        <Accessors>
+          <Item Value="appHerramientas"/>
+		  <Item Value="appAplicaciones1"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.AppHerramientas">
+        <AttrNames>
+          <Item Value="descripcion"/>
+          <Item Value="id"/>
+          <Item Value="metodo"/>
+          <Item Value="nombre"/>
+        </AttrNames>
+      </nodeDefinition>
+	  <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.AppAplicaciones">
+        <AttrNames>
+          <Item Value="abreviatura"/>
+          <Item Value="canal"/>
+          <Item Value="descripcion"/>
+          <Item Value="ftpescritura"/>
+          <Item Value="ftpslectura"/>
+          <Item Value="id"/>
+          <Item Value="nombre"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="notifActividadProcesoFindAllIterator" id="notifActividadProcesoFindAll">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.NotifActividadProceso"
+                      Name="notifActividadProcesoFindAll0">
+        <AttrNames>
+          <Item Value="id"/>
+          <Item Value="orden"/>
+          <Item Value="nombreactividad"/>
+          <Item Value="descripcionActividad"/>
+          <Item Value="nombreproceso"/>
+          <Item Value="descripcionProceso"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="notifActividades"/>
+          <Item Value="notifProceso"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.NotifActividades">
+        <AttrNames>
+          <Item Value="descripcion"/>
+          <Item Value="id"/>
+          <Item Value="nombreactividad"/>
+        </AttrNames>
+      </nodeDefinition>
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.NotifProceso">
+        <AttrNames>
+          <Item Value="codtransaccion"/>
+          <Item Value="descripcion"/>
+          <Item Value="esquemacobro"/>
+          <Item Value="esquemadestanqueo"/>
+          <Item Value="id"/>
+          <Item Value="nombreentidadliq"/>
+          <Item Value="nombreproceso"/>
+          <Item Value="nombretablaliq"/>
+          <Item Value="tipoliquidacion"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="confHerramientasappsFindAllIterator" id="confHerramientasappsFindAll">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.ConfHerramientasapps"
+                      Name="confHerramientasappsFindAll0">
+        <AttrNames>
+          <Item Value="id"/>
+          <Item Value="orden"/>
+          <Item Value="validacionproceso"/>
+          <Item Value="validacionws"/>
+          <Item Value="valor"/>
+          <Item Value="aplicacionesDescripcion"/>
+          <Item Value="aplicacionesId"/>
+          <Item Value="aplicacionesAbreviatura"/>
+          <Item Value="aplicacionesNombre"/>
+          <Item Value="aplicacionesCanal"/>
+          <Item Value="aplicacionesFtpslectura"/>
+          <Item Value="aplicacionesFtpescritura"/>
+          <Item Value="herramientasId"/>
+          <Item Value="herramientasDescripcion"/>
+          <Item Value="herramientasMetodo"/>
+          <Item Value="herramientasNombre"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="appHerramientas"/>
+          <Item Value="appAplicaciones1"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.AppHerramientas">
+        <AttrNames>
+          <Item Value="descripcion"/>
+          <Item Value="id"/>
+          <Item Value="metodo"/>
+          <Item Value="nombre"/>
+        </AttrNames>
+      </nodeDefinition>
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.AppAplicaciones">
+        <AttrNames>
+          <Item Value="abreviatura"/>
+          <Item Value="canal"/>
+          <Item Value="descripcion"/>
+          <Item Value="ftpescritura"/>
+          <Item Value="ftpslectura"/>
+          <Item Value="id"/>
+          <Item Value="nombre"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

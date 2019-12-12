@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.10.8" id="registerPageDef"
+                Package="core.rsolano.liqinterface.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="root" RangeSize="25" DataControl="LIQTLBean" id="LIQTLBeanIterator"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="logErroresliqFindAll" RangeSize="25"
+                      DataControl="LIQTLBean" BeanClass="core.rsolano.liqinterface.model.entities.LogErroresliq"
+                      id="logErroresliqFindAllIterator"/>
+    <searchRegion Criteria="LogErroresliqCriteria" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="logErroresliqFindAllIterator" id="LogErroresliqCriteriaQuery"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="logErroresnotificacionFindAll" RangeSize="25"
+                      DataControl="LIQTLBean"
+                      BeanClass="core.rsolano.liqinterface.model.entities.LogErroresnotificacion"
+                      id="logErroresnotificacionFindAllIterator"/>
+    <searchRegion Criteria="LogErroresnotificacionCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="logErroresnotificacionFindAllIterator" id="LogErroresnotificacionCriteriaQuery"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="logInicionotificacionFindAll" RangeSize="25"
+                      DataControl="LIQTLBean" BeanClass="core.rsolano.liqinterface.model.entities.LogInicionotificacion"
+                      id="logInicionotificacionFindAllIterator"/>
+    <searchRegion Criteria="LogInicionotificacionCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="logInicionotificacionFindAllIterator" id="LogInicionotificacionCriteriaQuery"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="logRegistroserradosFindAll" RangeSize="25"
+                      DataControl="LIQTLBean" BeanClass="core.rsolano.liqinterface.model.entities.LogRegistroserrados"
+                      id="logRegistroserradosFindAllIterator"/>
+    <searchRegion Criteria="LogRegistroserradosCriteria" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="logRegistroserradosFindAllIterator" id="LogRegistroserradosCriteriaQuery"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="histActividadesProcesosFindAll" RangeSize="25"
+                      DataControl="LIQTLBean"
+                      BeanClass="core.rsolano.liqinterface.model.entities.HistActividadesProcesos"
+                      id="histActividadesProcesosFindAllIterator"/>
+    <searchRegion Criteria="HistActividadesProcesosCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="histActividadesProcesosFindAllIterator" id="HistActividadesProcesosCriteriaQuery"/>
+    <accessorIterator MasterBinding="LIQTLBeanIterator" Binds="histProcesosFindAll" RangeSize="25"
+                      DataControl="LIQTLBean" BeanClass="core.rsolano.liqinterface.model.entities.HistProcesos"
+                      id="histProcesosFindAllIterator"/>
+    <searchRegion Criteria="HistProcesosCriteria" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="histProcesosFindAllIterator" id="HistProcesosCriteriaQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="logErroresliqFindAllIterator" id="logErroresliqFindAll">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.LogErroresliq" Name="logErroresliqFindAll0">
+        <AttrNames>
+          <Item Value="id"/>
+          <Item Value="componente"/>
+          <Item Value="tipo"/>
+          <Item Value="severidad"/>
+          <Item Value="fecha"/>
+          <Item Value="mensaje"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="logErroresnotificacionFindAllIterator" id="logErroresnotificacionFindAll">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.LogErroresnotificacion"
+                      Name="logErroresnotificacionFindAll0">
+        <AttrNames>
+          <Item Value="id"/>
+          <Item Value="componente"/>
+          <Item Value="tipo"/>
+          <Item Value="fechaerror"/>
+          <Item Value="errormessage"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="logInicionotificacionFindAllIterator" id="logInicionotificacionFindAll">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.LogInicionotificacion"
+                      Name="logInicionotificacionFindAll0">
+        <AttrNames>
+          <Item Value="id"/>
+          <Item Value="tipoarchivo"/>
+          <Item Value="nombrearchivo"/>
+          <Item Value="canal"/>
+          <Item Value="algoritmo"/>
+          <Item Value="hash"/>
+          <Item Value="fechanotificacion"/>
+          <Item Value="guidmessage"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="logRegistroserradosFindAllIterator" id="logRegistroserradosFindAll">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.LogRegistroserrados"
+                      Name="logRegistroserradosFindAll0">
+        <AttrNames>
+          <Item Value="componente"/>
+          <Item Value="fecha"/>
+          <Item Value="id"/>
+          <Item Value="linea"/>
+          <Item Value="message"/>
+          <Item Value="registro"/>
+          <Item Value="histActividadesProcesosEstado"/>
+          <Item Value="histActividadesProcesosFechafin"/>
+          <Item Value="histActividadesProcesosFechainicio"/>
+          <Item Value="histActividadesProcesosFechanotificacion"/>
+          <Item Value="histActividadesProcesosId"/>
+          <Item Value="histActividadesProcesosRegistroserrados"/>
+          <Item Value="histActividadesProcesosRegistrosprocesados"/>
+          <Item Value="histActividadesProcesosRegistrostotales"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="histActividadesProcesos"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.HistActividadesProcesos">
+        <AttrNames>
+          <Item Value="estado"/>
+          <Item Value="fechafin"/>
+          <Item Value="fechainicio"/>
+          <Item Value="fechanotificacion"/>
+          <Item Value="id"/>
+          <Item Value="registroserrados"/>
+          <Item Value="registrosprocesados"/>
+          <Item Value="registrostotales"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="histActividadesProcesosFindAllIterator" id="histActividadesProcesosFindAll">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.HistActividadesProcesos"
+                      Name="histActividadesProcesosFindAll0">
+        <AttrNames>
+          <Item Value="estado"/>
+          <Item Value="fechafin"/>
+          <Item Value="fechainicio"/>
+          <Item Value="fechanotificacion"/>
+          <Item Value="id"/>
+          <Item Value="registroserrados"/>
+          <Item Value="registrosprocesados"/>
+          <Item Value="registrostotales"/>
+          <Item Value="actividadDescripcion"/>
+          <Item Value="actividadId"/>
+          <Item Value="actividadNombre"/>
+          <Item Value="actividadOrden"/>
+          <Item Value="procesoDescripcion"/>
+          <Item Value="procesoNombre"/>
+          <Item Value="procesosEstado"/>
+          <Item Value="procesosFechaFin"/>
+          <Item Value="procesosFechaInicio"/>
+          <Item Value="procesosId"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="notifActividadProceso"/>
+          <Item Value="histProcesos"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.NotifActividadProceso">
+        <AttrNames>
+          <Item Value="id"/>
+          <Item Value="orden"/>
+          <Item Value="nombreactividad"/>
+          <Item Value="descripcionActividad"/>
+          <Item Value="nombreproceso"/>
+          <Item Value="descripcionProceso"/>
+        </AttrNames>
+      </nodeDefinition>
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.HistProcesos">
+        <AttrNames>
+          <Item Value="estado"/>
+          <Item Value="fechafin"/>
+          <Item Value="fechainicio"/>
+          <Item Value="id"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="histProcesosFindAllIterator" id="histProcesosFindAll">
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.HistProcesos" Name="histProcesosFindAll0">
+        <AttrNames>
+          <Item Value="estado"/>
+          <Item Value="fechafin"/>
+          <Item Value="fechainicio"/>
+          <Item Value="id"/>
+          <Item Value="histInsumoliqFecha"/>
+          <Item Value="histInsumoliqId"/>
+          <Item Value="histInsumoliqNombre"/>
+          <Item Value="notifProcesoCodtransaccion"/>
+          <Item Value="notifProcesoDescripcion"/>
+          <Item Value="notifProcesoEsquemacobro"/>
+          <Item Value="notifProcesoEsquemadestanqueo"/>
+          <Item Value="notifProcesoId"/>
+          <Item Value="notifProcesoNombreentidadliq"/>
+          <Item Value="notifProcesoNombreproceso"/>
+          <Item Value="notifProcesoNombretablaliq"/>
+          <Item Value="notifProcesoTipoliquidacion"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="notifProceso4"/>
+          <Item Value="histInsumoliq"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.NotifProceso">
+        <AttrNames>
+          <Item Value="codtransaccion"/>
+          <Item Value="descripcion"/>
+          <Item Value="esquemacobro"/>
+          <Item Value="esquemadestanqueo"/>
+          <Item Value="id"/>
+          <Item Value="nombreentidadliq"/>
+          <Item Value="nombreproceso"/>
+          <Item Value="nombretablaliq"/>
+          <Item Value="tipoliquidacion"/>
+        </AttrNames>
+      </nodeDefinition>
+      <nodeDefinition DefName="core.rsolano.liqinterface.model.entities.HistInsumoliq">
+        <AttrNames>
+          <Item Value="fecha"/>
+          <Item Value="id"/>
+          <Item Value="nombre"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

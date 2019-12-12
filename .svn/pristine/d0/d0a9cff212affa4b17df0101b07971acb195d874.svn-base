@@ -1,0 +1,311 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="reports.jspx" id="d1">
+            <af:messages id="m1"/>
+            <af:form id="f1">
+                <af:pageTemplate viewId="/template/mainTemplate.jspx" id="pt1">
+                    <f:attribute name="Title" value="Reportes"/>
+                    <f:attribute name="Width" value="2"/>
+                    
+                    <f:facet name="main">
+                        <af:panelGroupLayout id="pgl1" layout="vertical">
+                            <af:panelGridLayout id="pgl2">
+                                <af:gridRow height="30px" id="gr1">
+                                    <af:gridCell marginStart="5px" width="50%" id="gc1"/>
+                                    <af:gridCell width="50%" marginEnd="5px" halign="end" valign="middle" id="gc2">
+                                        <af:panelGroupLayout id="pgl3" layout="horizontal">
+                                            <af:selectOneChoice value="#{bindings.appAplicacionesFindAll.inputValue}"
+                                                                label="Aplicación"
+                                                                required="#{bindings.appAplicacionesFindAll.hints.mandatory}"
+                                                                shortDesc="#{bindings.appAplicacionesFindAll.hints.tooltip}"
+                                                                id="soc1">
+                                                <f:selectItems value="#{bindings.appAplicacionesFindAll.items}"
+                                                               id="si1"/>
+                                                <f:validator binding="#{bindings.appAplicacionesFindAll.validator}"/>
+                                            </af:selectOneChoice>
+                                            <af:spacer width="10" height="10" id="s1"/>                                                                                        
+                                            <af:inputDate label="Dia" id="id1"
+                                                          partialTriggers="soc1 soc2 si2 soc3 si3"
+                                                          binding="#{reports.dayDate}" visible="false"/>
+                                            <af:selectOneChoice value="#{bindings.months.inputValue}"
+                                                                label="Mes"
+                                                                required="#{bindings.months.hints.mandatory}"
+                                                                shortDesc="#{bindings.months.hints.tooltip}" id="soc2">
+                                                <f:selectItems value="#{bindings.months.items}" id="si2"/>
+                                                <f:validator binding="#{bindings.months.validator}"/>
+                                            </af:selectOneChoice>
+                                            <af:spacer width="10" height="10" id="s2"/>
+                                            <af:selectOneChoice value="#{bindings.years.inputValue}"
+                                                                label="Año"
+                                                                required="#{bindings.years.hints.mandatory}"
+                                                                shortDesc="#{bindings.years.hints.tooltip}" id="soc3" >
+                                                <f:selectItems value="#{bindings.years.items}" id="si3"/>
+                                                <f:validator binding="#{bindings.years.validator}"/>
+                                            </af:selectOneChoice>
+                                            <af:spacer width="10" height="10" id="s10"/>
+                                            <af:spacer width="10" height="10" id="s9"/>
+                                            <af:outputLabel value="Estado Cobros" id="ol1"/>
+                                            <af:spacer width="10" height="10" id="s3"/>
+                                            <af:inputDate label="Fecha Inicio" id="id2"
+                                                          value="#{reports.dateI}" partialTriggers="id3"/>
+                                            <af:spacer width="10" height="10" id="s6"/>
+                                            <af:inputDate label="Fecha Fin" id="id3"
+                                                          value="#{reports.dateF}" partialTriggers="id2"/>
+                                            <af:spacer width="10" height="10" id="s8"/>
+                                            <af:selectOneChoice label="Cobros" value="#{reports.selectedOp}"
+                                                                id="soc4">
+                                                <af:selectItem label="Exitosos" value="exitosos" id="si6"/>
+                                                <af:selectItem label="Rechazados" value="rechazados" id="si7"/>
+                                            </af:selectOneChoice>
+                                            <af:spacer width="10" height="10" id="s7"/>
+                                            <af:button id="b1" icon="/images/search-icon.png" actionListener="#{reports.OnSearch}"/>
+                                            <af:spacer width="10" height="10" id="s4"/>
+                                        </af:panelGroupLayout>
+                                    </af:gridCell>
+                                </af:gridRow>
+                            </af:panelGridLayout>
+                            <af:panelDashboard id="pd1" columns="2" rowHeight="300px">
+                                <af:panelBox text="Cobros" id="pb1">
+                                    <f:facet name="toolbar"/>
+                                    <dvt:pieChart id="pieChart1" var="row" value="#{bindings.chargeByPeriod.collectionModel}"
+                                        partialTriggers="::b1" inlineStyle="font-size:xx-small; width:500px;"
+                                        title="RESUMEN DE COBROS" titleHalign="center"
+                                        footnote="#{reports.chargesTitle}" footnoteHalign="center">
+                                        <dvt:chartLegend id="cl1"/>
+                                        <dvt:pieDataItem id="di1" value="#{row.totaltransacciones}" shortDesc="#{row.valor}" 
+                                            label="#{row.serie}" color="#{row.color}" borderColor="#ffffff"/>
+                                    </dvt:pieChart>
+                                </af:panelBox>
+                                <af:panelBox text="Rechazos" id="pb2">
+                                    <f:facet name="toolbar"/>
+                                    <dvt:pieChart id="pieChart2" var="row" value="#{bindings.failChargeDetils.collectionModel}"
+                                        partialTriggers="::b1" inlineStyle="font-size:xx-small; width:500px;"
+                                        title="RAZONES DE RECHAZOS" titleHalign="center"
+                                        footnote="#{reports.failsTitle}" footnoteHalign="center">
+                                        <dvt:chartLegend id="cl2"/>
+                                        <dvt:pieDataItem id="di2" value="#{row.totaltransacciones}" shortDesc="#{row.valor}"
+                                                         label="#{row.descripcion}"/>
+                                    </dvt:pieChart>
+                                </af:panelBox>
+                                <af:panelBox text="Modalidades" id="pb3">
+                                    <f:facet name="toolbar"/>
+                                    <dvt:barChart id="barChart1" var="row" value="#{bindings.chargeByModality.collectionModel}"
+                                        partialTriggers="::b1" title="COBROS POR MODALIDAD"  titleHalign="center">
+                                        <dvt:chartLegend id="cl3"/>
+                                        <f:facet name="dataStamp">
+                                            <dvt:chartDataItem id="di3" value="#{row.totalcobro}" group="#{row.modalidad}"
+                                                series="#{bindings.chargeByModality.hints.totalcobro.label}"
+                                                shortDesc="#{row.valor}"/>
+                                        </f:facet>
+                                    </dvt:barChart>
+                                </af:panelBox>
+                                
+                                <af:panelBox text="Consolidados" id="pb4" partialTriggers="b1">
+                                    <f:facet name="toolbar"/>
+                                    <af:panelGroupLayout id="pgl4" layout="vertical" halign="center" valign="middle">
+                                        <af:outputText value="#{reports.headerCharges}" id="ot1" partialTriggers="b1"
+                                        inlineStyle="color:Navy; font-size:small; font-weight:bold;"/>
+                                        <af:panelGridLayout id="pgl5"/>
+                                        <af:spacer width="10" height="10" id="s5"/>     
+                                        <af:panelCollection id="pc1" rendered="#{reports.showTable}"
+                                                            partialTriggers="::b1">
+                                            <f:facet name="menus">
+                                                <af:menu text="Exportar" id="m2" icon="/images/xls-icon.png">
+                                                    <af:commandMenuItem text="Exportar Excel" id="cmi1">
+                                                        <af:exportCollectionActionListener type="excelHTML"
+                                                            exportedId="t1"
+                                                            filename="CobrosPorCliente.xls"
+                                                            title="Cobros por cliente"/>
+                                                    </af:commandMenuItem>
+                                                    <af:commandMenuItem text="Exportar CSV" id="cmi2">
+                                                        <af:exportCollectionActionListener type="CSV"
+                                                            exportedId="t1"
+                                                            filename="CobrosPorCliente.csv"
+                                                            title="Cobros por cliente"
+                                                            exportedRows="all"/>
+                                                    </af:commandMenuItem>
+                                                </af:menu>    
+                                            </f:facet>
+                                            <f:facet name="toolbar"/>
+                                            <f:facet name="statusbar"/>
+                                            <af:table value="#{bindings.customerCharges.collectionModel}" var="row"
+                                                      rows="#{bindings.customerCharges.rangeSize}"
+                                                      emptyText="#{bindings.customerCharges.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                      rowBandingInterval="0"
+                                                      selectedRowKeys="#{bindings.customerCharges.collectionModel.selectedRow}"
+                                                      selectionListener="#{bindings.customerCharges.collectionModel.makeCurrent}"
+                                                      rowSelection="single" 
+                                                      fetchSize="10" id="t1" width="480" partialTriggers=":::b1">
+                                                <af:column headerText="No" align="center" width="25" id="c1">
+                                                    <af:outputText value="#{row.record}"
+                                                                   shortDesc="#{bindings.customerCharges.hints.record.tooltip}"
+                                                                   id="ot2"/>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.customerCharges.hints.nombre.label}"
+                                                           width="250" id="c2">
+                                                    <af:outputText value="#{row.nombre}"
+                                                                   shortDesc="#{bindings.customerCharges.hints.nombre.tooltip}"
+                                                                   id="ot3"/>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.customerCharges.hints.totalCobro.label}"
+                                                           width="95" id="c3">
+                                                    <af:outputText value="#{row.totalCobro}"
+                                                                   shortDesc="#{bindings.customerCharges.hints.totalCobro.tooltip}"
+                                                                   id="ot4"/>
+                                                </af:column>
+                                                <af:column headerText="estado" align="center" width="35" id="c4">
+                                                    <af:image source="#{row.estadoCobro eq '-1' ? '/images/question-icon.png' : row.estadoCobro eq '0' ? '/images/success.png' : '/images/cuerror.png'}"
+                                                              shortDesc="#{row.estadoCobro eq '-1' ? 'cobro en proceso' : row.estadoCobro eq '0' ? 'cobro exitoso' : 'cobro fallido'}"
+                                                              id="i1"/>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.customerCharges.hints.tipoIdent.label}"
+                                                           width="50" id="c5">
+                                                    <af:outputText value="#{row.tipoIdent}"
+                                                                   shortDesc="#{bindings.customerCharges.hints.tipoIdent.tooltip}"
+                                                                   id="ot5"/>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.customerCharges.hints.numIdent.label}"
+                                                           width="65" id="c6">
+                                                    <af:outputText value="#{row.numIdent}"
+                                                                   shortDesc="#{bindings.customerCharges.hints.numIdent.tooltip}"
+                                                                   id="ot7"/>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.customerCharges.hints.tipoProd.label}"
+                                                           width="50" id="c7">
+                                                    <af:outputText value="#{row.tipoProd}"
+                                                                   shortDesc="#{bindings.customerCharges.hints.tipoProd.tooltip}"
+                                                                   id="ot8"/>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.customerCharges.hints.numProd.label}"
+                                                           width="70" id="c8">
+                                                    <af:outputText value="#{row.numProd}"
+                                                                   shortDesc="#{bindings.customerCharges.hints.numProd.tooltip}"
+                                                                   id="ot9"/>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.customerCharges.hints.tipoTarifa.label}"
+                                                           id="c9" rendered="#{reports.showColums}">
+                                                    <af:outputText value="#{row.tipoTarifa}"
+                                                                   shortDesc="#{bindings.customerCharges.hints.tipoTarifa.tooltip}"
+                                                                   id="ot6"/>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.customerCharges.hints.tipoRecaudo.label}"
+                                                           id="c10" rendered="#{reports.showColums}">
+                                                    <af:outputText value="#{row.tipoRecaudo}"
+                                                                   shortDesc="#{bindings.customerCharges.hints.tipoRecaudo.tooltip}"
+                                                                   id="ot10"/>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.customerCharges.hints.valorEsperado.label}"
+                                                           id="c11">
+                                                    <af:outputText value="$ #{row.valorEsperado}"
+                                                                   shortDesc="#{bindings.customerCharges.hints.valorEsperado.tooltip}"
+                                                                   id="ot11"/>
+                                                </af:column>
+                                            </af:table>
+                                        </af:panelCollection>
+                                        <af:panelCollection id="pc2" rendered="#{reports.shownTable2}"
+                                                            partialTriggers="::b1">
+                                            <f:facet name="menus">
+                                                <af:menu text="Exportar" id="m3" icon="/images/xls-icon.png">
+                                                    <af:commandMenuItem text="Exportar Excel" id="cmi3">
+                                                        <af:exportCollectionActionListener type="excelHTML"
+                                                            filename="ClientesSinCobro.xls"
+                                                            title="Clientes sin cobro" exportedId="t2"/>
+                                                    </af:commandMenuItem>
+                                                    <af:commandMenuItem text="Exportar CSV" id="cmi4">
+                                                        <af:exportCollectionActionListener type="CSV" exportedId="t2"
+                                                            filename="ClientesSinCobro.csv"
+                                                            title="Clientes sin cobro" exportedRows="all"/>
+                                                    </af:commandMenuItem>
+                                                </af:menu>
+                                            </f:facet>
+                                            <f:facet name="toolbar"/>
+                                            <f:facet name="statusbar"/>
+                                            <af:table value="#{bindings.customerWithoutCharges.collectionModel}"
+                                                      var="row" rows="#{bindings.customerWithoutCharges.rangeSize}"
+                                                      emptyText="#{bindings.customerWithoutCharges.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                      rowBandingInterval="0"
+                                                      selectedRowKeys="#{bindings.customerWithoutCharges.collectionModel.selectedRow}"
+                                                      selectionListener="#{bindings.customerWithoutCharges.collectionModel.makeCurrent}"
+                                                      rowSelection="single" 
+                                                      fetchSize="10" id="t2" partialTriggers=":::b1" width="480" >
+                                                <af:column headerText="#{bindings.customerWithoutCharges.hints.record.label}"
+                                                           id="c12">
+                                                    <af:outputText value="#{row.record}"
+                                                                   shortDesc="#{bindings.customerWithoutCharges.hints.record.tooltip}"
+                                                                   id="ot18"/>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.customerWithoutCharges.hints.tipoIdent.label}"
+                                                           id="c13">
+                                                    <af:outputText value="#{row.tipoIdent}"
+                                                                   shortDesc="#{bindings.customerWithoutCharges.hints.tipoIdent.tooltip}"
+                                                                   id="ot13"/>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.customerWithoutCharges.hints.numIdent.label}"
+                                                           id="c14">
+                                                    <af:outputText value="#{row.numIdent}"
+                                                                   shortDesc="#{bindings.customerWithoutCharges.hints.numIdent.tooltip}"
+                                                                   id="ot17"/>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.customerWithoutCharges.hints.totalCobro.label}"
+                                                           id="c15">
+                                                    <af:outputText value="$ #{row.totalCobro}"
+                                                                   shortDesc="#{bindings.customerWithoutCharges.hints.totalCobro.tooltip}"
+                                                                   id="ot14"/>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.customerWithoutCharges.hints.valorEsperado.label}"
+                                                           id="c16">
+                                                    <af:outputText value="$ #{row.valorEsperado}"
+                                                                   shortDesc="#{bindings.customerWithoutCharges.hints.valorEsperado.tooltip}"
+                                                                   id="ot15"/>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.customerWithoutCharges.hints.tipoTarifa.label}"
+                                                           id="c17" rendered="#{reports.showColums}">
+                                                    <af:outputText value="#{row.tipoTarifa}"
+                                                                   shortDesc="#{bindings.customerWithoutCharges.hints.tipoTarifa.tooltip}"
+                                                                   id="ot16"/>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.customerWithoutCharges.hints.tipoRecaudo.label}"
+                                                           id="c18" rendered="#{reports.showColums}">
+                                                    <af:outputText value="#{row.tipoRecaudo}"
+                                                                   shortDesc="#{bindings.customerWithoutCharges.hints.tipoRecaudo.tooltip}"
+                                                                   id="ot12"/>
+                                                </af:column>
+                                            </af:table>
+                                        </af:panelCollection>
+                                    </af:panelGroupLayout>
+                                </af:panelBox>
+                            </af:panelDashboard>
+                            <af:panelDashboard id="pd2" rowHeight="300px" columns="1">
+                                <af:panelBox text="liquidaciones mes" id="pb5">
+                                    <f:facet name="toolbar"/>
+                                    <dvt:lineChart id="lineChart1" var="row" value="#{bindings.charges.collectionModel}" 
+                                                   partialTriggers="::b1" zoomAndScroll="live" timeAxisType="enabled" 
+                                                   hideAndShowBehavior="withoutRescale">
+                                        <dvt:chartLegend id="cl4"/>
+                                        <f:facet name="seriesStamp">
+                                          <af:group id="ss1">
+                                            <dvt:chartSeriesStyle id="css1" series="Cobros exitosos" color="#00bb00" markerDisplayed="true"/>
+                                            <dvt:chartSeriesStyle id="css2" series="Cobros errados" color="#bb0000" markerDisplayed="true"/>
+                                          </af:group>
+                                        </f:facet>
+                                        <f:facet name="dataStamp">
+                                            <af:group id="g1">
+                                                <dvt:chartDataItem id="di4" value="#{row.exitosos}" group="#{row.fecha}" color="#00bb00" 
+                                                                   shortDesc="#{row.valor}" series="Cobros exitosos"/>
+                                                <dvt:chartDataItem id="di5" value="#{row.fallidos}" group="#{row.fecha}" color="#bb0000"
+                                                                   shortDesc="#{row.valor}" series="Cobros errados"/>
+                                            </af:group>
+                                        </f:facet>
+                                    </dvt:lineChart>
+                                </af:panelBox>
+                            </af:panelDashboard>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

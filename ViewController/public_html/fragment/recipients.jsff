@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:f="http://java.sun.com/jsf/core">   
+    <af:spacer width="10" height="10" id="sRPUB1"/>
+    
+    <af:panelGroupLayout id="pgRPUB1" layout="horizontal">
+        <af:inputText label="Alias" id="itRPUB1" value="#{recipients.aliasPub}" required="true"
+                    shortDesc="Alias de la firma pgp. Generalmente es un archivo .asc equivalente al pub del tercero."
+                    partialTriggers="bRPUB1 bRPUB2" requiredMessageDetail="Debe ingresar un alias para la llave pública"/>
+        <af:spacer width="2" height="10" id="sRPUB2"/>
+      
+        <af:image source="/images/public-key.png" shortDesc="Llave pública pgp" id="iRPUB1"/>
+        <af:selectOneChoice id="socRPUB1" value="#{recipients.choice}" required="true"
+                            requiredMessageDetail="Por favor seleccione una llave.">
+            <f:selectItems value="#{recipients.pgpKeys}" id="siRPUB1"/>
+        </af:selectOneChoice>
+        <af:spacer width="2" height="10" id="sRPUB3"/>
+      
+        <af:image shortDesc="Liq aplicación" id="iRPUB2" source="/images/app-icon.png"/>
+        <af:selectOneChoice id="socRPUB2" value="#{recipients.appchoice}" required="true"
+                            requiredMessageDetail="Por favor seleccione una aplicación.">
+            <f:selectItems value="#{recipients.apps}" id="siRPUB2"/>
+        </af:selectOneChoice>
+    </af:panelGroupLayout>
+    <af:separator id="spRPUB1"/>
+    
+    <af:panelGroupLayout id="pgRPUB3">
+        <af:button text="Agregar" id="bRPUB1" icon="/images/flash-icon.png" actionListener="#{recipients.CreateSign}"/>
+        <af:spacer width="10" height="10" id="sRPUB4"/>
+        <af:button text="Limpiar" id="bRPUB2" icon="/images/reset-icon.png" immediate="true"
+                   actionListener="#{recipients.Cancel}"/>
+    </af:panelGroupLayout>
+    <af:separator id="spRPUB3"/>
+    
+    <af:panelGroupLayout id="pgRPUB4" layout="horizontal">
+        <af:image source="#{recipients.msgImage}" shortDesc="img" id="iRPUB3" binding="#{recipients.bmsgImage}"
+                  visible="#{recipients.msgActive}" partialTriggers="bRPUB1 bRPUB2"/>
+        <af:spacer width="2" height="10" id="sRPUB5"/>
+        <af:outputText value="#{recipients.msgText}" id="otRPUB2" binding="#{recipients.bmsgText}" 
+                       partialTriggers="bRPUB1 bRPUB2" inlineStyle="#{recipients.msgStyle}"/>
+    </af:panelGroupLayout>
+    
+</ui:composition>

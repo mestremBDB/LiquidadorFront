@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:f="http://java.sun.com/jsf/core">
+
+    <af:spacer width="10" height="10" id="sTEST1"/>
+    <af:panelGroupLayout id="pgTEST1" layout="horizontal">
+        <af:inputText label="Archivo" id="itTEST1" value="#{test.inputFile}" required="true"
+                      shortDesc="El nombre del archivo pgp que se desa desencriptar."
+                      partialTriggers="bTEST1" requiredMessageDetail="Debe introducir un archivo para descifrar"/>
+        <af:spacer width="10" height="10" id="sTEST2"/>
+        <af:image source="/images/public-key.png" shortDesc="Llave pública pgp" id="iTEST1"/>
+        <af:selectOneChoice id="socTEST1" value="#{test.choice}" required="true"
+                            requiredMessageDetail="Por favor seleccione una firma.">
+            <f:selectItems value="#{test.pgpKeys}" id="siTEST1"/>
+        </af:selectOneChoice>
+    </af:panelGroupLayout>
+    <af:separator id="spTEST1"/>
+    
+    <af:panelGroupLayout id="pgTEST3">
+        <af:button text="Probar" id="bTEST1" icon="/images/flash-icon.png" actionListener="#{test.ExecuteDecrypt}"/>
+        <af:spacer width="10" height="10" id="sTEST3"/>
+        <af:button text="Limpiar" id="bTEST2" icon="/images/reset-icon.png" actionListener="#{test.Cancel}" immediate="true"/>
+    </af:panelGroupLayout>
+    <af:separator id="spTEST3"/>
+    
+    <af:panelGroupLayout id="pgTEST4" layout="horizontal">
+        <af:image source="#{test.msgImage}" shortDesc="img" id="iTEST3" binding="#{test.bmsgImage}"
+                  visible="#{test.msgActive}" partialTriggers="bTEST1 bTEST2"/>
+        <af:spacer width="2" height="10" id="sTEST4"/>
+        <af:outputText value="#{test.msgText}" id="otTEST1" binding="#{test.bmsgText}" 
+                       partialTriggers="bTEST1 bTEST2" inlineStyle="#{test.msgStyle}"/>
+    </af:panelGroupLayout>
+    
+</ui:composition>

@@ -1,0 +1,82 @@
+package core.rsolano.liqinterface.view.backing;
+
+import core.rsolano.liqinterface.view.utils.JSFUtils;
+
+public class Navigation {
+    private String view;
+    private String base;
+    
+    public Navigation() {
+        base = "Su usuario no posee los privilegios para chequear la vista ";
+    }
+    
+    public String GoToControl()
+    {
+        view = base + " PANEL DE CONTROL";
+        if(RouteAnalize("CONTROL"))
+            return "go_control";
+        else
+            return "go_message";
+    }
+    
+    public String GoToSecurity()
+    {
+        view = base + " SEGURIDAD";
+        if(RouteAnalize("SECURITY"))
+            return "go_security";
+        else
+            return "go_message";
+        
+    }
+    
+    public String GoToRegister()
+    {
+        view = base + " REGISTRO";
+        if(RouteAnalize("REGISTER"))
+            return "go_register";
+        else
+            return "go_message";
+    }
+    
+    public String GoToReports()
+    {
+        view = base + " INFORMES";
+        if(RouteAnalize("REPORTS"))
+            return "go_reports";
+        else
+            return "go_message";
+    }
+    
+    public String GoToLogin()
+    {
+        return "go_login";
+    }
+    
+    public String GoToIndex()
+    {
+        return "go_index";
+    }
+    
+    boolean RouteAnalize(String page){
+        String[] grants = JSFUtils.getUserRole();
+        String[] pages;
+        
+        for(int i = 0; i < grants.length; i++){
+            pages = grants[i].toUpperCase().split(",");
+            for(int j = 0; j < pages.length; j++){
+                if(pages[j].equalsIgnoreCase("ALL") || pages[j].equalsIgnoreCase(page))
+                    return true;
+            }
+        }
+        return false;
+    }
+    
+    
+    public void setView(String view) {
+        this.view = view;
+    }
+
+    public String getView() {
+        return view;
+    }
+}
